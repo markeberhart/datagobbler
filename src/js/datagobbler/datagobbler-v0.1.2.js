@@ -1,6 +1,11 @@
 // ARC Service JSON
 //Caution-sampleserver3.arcgisonline.com/ArcGIS/rest/services/Earthquakes/EarthquakesFromLastSevenDays/FeatureServer/0/query?objectIds=&where=magnitude+%3E+4.5&time=&geometry=&geometryType=esriGeometryEnvelope&inSR=&spatialRel=esriSpatialRelIntersects&relationParam=&outFields=*&returnGeometry=true&outSR=&returnCountOnly=false&returnIdsOnly=false&f=pjson
 
+//XML Fomrats
+//https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/4.5_month.quakeml
+//https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/4.5_month.atom
+//https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/2.5_month_depth_link.kml
+
 //DataGobbler version 0.1.2
 //Last updated 04/20/2017
 
