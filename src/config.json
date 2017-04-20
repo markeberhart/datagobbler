@@ -1,0 +1,129 @@
+{
+    "data_layers":{
+
+       "causes-of-death-csv":{
+            "title":"Causes of Death",
+            "api_info": {
+                "url":"./resources/data/Leading_Causes_of_Death__1990-2010.csv",
+                "file_type":"csv",
+                "filter_out":[],
+                "group_by":["AGE GROUP","LEADING CAUSES OF DEATH"],
+                "proxy_url":null,
+                "date_info": {
+                    "date_field":"YEAR",
+                    "date_format":"YYYY",
+                    "offset_type":"days",
+                    "date_start_offset":0,
+                    "date_end_offset":0
+                },
+                "if_not_geospatial_file_type":{
+                    "field_to_use_for_latitude":null,
+                    "field_to_use_for_longitude":null
+                }
+            }
+        },
+        "geojson-data":{
+            "title":"GEOJSON Data",
+            "api_info": {
+                "url":"./resources/data/earthquakes1.geojson",
+                "file_type":"geojson",
+                "filter_out":[{"property":"sig","operator":"==","value":"4"}],
+                "group_by":["sig"],
+                "proxy_url":null,
+                "date_info": {
+                    "date_field":"time",
+                    "date_format":"x",
+                    "offset_type":"days",
+                    "date_start_offset":0,
+                    "date_end_offset":0
+                },
+                "if_not_geospatial_file_type":{
+                    "field_to_use_for_latitude":null,
+                    "field_to_use_for_longitude":null
+                }
+            }
+        },
+        "world":{
+            "title":"World",
+            "api_info": {
+                "url":"./resources/data/world_ver29.json",
+                "file_type":"topojson",
+                "filter_out":[],
+                "group_by":[],
+                "proxy_url":null,
+                "date_info": {
+                    "date_field":null,
+                    "date_format":null,
+                    "offset_type":"days",
+                    "date_start_offset":0,
+                    "date_end_offset":0
+                },
+                "if_not_geospatial_file_type":{
+                    "field_to_use_for_latitude":null,
+                    "field_to_use_for_longitude":null
+                }
+            }
+        },
+        "shape":{
+            "title":"Shapefile",
+            "api_info": {
+                "url":"./resources/data/counties5m/cb_2015_us_county_5m.shp",
+                "file_type":"shp",
+                "filter_out":[],
+                "group_by":[],
+                "proxy_url":null,
+                "date_info": {
+                    "date_field":null,
+                    "date_format":null,
+                    "offset_type":"days",
+                    "date_start_offset":0,
+                    "date_end_offset":0
+                },
+                "if_not_geospatial_file_type":{
+                    "field_to_use_for_latitude":null,
+                    "field_to_use_for_longitude":null
+                }
+            }
+        },
+        "csv-geospatial-data":{
+            "title":"CSV GEOSPATIAL Data",
+            "api_info": {
+                "url":"./resources/data/data_1478028558815.csv",
+                "file_type":"csv",
+                "filter_out":[],
+                "group_by":[],
+                "proxy_url":null,
+                "date_info": {
+                    "date_field":"timestamp",
+                    "date_format":"MM/DD/YYYY HH:MM:SS",
+                    "offset_type":"days",
+                    "date_start_offset":0,
+                    "date_end_offset":0
+                },
+                "if_not_geospatial_file_type":{
+                    "field_to_use_for_latitude":"latitude",
+                    "field_to_use_for_longitude":"longitude"
+                }
+            }
+        }
+    },
+
+    "data_options": {
+        "default_proxy_url":"./resources/data/data.aspx?url=",
+        "default_dates": {
+            "date_format":"MM/DD/YYYY",
+            "date_start":"01/01/1980",
+            "date_end":"11/10/2016"
+        },
+        "dataBounds": {
+            "north":90,
+            "south":-90,
+            "east":180,
+            "west":-180
+        }
+    },
+
+    "uiOptions": {
+
+    }
+}
