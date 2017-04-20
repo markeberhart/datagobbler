@@ -1,17 +1,38 @@
 {
     "data_layers":{
 
-       "causes-of-death-csv":{
-            "title":"Causes of Death",
+       "earthquakes-csv":{
+            "title":"Earthquakes CSV",
             "api_info": {
-                "url":"./resources/data/Leading_Causes_of_Death__1990-2010.csv",
+                "url":"./data/earthquakes.csv",
                 "file_type":"csv",
                 "filter_out":[],
-                "group_by":["AGE GROUP","LEADING CAUSES OF DEATH"],
+                "group_by":["sig"],
                 "proxy_url":null,
                 "date_info": {
-                    "date_field":"YEAR",
-                    "date_format":"YYYY",
+                    "date_field":"time",
+                    "date_format":"x",
+                    "offset_type":"days",
+                    "date_start_offset":0,
+                    "date_end_offset":0
+                },
+                "if_not_geospatial_file_type":{
+                    "field_to_use_for_latitude":null,
+                    "field_to_use_for_longitude":null
+                }
+            }
+        },
+        "arcjson-data":{
+            "title":"ARCJSON Data",
+            "api_info": {
+                "url":"http://sampleserver3.arcgisonline.com/ArcGIS/rest/services/Earthquakes/EarthquakesFromLastSevenDays/FeatureServer/0/query?objectIds=&where=magnitude+%3E+4.5&time=&geometry=&geometryType=esriGeometryEnvelope&inSR=&spatialRel=esriSpatialRelIntersects&relationParam=&outFields=*&returnGeometry=true&outSR=&returnCountOnly=false&returnIdsOnly=false&f=pjson",
+                "file_type":"arcjson",
+                "filter_out":[{"property":"magnitude","operator":">","value":"5"}],
+                "group_by":["region"],
+                "proxy_url":null,
+                "date_info": {
+                    "date_field":"datetime",
+                    "date_format":"x",
                     "offset_type":"days",
                     "date_start_offset":0,
                     "date_end_offset":0
@@ -25,7 +46,7 @@
         "geojson-data":{
             "title":"GEOJSON Data",
             "api_info": {
-                "url":"./resources/data/earthquakes1.geojson",
+                "url":"./data/earthquakes2.geojson",
                 "file_type":"geojson",
                 "filter_out":[{"property":"sig","operator":"==","value":"4"}],
                 "group_by":["sig"],
@@ -43,10 +64,10 @@
                 }
             }
         },
-        "world":{
-            "title":"World",
+        "topojson-world":{
+            "title":"Topojson World",
             "api_info": {
-                "url":"./resources/data/world_ver29.json",
+                "url":"./data/world.topojson",
                 "file_type":"topojson",
                 "filter_out":[],
                 "group_by":[],
@@ -64,17 +85,17 @@
                 }
             }
         },
-        "shape":{
-            "title":"Shapefile",
+        "earthquakes-shapefile":{
+            "title":"Earthquakes Shapefile",
             "api_info": {
-                "url":"./resources/data/counties5m/cb_2015_us_county_5m.shp",
-                "file_type":"shp",
+                "url":"./data/earthquakes.zip",
+                "file_type":"shpzip",
                 "filter_out":[],
                 "group_by":[],
                 "proxy_url":null,
                 "date_info": {
-                    "date_field":null,
-                    "date_format":null,
+                    "date_field":"time",
+                    "date_format":"x",
                     "offset_type":"days",
                     "date_start_offset":0,
                     "date_end_offset":0
@@ -88,10 +109,10 @@
         "csv-geospatial-data":{
             "title":"CSV GEOSPATIAL Data",
             "api_info": {
-                "url":"./resources/data/data_1478028558815.csv",
+                "url":"./resources/data/data_1478285103105.csv",
                 "file_type":"csv",
                 "filter_out":[],
-                "group_by":[],
+                "group_by":["color"],
                 "proxy_url":null,
                 "date_info": {
                     "date_field":"timestamp",
