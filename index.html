@@ -6,23 +6,31 @@
 <body>
     
 <!-- DataGobbler Files -->
+<script src="./src/js/proj4/proj4.min.js"></script>
 <script src="./src/js/jquery/jquery-3.2.1.min.js"></script>
 <script src="./src/js/d3/d3.min.js"></script>
 <script src="./src/js/moment/moment.min.js"></script>
+
 <script src="./src/js/shapefilejs/shp.min.js"></script>
 <script src="./src/js/d3/topojson.min.js"></script>
 <script src="./src/js/arcjson2geojson/arcjson2geojson.js"></script>
+<!-- 
+<script src="./src/js/promises/promises.js"></script>
+<script src="./src/js/shapefilejs/jszip.min.js"></script>
+<script src="./src/js/shapefilejs/unzip.js"></script>
+<script src="./src/js/shapefilejs/parseShp.js"></script>
+-->
 <script src="./src/js/datagobbler/datagobbler-v0.1.2.js"></script>
 
 <script>
 
-/*
+
 var dgb = new datagobbler.getData({
-    configFile:"config.json",
+    configFile:"./src/config.json",
     callbackFunction:onDataLoaded,
     loadingCallbackFunction:onDataLoading
 });
-*/
+
 
 function onDataLoading(data){
     console.log("onDataLoading...",data.loadingStatus.isFiltered);

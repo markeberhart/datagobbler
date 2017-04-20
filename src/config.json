@@ -4,7 +4,7 @@
        "earthquakes-csv":{
             "title":"Earthquakes CSV",
             "api_info": {
-                "url":"./data/earthquakes.csv",
+                "url":"./src/data/earthquakes.csv",
                 "file_type":"csv",
                 "filter_out":[],
                 "group_by":["sig"],
@@ -46,7 +46,7 @@
         "geojson-data":{
             "title":"GEOJSON Data",
             "api_info": {
-                "url":"./data/earthquakes2.geojson",
+                "url":"src/data/earthquakes2.geojson",
                 "file_type":"geojson",
                 "filter_out":[{"property":"sig","operator":"==","value":"4"}],
                 "group_by":["sig"],
@@ -67,7 +67,7 @@
         "topojson-world":{
             "title":"Topojson World",
             "api_info": {
-                "url":"./data/world.topojson",
+                "url":"src/data/world.topojson",
                 "file_type":"topojson",
                 "filter_out":[],
                 "group_by":[],
@@ -88,8 +88,8 @@
         "earthquakes-shapefile":{
             "title":"Earthquakes Shapefile",
             "api_info": {
-                "url":"./data/earthquakes.zip",
-                "file_type":"shpzip",
+                "url":"src/data/earthquakes.zip",
+                "file_type":"shp.zip",
                 "filter_out":[],
                 "group_by":[],
                 "proxy_url":null,
@@ -109,7 +109,7 @@
         "csv-geospatial-data":{
             "title":"CSV GEOSPATIAL Data",
             "api_info": {
-                "url":"./resources/data/data_1478285103105.csv",
+                "url":"./src/resources/data/data_1478285103105.csv",
                 "file_type":"csv",
                 "filter_out":[],
                 "group_by":["color"],
