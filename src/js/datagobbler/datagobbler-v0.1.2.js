@@ -120,7 +120,7 @@
     }
     
     datagobbler.startAndEndDatesReady = function(){
-        console.log("datagobbler.startAndEndDatesReady",this);
+        //console.log("datagobbler.startAndEndDatesReady",this);
        
         this.data['data_requests'] = {};
         this.data['proxy_requests'] = {};
@@ -294,15 +294,15 @@
                         break;
                     case "shp":
                         datagobbler.layerHasGeospatialData(dl,true);
-                        //datagobbler.downloadDataSHP(dl);
+                        datagobbler.downloadDataSHP(dl);
                         break;
                     case "kml":
                         datagobbler.layerHasGeospatialData(dl,true);
-                        //datagobbler.downloadDataKML(dl);
+                        datagobbler.downloadDataKML(dl);
                         break;
                     case "csv":
                         datagobbler.checkIfGeospatial(dl);
-                        //datagobbler.downloadDataCSV(dl);
+                        datagobbler.downloadDataCSV(dl);
                         break;
                     case "shp.zip":
                         datagobbler.layerHasGeospatialData(dl,true);
@@ -310,7 +310,7 @@
                         break;
                 }
             }
-            console.log("========================");
+            //console.log("========================");
         }
     }
     
@@ -440,13 +440,13 @@
                 _loadingStatus.downloadError = true;
                 datagobbler.data_layers[layer].api_info['data'] = null;
                 datagobbler.DownloadError(layer,error);
-                //console.log(layer,"==== >> JSON error <<====");
+                console.log("downloadDataTOPOJSON BAD");
             }else{
                 _loadingStatus.downloadCompleted = true;
                 datagobbler.data_layers[layer].api_info['data'] = data;
                 datagobbler.DownloadSuccess(layer);
                 datagobbler.decodeDataTOPOJSON(layer);
-                //console.log("downloadDataTOPOJSON OK",data);
+                console.log("downloadDataTOPOJSON OK");
             }
         });
 
@@ -464,7 +464,7 @@
             _obj.name = k;
             _arr.push(_obj);
         }
-        console.log("downloadDataTOPOJSON OK",_arr);
+        //console.log("downloadDataTOPOJSON OK",_arr);
         datagobbler.data_layers[layer].api_info['objects'] = _arr;
         datagobbler.checkGlobalDownloadStatus();
     }
@@ -473,21 +473,21 @@
         
         var _url = datagobbler.data_layers[layer].api_info.url;
         var _loadingStatus = datagobbler.data_layers[layer].loadingStatus;
-        console.log('datagobbler.downloadDataGEOJSON',_url);
+        //console.log('datagobbler.downloadDataGEOJSON',_url);
         
          var errorGeoJson = function(error){
             _loadingStatus.downloadCompleted = false;
             _loadingStatus.downloadError = true;
             datagobbler.data_layers[layer].api_info['data'] = null;
             datagobbler.DownloadError(layer,error);
-            console.log("downloadDataGEOJSON BAD",error);
+            console.log("downloadDataGEOJSON BAD");
         }
         var successGeoJson = function(data){
             _loadingStatus.downloadCompleted = true;
             datagobbler.data_layers[layer].api_info['data'] = data;
             datagobbler.DownloadSuccess(layer);
             datagobbler.decodeDataGEOJSON(layer);
-            console.log("downloadDataGEOJSON OK",data);
+            console.log("downloadDataGEOJSON OK");
         }
             
         _loadingStatus.pendingDownload = true;
@@ -506,21 +506,20 @@
         
         var _url = datagobbler.data_layers[layer].api_info.url;
         var _loadingStatus = datagobbler.data_layers[layer].loadingStatus;
-        console.log('datagobbler.downloadDataGEOJSON',_url);
         
         var errorGeoJson = function(error){
             _loadingStatus.downloadCompleted = false;
             _loadingStatus.downloadError = true;
             datagobbler.data_layers[layer].api_info['data'] = null;
             datagobbler.DownloadError(layer,error);
-            console.log("downloadDataGEOJSON BAD",error);
+            console.log("downloadDataGEOJSONP BAD");
         }
         var successGeoJson = function(data){
             _loadingStatus.downloadCompleted = true;
             datagobbler.data_layers[layer].api_info['data'] = data;
             datagobbler.DownloadSuccess(layer);
             datagobbler.decodeDataGEOJSON(layer);
-            console.log("downloadDataGEOJSON OK",data);
+            console.log("downloadDataGEOJSONP OK");
         }
             
         _loadingStatus.pendingDownload = true;
@@ -570,14 +569,14 @@
         
         var _url = datagobbler.data_layers[layer].api_info.url;
         var _loadingStatus = datagobbler.data_layers[layer].loadingStatus;
-        console.log('datagobbler.downloadDataARCJSON',_url);
+        //console.log('datagobbler.downloadDataARCJSON',_url);
         
         var errorArcJson = function(error){
             _loadingStatus.downloadCompleted = false;
             _loadingStatus.downloadError = true;
             datagobbler.data_layers[layer].api_info['data'] = null;
             datagobbler.DownloadError(layer,error);
-            console.log("downloadDataARCJSON BAD",error);
+            console.log("downloadDataARCJSON BAD");
         }
         var successArcJson = function(data){
             _loadingStatus.downloadCompleted = true;
@@ -586,7 +585,7 @@
             datagobbler.data_layers[layer].api_info['data'] = _geojson;
             datagobbler.DownloadSuccess(layer);
             datagobbler.decodeDataGEOJSON(layer);
-            console.log("downloadDataARCJSON OK",_geojson);
+            console.log("downloadDataARCJSON OK");
         }
             
         _loadingStatus.pendingDownload = true;
@@ -617,17 +616,17 @@
 
 
     datagobbler.downloadDataSHP = function(layer){
-        console.log("datagobbler.downloadDataSHP",layer);
-        var _data = datagobbler.data_layers[layer].api_info.data;
-        //var _arr = [];
+        //console.log("datagobbler.downloadDataSHP",layer);
+        //var _data = datagobbler.data_layers[layer].api_info.data;
+        var _arr = [];
         var _filetype = datagobbler.data_layers[dl].api_info.file_type;
         var _loadingStatus = datagobbler.data_layers[layer].loadingStatus;
         var _url = datagobbler.data_layers[layer].api_info.url;
             _url = _url.substring(0,_url.lastIndexOf("."));
-        console.log("_url:",_url);
+        //console.log("_url:",_url);
         var _shpLoader = shp(_url).then(
             function(data){ //If successful loading
-                console.log("Loaded Shapefile!");
+                //console.log("Loaded Shapefile!",data);
                 _loadingStatus.downloadCompleted = true;
                 var _arr = [];
                 _arr[0] = data;
@@ -635,6 +634,7 @@
                 //datagobbler.data_layers[layer].api_info['objects'] = data;
                 datagobbler.DownloadSuccess(layer);
                 datagobbler.decodeDataSHPGEOJSON(layer); //TODO make sure we get geojson into an array format like the others
+                console.log("downloadDataSHP OK");
             },
             function(event){ //If fails to load
                 //console.log("Sorry, could not load Shapefile.");
@@ -643,29 +643,30 @@
                 datagobbler.data_layers[layer].api_info['data'] = null;
                 datagobbler.data_layers[layer].api_info['objects'] = null;
                 datagobbler.DownloadError(layer,event);
+                console.log("downloadDataSHP BAD");
             }
         );
     _shpLoader['layer'] = layer;
     }
 
     datagobbler.downloadDataSHPZIP = function(layer){
-        console.log("datagobbler.downloadDataSHPZIP called");
-        var _data = datagobbler.data_layers[layer].api_info.data;
+        //console.log(shp,"datagobbler.downloadDataZIP called",layer,datagobbler.data_layers[layer]);
         var _arr = [];
         var _filetype = datagobbler.data_layers[dl].api_info.file_type;
         var _loadingStatus = datagobbler.data_layers[layer].loadingStatus;
         var _url = datagobbler.data_layers[layer].api_info.url;
             _url = _url.substring(0,_url.lastIndexOf("."));
             _url=_url+".zip";
-        console.log(_url);
+        //console.log(_url);
         var _shpLoader = shp(_url).then(
             function(data){ //If successful loading
                 //console.log("downloadDataSHPZIP",data);
+                //console.log("downloadDataSHPZIP OK",data);
                 _loadingStatus.downloadCompleted = true;
                 datagobbler.data_layers[layer].api_info['data'] = data;
                 datagobbler.DownloadSuccess(layer);
                 datagobbler.decodeDataSHPGEOJSON(layer); //TODO make sure we get geojson into an array format like the others
-                console.log("downloadDataSHPZIP OK",data);
+                console.log("downloadDataSHPZIP OK");
             },
             function(event){ //If fails to load
                 //console.log("Sorry, could not load Shapefile.",event);
@@ -675,12 +676,9 @@
                 datagobbler.data_layers[layer].api_info['data'] = null;
                 datagobbler.data_layers[layer].api_info['objects'] = null;
                 datagobbler.DownloadError(layer,event);
-                console.log("downloadDataSHPZIP BAD",event);
+                console.log("downloadDataSHPZIP BAD");
             }
         );
-        console.log("_shpLoader",_shpLoader);
-        //console.log("shp",shp);
-        _shpLoader['layer'] = layer;
     }
 
     datagobbler.decodeDataSHPGEOJSON = function(layer){
@@ -696,7 +694,7 @@
             }
             _data[d].has_geospatial_data = datagobbler.data_layers[layer].api_info.has_geospatial_data;
         }
-        console.log("downloadDataSHP/SHP.ZIP OK",_data);
+        //console.log("downloadDataSHP/SHP.ZIP OK",_data);
         datagobbler.data_layers[layer].api_info['objects'] = _data;
         datagobbler.checkGlobalDownloadStatus();
     }
@@ -714,12 +712,14 @@
                 _loadingStatus.downloadError = true;
                 datagobbler.data_layers[layer].api_info['data'] = null;
                 datagobbler.DownloadError(layer,error);
+                console.log("downloadDataCSV BAD");
             }else{
                 _loadingStatus.downloadCompleted = true;
                 //console.log("CSV", data);
                 datagobbler.data_layers[layer].api_info['data'] = data;
                 datagobbler.DownloadSuccess(layer);
                 datagobbler.decodeDataCSV(layer);
+                console.log("downloadDataCSV OK");
             }
         });
     }
@@ -792,13 +792,14 @@
                 _loadingStatus.downloadError = true;
                 datagobbler.data_layers[layer].api_info['data'] = null;
                 datagobbler.DownloadError(layer,error);
-                console.log(layer,"==== >> KML error <<====");
+                console.log("downloadDataKML BAD");
             }else{
-               var _geojson = toGeoJSON.kml(data);
+                var _geojson = toGeoJSON.kml(data);
                 _loadingStatus.downloadCompleted = true;
                 datagobbler.data_layers[layer].api_info['data'] = _geojson;
                 datagobbler.DownloadSuccess(layer);
                 datagobbler.decodeDataGEOJSON(layer);
+                console.log("downloadDataKML OK");
             }
         });
     }
@@ -894,6 +895,7 @@
     datagobbler.filterAllLayers = function(){
         //console.log("datagobbler.filterAllLayers",datagobbler.data_layers);
         for(dl in datagobbler.data_layers){
+            console.log(datagobbler.data_layers[dl]);
             if(datagobbler.data_layers[dl].layerOkToFilter){
                 console.log("EVERYTHING LOADED.",dl);
                 //datagobbler.data_layers[dl].api_info.objects = datagobbler.filterDataLayer(dl);

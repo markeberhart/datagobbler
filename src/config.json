@@ -1,8 +1,28 @@
 {
     "data_layers":{
-
-       "earthquakes-csv":{
-            "title":"Earthquakes CSV",
+        "shpzip":{
+            "title":"SHPZIP",
+            "api_info": {
+                "url":"src/data/counties.zip",
+                "file_type":"shp.zip",
+                "filter_out":[],
+                "group_by":[],
+                "proxy_url":null,
+                "date_info": {
+                    "date_field":"time",
+                    "date_format":"x",
+                    "offset_type":"days",
+                    "date_start_offset":0,
+                    "date_end_offset":0
+                },
+                "if_not_geospatial_file_type":{
+                    "field_to_use_for_latitude":null,
+                    "field_to_use_for_longitude":null
+                }
+            }
+        },
+        "csv":{
+            "title":"CSV",
             "api_info": {
                 "url":"./src/data/earthquakes.csv",
                 "file_type":"csv",
@@ -22,8 +42,29 @@
                 }
             }
         },
-        "arcjson-data":{
-            "title":"ARCJSON Data",
+        "kml":{
+            "title":"KML",
+            "api_info": {
+                "url":"./src/data/earthquakes.kml",
+                "file_type":"kml",
+                "filter_out":[],
+                "group_by":[],
+                "proxy_url":null,
+                "date_info": {
+                    "date_field":null,
+                    "date_format":null,
+                    "offset_type":"days",
+                    "date_start_offset":0,
+                    "date_end_offset":0
+                },
+                "if_not_geospatial_file_type":{
+                    "field_to_use_for_latitude":null,
+                    "field_to_use_for_longitude":null
+                }
+            }
+        },
+        "arcjson":{
+            "title":"ARCJSON",
             "api_info": {
                 "url":"http://sampleserver3.arcgisonline.com/ArcGIS/rest/services/Earthquakes/EarthquakesFromLastSevenDays/FeatureServer/0/query?objectIds=&where=magnitude+%3E+4.5&time=&geometry=&geometryType=esriGeometryEnvelope&inSR=&spatialRel=esriSpatialRelIntersects&relationParam=&outFields=*&returnGeometry=true&outSR=&returnCountOnly=false&returnIdsOnly=false&f=pjson",
                 "file_type":"arcjson",
@@ -43,8 +84,8 @@
                 }
             }
         },
-        "geojson-data":{
-            "title":"GEOJSON Data",
+        "geojson":{
+            "title":"GEOJSON",
             "api_info": {
                 "url":"src/data/earthquakes2.geojson",
                 "file_type":"geojson",
@@ -64,8 +105,8 @@
                 }
             }
         },
-        "topojson-world":{
-            "title":"Topojson World",
+        "topojson":{
+            "title":"TOPOJSON",
             "api_info": {
                 "url":"src/data/world.topojson",
                 "file_type":"topojson",
@@ -85,17 +126,17 @@
                 }
             }
         },
-        "earthquakes-shapefile":{
-            "title":"Earthquakes Shapefile",
+        "shp":{
+            "title":"SHP",
             "api_info": {
-                "url":"src/data/earthquakes.zip",
-                "file_type":"shp.zip",
+                "url":"src/data/earthquakes/Earthquakes1970.shp",
+                "file_type":"shp",
                 "filter_out":[],
                 "group_by":[],
                 "proxy_url":null,
                 "date_info": {
-                    "date_field":"time",
-                    "date_format":"x",
+                    "date_field":null,
+                    "date_format":"YYYYMMDD",
                     "offset_type":"days",
                     "date_start_offset":0,
                     "date_end_offset":0
@@ -103,27 +144,6 @@
                 "if_not_geospatial_file_type":{
                     "field_to_use_for_latitude":null,
                     "field_to_use_for_longitude":null
-                }
-            }
-        },
-        "csv-geospatial-data":{
-            "title":"CSV GEOSPATIAL Data",
-            "api_info": {
-                "url":"./src/resources/data/data_1478285103105.csv",
-                "file_type":"csv",
-                "filter_out":[],
-                "group_by":["color"],
-                "proxy_url":null,
-                "date_info": {
-                    "date_field":"timestamp",
-                    "date_format":"MM/DD/YYYY HH:MM:SS",
-                    "offset_type":"days",
-                    "date_start_offset":0,
-                    "date_end_offset":0
-                },
-                "if_not_geospatial_file_type":{
-                    "field_to_use_for_latitude":"latitude",
-                    "field_to_use_for_longitude":"longitude"
                 }
             }
         }

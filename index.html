@@ -5,15 +5,25 @@
     
 <body>
     
+<!--
+<script src="./resources/js/jquery/jquery-1.11.1.min.js"></script>
+<script src="./resources/js/d3/d3.min.js"></script>
+<script src="./resources/js/moment/moment.min.js"></script>
+<script src="./resources/js/shapefilejs/shp.min.js"></script>
+<script src="./resources/js/d3/topojson.min.js"></script>
+<script src="./resources/js/convertFromEsriJson.js"></script>
+<script src="./resources/js/datagobbler/datagobbler.js"></script>
+-->
+    
 <!-- DataGobbler Files -->
-<script src="./src/js/proj4/proj4.min.js"></script>
-<script src="./src/js/jquery/jquery-3.2.1.min.js"></script>
+<script src="./src/js/jquery/jquery-1.11.1.min.js"></script>
 <script src="./src/js/d3/d3.min.js"></script>
 <script src="./src/js/moment/moment.min.js"></script>
-
 <script src="./src/js/shapefilejs/shp.min.js"></script>
 <script src="./src/js/d3/topojson.min.js"></script>
 <script src="./src/js/arcjson2geojson/arcjson2geojson.js"></script>
+<script src="./src/js/togeojson/togeojson.js"></script>
+    
 <!-- 
 <script src="./src/js/promises/promises.js"></script>
 <script src="./src/js/shapefilejs/jszip.min.js"></script>
@@ -33,11 +43,11 @@ var dgb = new datagobbler.getData({
 
 
 function onDataLoading(data){
-    console.log("onDataLoading...",data.loadingStatus.isFiltered);
+    //console.log("onDataLoading...",data);
 }
 
 function onDataLoaded(data){
-    console.log(data);
+    console.log("DataGobbler has loaded.",data);
 }
 </script>
     
