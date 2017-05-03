@@ -1,0 +1,567 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
+  <id>tag:theregister.co.uk,2005:feed/theregister.co.uk/emergent_tech/</id>
+  <title>The Register - Emergent Tech</title>
+  <link rel="self" type="application/atom+xml" href="https://www.theregister.co.uk/emergent_tech/headlines.atom"/>
+  <link rel="alternate" type="text/html" href="https://www.theregister.co.uk/emergent_tech/"/>
+  <rights>Copyright © 2017, Situation Publishing</rights>
+  <author>
+    <name>Team Register</name>
+    <email>webmaster@theregister.co.uk</email>
+    <uri>https://www.theregister.co.uk/odds/about/contact/</uri>
+  </author>
+  <icon>https://www.theregister.co.uk/Design/graphics/icons/favicon.png</icon>
+  <subtitle>Biting the hand that feeds IT — sci/tech news and views for the world</subtitle>
+  <logo>https://www.theregister.co.uk/Design/graphics/Reg_default/The_Register_r.png</logo>
+  <updated>2017-05-03T09:29:27Z</updated>
+  <entry>
+    <id>tag:theregister.co.uk,2005:story/2017/05/03/ai_assistants_advance_party_in_battle_for_new_web_experience/</id>
+    <updated>2017-05-03T09:02:07Z</updated>
+    <author>
+      <name>Wireless Watch</name>
+      <uri>https://search.theregister.co.uk/?author=Wireless%20Watch</uri>
+    </author>
+    <link rel="alternate" type="text/html" href="http://go.theregister.com/feed/www.theregister.co.uk/2017/05/03/ai_assistants_advance_party_in_battle_for_new_web_experience/"/>
+    <title type="html">Another AI assistant... It's getting crowded in here, isn't it, Siri?</title>
+    <summary type="html" xml:base="http://www.theregister.co.uk/">&lt;h4&gt;Amazon pushes Alexa into host of devices as teeming throng of AIs fills room&lt;/h4&gt; &lt;p&gt;&lt;strong&gt;Analysis&lt;/strong&gt;  Voice-activated speakers and digital assistants may just seem like the modern, more annoying version of the old Microsoft paperclip, continually offering help and reminders where they are not needed. But while Apple Siri, Microsoft Cortana, Google Home/Now and Amazon Echo/Alexa may have a long way to go, we will look back on them as the advance guard in a crucial battle – to define and control the next generation of the mobile and web experience, on the long route to the Tactile Internet.…&lt;/p&gt;</summary>
+  </entry>
+  <entry>
+    <id>tag:theregister.co.uk,2005:story/2017/04/28/breed_reply_ceo_interview/</id>
+    <updated>2017-04-28T15:02:13Z</updated>
+    <author>
+      <name>Gareth Corfield</name>
+      <uri>https://search.theregister.co.uk/?author=Gareth%20Corfield</uri>
+    </author>
+    <link rel="alternate" type="text/html" href="http://go.theregister.com/feed/www.theregister.co.uk/2017/04/28/breed_reply_ceo_interview/"/>
+    <title type="html">A sensible Internet of Things investment house? Breed Reply looks like it</title>
+    <summary type="html" xml:base="http://www.theregister.co.uk/">&lt;h4&gt;So far, no silly Bluetooth toothbrushes&lt;/h4&gt; &lt;p&gt;Internet of Things startup investment firm Breed Reply is a curious creature, pouring cash into IoT companies that aren’t punting laughably silly technology.…&lt;/p&gt;</summary>
+  </entry>
+  <entry>
+    <id>tag:theregister.co.uk,2005:story/2017/04/27/cloudflare_iot_security_services/</id>
+    <updated>2017-04-27T21:27:20Z</updated>
+    <author>
+      <name>Kieren McCarthy</name>
+      <uri>https://search.theregister.co.uk/?author=Kieren%20McCarthy</uri>
+    </author>
+    <link rel="alternate" type="text/html" href="http://go.theregister.com/feed/www.theregister.co.uk/2017/04/27/cloudflare_iot_security_services/"/>
+    <title type="html">Cloudflare's incredible solution for IoT security: Use our services</title>
+    <summary type="html" xml:base="http://www.theregister.co.uk/">&lt;h4&gt;And, oh for $DEITY's sake, yet ANOTHER best-practices standards organization?&lt;/h4&gt; &lt;p&gt;Traffic bouncer Cloudflare has outlined what it claims is the solution to the perennial internet-of-things security problem: pay it.…&lt;/p&gt;</summary>
+  </entry>
+  <entry>
+    <id>tag:theregister.co.uk,2005:story/2017/04/27/nato_janus_adoption_underwater_comms/</id>
+    <updated>2017-04-27T11:28:07Z</updated>
+    <author>
+      <name>Gareth Corfield</name>
+      <uri>https://search.theregister.co.uk/?author=Gareth%20Corfield</uri>
+    </author>
+    <link rel="alternate" type="text/html" href="http://go.theregister.com/feed/www.theregister.co.uk/2017/04/27/nato_janus_adoption_underwater_comms/"/>
+    <title type="html">NATO secures adoption of submerged drone data comms standard</title>
+    <summary type="html" xml:base="http://www.theregister.co.uk/">&lt;h4&gt;All 28 countries' navies now speak the same language below the waves&lt;/h4&gt; &lt;p&gt;Boffins at NATO have managed to ratify, across the entire alliance, the first ever official standard for underwater digital communications.…&lt;/p&gt;</summary>
+  </entry>
+  <entry>
+    <id>tag:theregister.co.uk,2005:story/2017/04/27/ai_cloud_vendors_race/</id>
+    <updated>2017-04-27T09:07:10Z</updated>
+    <author>
+      <name>Matt Asay</name>
+      <uri>https://search.theregister.co.uk/?author=Matt%20Asay</uri>
+    </author>
+    <link rel="alternate" type="text/html" href="http://go.theregister.com/feed/www.theregister.co.uk/2017/04/27/ai_cloud_vendors_race/"/>
+    <title type="html">Washing machine AI? You'll thank AWS, Microsoft, Google (eventually)</title>
+    <summary type="html" xml:base="http://www.theregister.co.uk/">&lt;h4&gt;The scramble for space driving the commodity race&lt;/h4&gt; &lt;p&gt;There's a war brewing in the cloud, and machine learning may well determine the outcome. With infrastructure services trending toward commoditisation, each of the big-three cloud purveyors is racing to augment vanilla IaaS and PaaS with not-so-vanilla machine learning (ML)/artificial intelligence (AI) smarts. Sure, they're way out in front of the market – most enterprises simply aren't doing much with ML – but the hope is that by paving the way to a dystopian future when the machines take over they will make boatloads of money along the way.…&lt;/p&gt;</summary>
+  </entry>
+  <entry>
+    <id>tag:theregister.co.uk,2005:story/2017/04/27/itu_s_latest_specs_show_that_5g_is_not_just_a_wireless_network/</id>
+    <updated>2017-04-27T08:33:05Z</updated>
+    <author>
+      <name>Wireless Watch</name>
+      <uri>https://search.theregister.co.uk/?author=Wireless%20Watch</uri>
+    </author>
+    <link rel="alternate" type="text/html" href="http://go.theregister.com/feed/www.theregister.co.uk/2017/04/27/itu_s_latest_specs_show_that_5g_is_not_just_a_wireless_network/"/>
+    <title type="html">ITU's latest specs show that 5G is not just a wireless network</title>
+    <summary type="html" xml:base="http://www.theregister.co.uk/">&lt;h4&gt;New standard addresses wireline aspects of low latency 5G&lt;/h4&gt; &lt;p&gt;&lt;strong&gt;Analysis&lt;/strong&gt;  We can no longer see 5G as a wireless standard alone. Its heart may still be a 3GPP-defined radio, but to deliver commercial benefits to operators (old or new), wireline links will be as important as wireless ones, and architectural change will be more important than an updated air interface.…&lt;/p&gt; &lt;p&gt;&lt;!--#include virtual='/data_centre/_whitepaper_textlinks_top.html' --&gt;&lt;/p&gt;</summary>
+  </entry>
+  <entry>
+    <id>tag:theregister.co.uk,2005:story/2017/04/26/dji_drone_geofencing_iraq_syria/</id>
+    <updated>2017-04-26T13:01:12Z</updated>
+    <author>
+      <name>Gareth Corfield</name>
+      <uri>https://search.theregister.co.uk/?author=Gareth%20Corfield</uri>
+    </author>
+    <link rel="alternate" type="text/html" href="http://go.theregister.com/feed/www.theregister.co.uk/2017/04/26/dji_drone_geofencing_iraq_syria/"/>
+    <title type="html">Drone maker DJI quietly made large chunks of Iraq, Syria no-fly zones</title>
+    <summary type="html" xml:base="http://www.theregister.co.uk/">&lt;h4&gt;Supporting The War Against Terror, one update at a time&lt;/h4&gt; &lt;p&gt;Drone bods DJI has quietly released a series of software updates that geofence off large areas of Iraq and Syria – indicating the Chinese firm is covertly helping the US war against Islamic extremists.…&lt;/p&gt;</summary>
+  </entry>
+  <entry>
+    <id>tag:theregister.co.uk,2005:story/2017/04/26/vr_movie_marathon_world_record/</id>
+    <updated>2017-04-26T06:06:09Z</updated>
+    <author>
+      <name>Thomas Claburn</name>
+      <uri>https://search.theregister.co.uk/?author=Thomas%20Claburn</uri>
+    </author>
+    <link rel="alternate" type="text/html" href="http://go.theregister.com/feed/www.theregister.co.uk/2017/04/26/vr_movie_marathon_world_record/"/>
+    <title type="html">'Grueling' record-breaking VR movie marathon triggers hallucinations</title>
+    <summary type="html" xml:base="http://www.theregister.co.uk/">&lt;h4&gt;Mitigating the side effects just requires removing the headset&lt;/h4&gt; &lt;p&gt;A New Yorker and a transplant from London to the Big Apple last week managed to endure watching virtual reality videos for 50 hours non-stop, setting a Guinness World Record in the process.…&lt;/p&gt;</summary>
+  </entry>
+  <entry>
+    <id>tag:theregister.co.uk,2005:story/2017/04/25/building_the_machine_languages_for_you/</id>
+    <updated>2017-04-25T08:01:09Z</updated>
+    <author>
+      <name>Danny Bradbury</name>
+      <uri>https://search.theregister.co.uk/?author=Danny%20Bradbury</uri>
+    </author>
+    <link rel="alternate" type="text/html" href="http://go.theregister.com/feed/www.theregister.co.uk/2017/04/25/building_the_machine_languages_for_you/"/>
+    <title type="html">A bot lingua franca does not exist: Your machine-learning options for walking the talk</title>
+    <summary type="html" xml:base="http://www.theregister.co.uk/">&lt;h4&gt;Monolinguist or code polymath?&lt;/h4&gt; &lt;p&gt;So, you want to create a hugely successful machine-learning startup? Or you've been asked to start investigating ML for your firm? Well, you'd better get programming – but what language should you use? No languages have been designed specifically with ML in mind, but some do lend themselves to the task.…&lt;/p&gt;</summary>
+  </entry>
+  <entry>
+    <id>tag:theregister.co.uk,2005:story/2017/04/24/voice_stealing_lyrebird/</id>
+    <updated>2017-04-24T21:08:32Z</updated>
+    <author>
+      <name>Thomas Claburn</name>
+      <uri>https://search.theregister.co.uk/?author=Thomas%20Claburn</uri>
+    </author>
+    <link rel="alternate" type="text/html" href="http://go.theregister.com/feed/www.theregister.co.uk/2017/04/24/voice_stealing_lyrebird/"/>
+    <title type="html">Lyrebird steals your voice to make you say things you didn't – and we hate this future</title>
+    <summary type="html" xml:base="http://www.theregister.co.uk/">&lt;h4&gt;Imitation is the sincerest form of abuse&lt;/h4&gt; &lt;p&gt;Hastening the arrival of a world in which simulation is indistinguishable from reality, startup Lyrebird has announced plans to power up an online service that can imitate a person's voice.…&lt;/p&gt;</summary>
+  </entry>
+  <entry>
+    <id>tag:theregister.co.uk,2005:story/2017/04/24/driverless_cars_london_oxford/</id>
+    <updated>2017-04-24T13:32:09Z</updated>
+    <author>
+      <name>Gareth Corfield</name>
+      <uri>https://search.theregister.co.uk/?author=Gareth%20Corfield</uri>
+    </author>
+    <link rel="alternate" type="text/html" href="http://go.theregister.com/feed/www.theregister.co.uk/2017/04/24/driverless_cars_london_oxford/"/>
+    <title type="html">Give 'bots a chance: Driverless cars to be trialled between London and Oxford</title>
+    <summary type="html" xml:base="http://www.theregister.co.uk/">&lt;h4&gt;They'll be on the motorways as well&lt;/h4&gt; &lt;p&gt;Driverless cars using UK-made software will be tested on public roads and even motorways between London and Oxford.…&lt;/p&gt;</summary>
+  </entry>
+  <entry>
+    <id>tag:theregister.co.uk,2005:story/2017/04/24/nokia_plans_comeback_virtual_reality/</id>
+    <updated>2017-04-24T10:33:11Z</updated>
+    <author>
+      <name>Faultline</name>
+      <uri>https://search.theregister.co.uk/?author=Faultline</uri>
+    </author>
+    <link rel="alternate" type="text/html" href="http://go.theregister.com/feed/www.theregister.co.uk/2017/04/24/nokia_plans_comeback_virtual_reality/"/>
+    <title type="html">Nokia plans comeback on back of virtual reality</title>
+    <summary type="html" xml:base="http://www.theregister.co.uk/">&lt;h4&gt;Faces off with Facebook Surround 360 kit&lt;/h4&gt; &lt;p&gt;&lt;strong&gt;Analysis&lt;/strong&gt;  The Nokia as we traditionally know it is no more, and the reborn company of today is pinning a core part of its future business strategy on emerging virtual reality (VR) technologies.…&lt;/p&gt;</summary>
+  </entry>
+  <entry>
+    <id>tag:theregister.co.uk,2005:story/2017/04/24/while_facebook_reinvents_sadville_we_still_dream_of_flying_cars/</id>
+    <updated>2017-04-24T08:02:05Z</updated>
+    <author>
+      <name>Andrew Orlowski</name>
+      <uri>https://search.theregister.co.uk/?author=Andrew%20Orlowski</uri>
+    </author>
+    <link rel="alternate" type="text/html" href="http://go.theregister.com/feed/www.theregister.co.uk/2017/04/24/while_facebook_reinvents_sadville_we_still_dream_of_flying_cars/"/>
+    <title type="html">While Facebook reinvents Sadville, we still dream of flying cars</title>
+    <summary type="html" xml:base="http://www.theregister.co.uk/">&lt;h4&gt;Hello? Innovation? You in there, buddy?&lt;/h4&gt; &lt;p&gt;&lt;strong&gt;Comment&lt;/strong&gt;  The researchers at the &lt;a target="_blank" rel="nofollow" href="http://www.umich.edu/~umtriswt"&gt;Transportation Research Institute at the University of Michigan&lt;/a&gt; (UMTRI) sent me what may be the saddest opinion poll in the world. It asks the public: "Would you like a flying car?"…&lt;/p&gt;</summary>
+  </entry>
+  <entry>
+    <id>tag:theregister.co.uk,2005:story/2017/04/24/computer_scientists_sarcasm_database/</id>
+    <updated>2017-04-24T00:18:23Z</updated>
+    <author>
+      <name>Katyanna Quach</name>
+      <uri>https://search.theregister.co.uk/?author=Katyanna%20Quach</uri>
+    </author>
+    <link rel="alternate" type="text/html" href="http://go.theregister.com/feed/www.theregister.co.uk/2017/04/24/computer_scientists_sarcasm_database/"/>
+    <title type="html">CompSci boffins find Reddit is ideal source for sarcasm database</title>
+    <summary type="html" xml:base="http://www.theregister.co.uk/">&lt;h4&gt;In pleasing irony, Redditors tag their snark and make themselves ideal test subjects&lt;/h4&gt; &lt;p&gt;Over here at &lt;i&gt;El Reg&lt;/i&gt;, we think that chatbots are, like, the best thing ever.…&lt;/p&gt;</summary>
+  </entry>
+  <entry>
+    <id>tag:theregister.co.uk,2005:story/2017/04/21/microsoft_offers_preview_to_eye_ai_iot_analytics_for_edgelords_of_new_net/</id>
+    <updated>2017-04-21T14:43:05Z</updated>
+    <author>
+      <name>Alexander J Martin</name>
+      <uri>https://search.theregister.co.uk/?author=Alexander%20J%20Martin</uri>
+    </author>
+    <link rel="alternate" type="text/html" href="http://go.theregister.com/feed/www.theregister.co.uk/2017/04/21/microsoft_offers_preview_to_eye_ai_iot_analytics_for_edgelords_of_new_net/"/>
+    <title type="html">Microsoft offers preview to eye AI IoT analytics for edgelords of new net</title>
+    <summary type="html" xml:base="http://www.theregister.co.uk/">&lt;h4&gt;Azure Stream Analytics to connect your fridge to the cloud for chilled machinations&lt;/h4&gt; &lt;p&gt;Microsoft's commitment to Azure has tickled it to the market's movement towards edge analytics provoked by the wave of IoT devices, and has launched a new analytics service so the twain shall never part.…&lt;/p&gt;</summary>
+  </entry>
+  <entry>
+    <id>tag:theregister.co.uk,2005:story/2017/04/21/jamie_bartlett_talks_radicals/</id>
+    <updated>2017-04-21T11:30:05Z</updated>
+    <author>
+      <name>Joe Fay</name>
+      <uri>https://search.theregister.co.uk/?author=Joe%20Fay</uri>
+    </author>
+    <link rel="alternate" type="text/html" href="http://go.theregister.com/feed/www.theregister.co.uk/2017/04/21/jamie_bartlett_talks_radicals/"/>
+    <title type="html">Think politics is tumultuous now? Wait till the transhumanists join in...</title>
+    <summary type="html" xml:base="http://www.theregister.co.uk/">&lt;h4&gt;The tech-fulled radicals redesigning society&lt;/h4&gt; &lt;p&gt;&lt;strong&gt;Reg Lecture&lt;/strong&gt;  Politics and society is about to get stranger and we're not even talking about what's going on in Westminster.…&lt;/p&gt; &lt;p&gt;&lt;!--#include virtual='/data_centre/_whitepaper_textlinks_top.html' --&gt;&lt;/p&gt;</summary>
+  </entry>
+  <entry>
+    <id>tag:theregister.co.uk,2005:story/2017/04/21/baidu_driverless_car_software/</id>
+    <updated>2017-04-21T07:03:59Z</updated>
+    <author>
+      <name>Katyanna Quach</name>
+      <uri>https://search.theregister.co.uk/?author=Katyanna%20Quach</uri>
+    </author>
+    <link rel="alternate" type="text/html" href="http://go.theregister.com/feed/www.theregister.co.uk/2017/04/21/baidu_driverless_car_software/"/>
+    <title type="html">Q. Why is Baidu sharing its secret self-driving sauce? A. To help China corner the market</title>
+    <summary type="html" xml:base="http://www.theregister.co.uk/">&lt;h4&gt;Web giant wants to accelerate collaboration amid Western competition&lt;/h4&gt; &lt;p&gt;&lt;strong&gt;Analysis&lt;/strong&gt;  Chinese tech powerhouse Baidu plans to "open up" its self-driving car designs to help automakers in China overtake Western rivals.…&lt;/p&gt;</summary>
+  </entry>
+  <entry>
+    <id>tag:theregister.co.uk,2005:story/2017/04/21/tesla_settles_aurora/</id>
+    <updated>2017-04-21T00:24:13Z</updated>
+    <author>
+      <name>Iain Thomson</name>
+      <uri>https://search.theregister.co.uk/?author=Iain%20Thomson</uri>
+    </author>
+    <link rel="alternate" type="text/html" href="http://go.theregister.com/feed/www.theregister.co.uk/2017/04/21/tesla_settles_aurora/"/>
+    <title type="html">Tesla's latest car crash: Its 'meritless' lawsuit against ex-Autopilot bod</title>
+    <summary type="html" xml:base="http://www.theregister.co.uk/">&lt;h4&gt;Musketeers bag $100,000 after hitting the brakes on allegations&lt;/h4&gt; &lt;p&gt;Less than three months after Tesla sued a former manager, claiming he'd stolen its blueprints and tried to poach staff, the flash automaker has settled out of court.…&lt;/p&gt;</summary>
+  </entry>
+  <entry>
+    <id>tag:theregister.co.uk,2005:story/2017/04/20/aws_lex_love_for_devs/</id>
+    <updated>2017-04-20T15:22:04Z</updated>
+    <author>
+      <name>Gavin Clarke</name>
+      <uri>https://search.theregister.co.uk/?author=Gavin%20Clarke</uri>
+    </author>
+    <link rel="alternate" type="text/html" href="http://go.theregister.com/feed/www.theregister.co.uk/2017/04/20/aws_lex_love_for_devs/"/>
+    <title type="html">The pain in your chest? That'll be Big Tech's AI arrow of love</title>
+    <summary type="html" xml:base="http://www.theregister.co.uk/">&lt;h4&gt;Welcome to Lex: AWS's AI-as-a-platform-service&lt;/h4&gt; &lt;p&gt;If you couldn't feel the love this week, you're lacking a heart.…&lt;/p&gt;</summary>
+  </entry>
+  <entry>
+    <id>tag:theregister.co.uk,2005:story/2017/04/20/tesla_class_action_lawsuit_autopilot_updates/</id>
+    <updated>2017-04-20T14:08:03Z</updated>
+    <author>
+      <name>Gareth Corfield</name>
+      <uri>https://search.theregister.co.uk/?author=Gareth%20Corfield</uri>
+    </author>
+    <link rel="alternate" type="text/html" href="http://go.theregister.com/feed/www.theregister.co.uk/2017/04/20/tesla_class_action_lawsuit_autopilot_updates/"/>
+    <title type="html">Tesla hit by class action sueball over autopilot software updates</title>
+    <summary type="html" xml:base="http://www.theregister.co.uk/">&lt;h4&gt;Claimants say features not included, updates were dangerous&lt;/h4&gt; &lt;p&gt;A class-action lawsuit has been launched against Tesla on the basis that updates to its cars' autopilots are "vapourware."…&lt;/p&gt;</summary>
+  </entry>
+  <entry>
+    <id>tag:theregister.co.uk,2005:story/2017/04/20/mod_battlefield_delivery_drone_contract/</id>
+    <updated>2017-04-20T08:01:08Z</updated>
+    <author>
+      <name>Gareth Corfield</name>
+      <uri>https://search.theregister.co.uk/?author=Gareth%20Corfield</uri>
+    </author>
+    <link rel="alternate" type="text/html" href="http://go.theregister.com/feed/www.theregister.co.uk/2017/04/20/mod_battlefield_delivery_drone_contract/"/>
+    <title type="html">Can you make a warzone delivery drone? UK.gov wants to give you cash</title>
+    <summary type="html" xml:base="http://www.theregister.co.uk/">&lt;h4&gt;£40k or more for initial contracts up for grabs&lt;/h4&gt; &lt;p&gt;The Ministry of Defence is looking for drone startups to throw their hats into the ring for a Just-Eat-for-bullets ‘bot competition.…&lt;/p&gt;</summary>
+  </entry>
+  <entry>
+    <id>tag:theregister.co.uk,2005:story/2017/04/20/medical_robots_need_autonomy_classifications/</id>
+    <updated>2017-04-20T05:04:13Z</updated>
+    <author>
+      <name>Katyanna Quach</name>
+      <uri>https://search.theregister.co.uk/?author=Katyanna%20Quach</uri>
+    </author>
+    <link rel="alternate" type="text/html" href="http://go.theregister.com/feed/www.theregister.co.uk/2017/04/20/medical_robots_need_autonomy_classifications/"/>
+    <title type="html">Accept for a second that robot surgeons exist. Who will check they're up to the job – and how?</title>
+    <summary type="html" xml:base="http://www.theregister.co.uk/">&lt;h4&gt;Let us level with you...&lt;/h4&gt; &lt;p&gt;Medical robots should be split into different categories of autonomy, &lt;a target="_blank" rel="nofollow" href="https://www.sae.org/misc/pdfs/automated_driving.pdf"&gt;just as driverless cars are&lt;/a&gt;, a group of academics proposed Wednesday in Science Robotics.…&lt;/p&gt; &lt;p&gt;&lt;!--#include virtual='/data_centre/_whitepaper_textlinks_top.html' --&gt;&lt;/p&gt;</summary>
+  </entry>
+  <entry>
+    <id>tag:theregister.co.uk,2005:story/2017/04/20/facebook_brain_typing/</id>
+    <updated>2017-04-20T00:02:06Z</updated>
+    <author>
+      <name>Thomas Claburn</name>
+      <uri>https://search.theregister.co.uk/?author=Thomas%20Claburn</uri>
+    </author>
+    <link rel="alternate" type="text/html" href="http://go.theregister.com/feed/www.theregister.co.uk/2017/04/20/facebook_brain_typing/"/>
+    <title type="html">Zuckerberg's absolutely mental: Brain sensors that read YOUR MIND at 100 words a minute</title>
+    <summary type="html" xml:base="http://www.theregister.co.uk/">&lt;h4&gt;Billionaire dreamer to see your thoughts 'by 2019'&lt;/h4&gt; &lt;p&gt;&lt;strong&gt;F8 2017&lt;/strong&gt;  Facebook sees such promise in virtual reality that it has taken to celebrating products and services that don't exist outside laboratory settings, like brain interfaces, augmented reality glasses, and "hearing" through one's skin.…&lt;/p&gt;</summary>
+  </entry>
+  <entry>
+    <id>tag:theregister.co.uk,2005:story/2017/04/19/alphabets_healthcare_verily/</id>
+    <updated>2017-04-19T23:00:25Z</updated>
+    <author>
+      <name>Katyanna Quach</name>
+      <uri>https://search.theregister.co.uk/?author=Katyanna%20Quach</uri>
+    </author>
+    <link rel="alternate" type="text/html" href="http://go.theregister.com/feed/www.theregister.co.uk/2017/04/19/alphabets_healthcare_verily/"/>
+    <title type="html">Google's healthcare cousin to stick 10,000 human guinea pigs under the microscope</title>
+    <summary type="html" xml:base="http://www.theregister.co.uk/">&lt;h4&gt;Four-year study will bung patient records in the cloud&lt;/h4&gt; &lt;p&gt;Alphabet’s healthcare arm, and Google stablemate, Verily Life Sciences has today announced Project Baseline: a study that will glean massive amounts of healthcare records by monitoring thousands of patients over four years.…&lt;/p&gt;</summary>
+  </entry>
+  <entry>
+    <id>tag:theregister.co.uk,2005:story/2017/04/19/chatbots_facebook/</id>
+    <updated>2017-04-19T19:25:31Z</updated>
+    <author>
+      <name>Thomas Claburn</name>
+      <uri>https://search.theregister.co.uk/?author=Thomas%20Claburn</uri>
+    </author>
+    <link rel="alternate" type="text/html" href="http://go.theregister.com/feed/www.theregister.co.uk/2017/04/19/chatbots_facebook/"/>
+    <title type="html">Please don't call them Facebook chatbots, says Facebook's bot boss</title>
+    <summary type="html" xml:base="http://www.theregister.co.uk/">&lt;h4&gt;That whole conversation-as-a-UI thing was just a big misunderstanding&lt;/h4&gt; &lt;p&gt;&lt;strong&gt;F8 2017&lt;/strong&gt;  Facebook all but admitted the failure of chatbots last month – with the &lt;a target="_blank" rel="nofollow" href="https://messenger.fb.com/blog/messenger-platform-1-4-brings-even-more-tools-to-build-great-experiences/"&gt;announcement&lt;/a&gt; that developers building Messenger bot can hide text input boxes and offer menu-driven conversations instead.…&lt;/p&gt;</summary>
+  </entry>
+  <entry>
+    <id>tag:theregister.co.uk,2005:story/2017/04/19/cloud_vision_api_defeated_by_noise/</id>
+    <updated>2017-04-19T05:31:11Z</updated>
+    <author>
+      <name>Simon Sharwood</name>
+      <uri>https://search.theregister.co.uk/?author=Simon%20Sharwood</uri>
+    </author>
+    <link rel="alternate" type="text/html" href="http://go.theregister.com/feed/www.theregister.co.uk/2017/04/19/cloud_vision_api_defeated_by_noise/"/>
+    <title type="html">Google's cloudy image recognition is easily blinded, say boffins</title>
+    <summary type="html" xml:base="http://www.theregister.co.uk/">&lt;h4&gt;Hooray for humans! We can pick out images too obscure for Google's AI&lt;/h4&gt; &lt;p&gt;Google's Cloud Vision API is easily blinded by the addition of a little noise to the images it analyses, say a trio of researchers from the Network Security Lab at the University of Washington, Seattle.…&lt;/p&gt;</summary>
+  </entry>
+  <entry>
+    <id>tag:theregister.co.uk,2005:story/2017/04/19/facebook_caffe2/</id>
+    <updated>2017-04-19T05:01:06Z</updated>
+    <author>
+      <name>Katyanna Quach</name>
+      <uri>https://search.theregister.co.uk/?author=Katyanna%20Quach</uri>
+    </author>
+    <link rel="alternate" type="text/html" href="http://go.theregister.com/feed/www.theregister.co.uk/2017/04/19/facebook_caffe2/"/>
+    <title type="html">Facebook brews Caffe2 AI toolkit so apps can give SnapChat a slap</title>
+    <summary type="html" xml:base="http://www.theregister.co.uk/">&lt;h4&gt;Need some code to alter pics and whack some stickers and be worth billions?&lt;/h4&gt; &lt;p&gt;&lt;strong&gt;F8 2017&lt;/strong&gt;  Facebook has open sourced Caffe2, the toolbox of deep-learning software its own developers use to train AI models and build apps.…&lt;/p&gt;</summary>
+  </entry>
+  <entry>
+    <id>tag:theregister.co.uk,2005:story/2017/04/18/facebook_pitches_camera_for_augmented_reality/</id>
+    <updated>2017-04-18T21:18:08Z</updated>
+    <author>
+      <name>Thomas Claburn</name>
+      <uri>https://search.theregister.co.uk/?author=Thomas%20Claburn</uri>
+    </author>
+    <link rel="alternate" type="text/html" href="http://go.theregister.com/feed/www.theregister.co.uk/2017/04/18/facebook_pitches_camera_for_augmented_reality/"/>
+    <title type="html">Zuckerberg: Escape from the real world into my goofy make-believe science-fiction fantasy</title>
+    <summary type="html" xml:base="http://www.theregister.co.uk/">&lt;h4&gt;Facebook boss reckons he'll heal society's ills with pix&lt;/h4&gt; &lt;p&gt;&lt;strong&gt;F8 2017&lt;/strong&gt;  Amid the fallout over the &lt;a target="_blank" rel="nofollow" href="https://newsroom.fb.com/news/h/community-standards-and-reporting/"&gt;killing of an elderly man&lt;/a&gt; broadcast via Facebook on Sunday, CEO Mark Zuckerberg declared, "Our next focus is building community."…&lt;/p&gt;</summary>
+  </entry>
+  <entry>
+    <id>tag:theregister.co.uk,2005:story/2017/04/15/apple_autonomous_vehicle_testing_permit_california/</id>
+    <updated>2017-04-15T08:39:13Z</updated>
+    <author>
+      <name>Katyanna Quach</name>
+      <uri>https://search.theregister.co.uk/?author=Katyanna%20Quach</uri>
+    </author>
+    <link rel="alternate" type="text/html" href="http://go.theregister.com/feed/www.theregister.co.uk/2017/04/15/apple_autonomous_vehicle_testing_permit_california/"/>
+    <title type="html">Apple nabs permit to experiment with self-driving iCars in Cali</title>
+    <summary type="html" xml:base="http://www.theregister.co.uk/">&lt;h4&gt;Race to robo ride glory continues to heat up&lt;/h4&gt; &lt;p&gt;Apple is the latest player to enter the race to test out self-driving cars, alongside other big names including Tesla, Uber and Google’s Waymo. It received a &lt;a target="_blank" rel="nofollow" href="https://www.dmv.ca.gov/portal/dmv/detail/vr/autonomous/testing"&gt;permit&lt;/a&gt; on Friday from the California Department of Motor Vehicles to toy with autonomous vehicles on the US state's roads.…&lt;/p&gt;</summary>
+  </entry>
+  <entry>
+    <id>tag:theregister.co.uk,2005:story/2017/04/14/ai_racial_gender_biases_like_humans/</id>
+    <updated>2017-04-14T19:30:43Z</updated>
+    <author>
+      <name>Katyanna Quach</name>
+      <uri>https://search.theregister.co.uk/?author=Katyanna%20Quach</uri>
+    </author>
+    <link rel="alternate" type="text/html" href="http://go.theregister.com/feed/www.theregister.co.uk/2017/04/14/ai_racial_gender_biases_like_humans/"/>
+    <title type="html">Good job, everyone. We're making AI just as tediously racist and sexist as ourselves</title>
+    <summary type="html" xml:base="http://www.theregister.co.uk/">&lt;h4&gt;Machines are more like us than once thought&lt;/h4&gt; &lt;p&gt;Artificial intelligence can inherit the same racial and gender biases as humans do when learning language, according to a &lt;a target="_blank" rel="nofollow" href="http://science.sciencemag.org/content/356/6334/183"&gt;paper&lt;/a&gt; published in Science.…&lt;/p&gt;</summary>
+  </entry>
+  <entry>
+    <id>tag:theregister.co.uk,2005:story/2017/04/14/switch_on_your_smartphone_camera_and_look_how_fertile_i_am/</id>
+    <updated>2017-04-14T08:00:13Z</updated>
+    <author>
+      <name>Alistair Dabbs</name>
+      <uri>https://search.theregister.co.uk/?author=Alistair%20Dabbs</uri>
+    </author>
+    <link rel="alternate" type="text/html" href="http://go.theregister.com/feed/www.theregister.co.uk/2017/04/14/switch_on_your_smartphone_camera_and_look_how_fertile_i_am/"/>
+    <title type="html">Switch on your smartphone camera and look how fertile I am</title>
+    <summary type="html" xml:base="http://www.theregister.co.uk/">&lt;h4&gt;Come as you are (every seed is sacred)&lt;/h4&gt; &lt;p&gt;&lt;strong&gt;Something for the Weekend, Sir?&lt;/strong&gt;  I have cheerful sperm.…&lt;/p&gt;</summary>
+  </entry>
+  <entry>
+    <id>tag:theregister.co.uk,2005:story/2017/04/13/burger_kings_okay_google_ad_saga/</id>
+    <updated>2017-04-13T20:46:25Z</updated>
+    <author>
+      <name>Shaun Nichols</name>
+      <uri>https://search.theregister.co.uk/?author=Shaun%20Nichols</uri>
+    </author>
+    <link rel="alternate" type="text/html" href="http://go.theregister.com/feed/www.theregister.co.uk/2017/04/13/burger_kings_okay_google_ad_saga/"/>
+    <title type="html">Burger King's 'OK Google' sad ad saga somehow gets worse</title>
+    <summary type="html" xml:base="http://www.theregister.co.uk/">&lt;h4&gt;Everything about this is stupid&lt;/h4&gt; &lt;p&gt;Fast food chain Burger King is doubling down on an ad campaign designed to activate the Google Home appliance, even as Google and the public at large object.…&lt;/p&gt; &lt;p&gt;&lt;!--#include virtual='/data_centre/_whitepaper_textlinks_top.html' --&gt;&lt;/p&gt;</summary>
+  </entry>
+  <entry>
+    <id>tag:theregister.co.uk,2005:story/2017/04/13/amazon_offers_echo_voicerecognition_tech_to_third_party_hardware/</id>
+    <updated>2017-04-13T20:27:20Z</updated>
+    <author>
+      <name>Kieren McCarthy</name>
+      <uri>https://search.theregister.co.uk/?author=Kieren%20McCarthy</uri>
+    </author>
+    <link rel="alternate" type="text/html" href="http://go.theregister.com/feed/www.theregister.co.uk/2017/04/13/amazon_offers_echo_voicerecognition_tech_to_third_party_hardware/"/>
+    <title type="html">Amazon touts Echo voice-recog tech to world's gizmo makers</title>
+    <summary type="html" xml:base="http://www.theregister.co.uk/">&lt;h4&gt;Just so long as you don't let children anywhere near it&lt;/h4&gt; &lt;p&gt;In an effort to cement its position in the voice recognition market, Amazon has opened up its Alexa technology to third parties.…&lt;/p&gt;</summary>
+  </entry>
+  <entry>
+    <id>tag:theregister.co.uk,2005:story/2017/04/13/most_complex_flat_microprocessor_yet/</id>
+    <updated>2017-04-13T06:01:10Z</updated>
+    <author>
+      <name>Katyanna Quach</name>
+      <uri>https://search.theregister.co.uk/?author=Katyanna%20Quach</uri>
+    </author>
+    <link rel="alternate" type="text/html" href="http://go.theregister.com/feed/www.theregister.co.uk/2017/04/13/most_complex_flat_microprocessor_yet/"/>
+    <title type="html">Boffins fabricate the 'most complex bendy microprocessor yet'</title>
+    <summary type="html" xml:base="http://www.theregister.co.uk/">&lt;h4&gt;Molybdenum disulfide could be potential alternative to silicon in sensors, clothes, etc&lt;/h4&gt; &lt;p&gt;A team of engineers from the Vienna University of Technology in Austria has created what they claim is the most complex flat and flexible microprocessor to date – using a molybdenum disulfide semiconductor.…&lt;/p&gt;</summary>
+  </entry>
+  <entry>
+    <id>tag:theregister.co.uk,2005:story/2017/04/13/python_devs_quantum_computer_programming/</id>
+    <updated>2017-04-13T04:33:07Z</updated>
+    <author>
+      <name>Simon Sharwood</name>
+      <uri>https://search.theregister.co.uk/?author=Simon%20Sharwood</uri>
+    </author>
+    <link rel="alternate" type="text/html" href="http://go.theregister.com/feed/www.theregister.co.uk/2017/04/13/python_devs_quantum_computer_programming/"/>
+    <title type="html">Worry not, Python devs – you can program a quantum computer</title>
+    <summary type="html" xml:base="http://www.theregister.co.uk/">&lt;h4&gt;Schroedinger's snake slithers into Bank's quantum sim&lt;/h4&gt; &lt;p&gt;Australia's Commonwealth Bank has bought a simulated quantum computer that you can program with Python.…&lt;/p&gt;</summary>
+  </entry>
+  <entry>
+    <id>tag:theregister.co.uk,2005:story/2017/04/12/hermes_delivery_robots/</id>
+    <updated>2017-04-12T15:42:09Z</updated>
+    <author>
+      <name>Gareth Corfield</name>
+      <uri>https://search.theregister.co.uk/?author=Gareth%20Corfield</uri>
+    </author>
+    <link rel="alternate" type="text/html" href="http://go.theregister.com/feed/www.theregister.co.uk/2017/04/12/hermes_delivery_robots/"/>
+    <title type="html">Parcel bods Hermes become latest London drone delivery droogs</title>
+    <summary type="html" xml:base="http://www.theregister.co.uk/">&lt;h4&gt;Another reason for non-delivery, perhaps?&lt;/h4&gt; &lt;p&gt;Parcel delivery biz Hermes has become the latest company to roll out self-driving robots in London, promising autonomous deliveries in the borough of Southwark.…&lt;/p&gt;</summary>
+  </entry>
+  <entry>
+    <id>tag:theregister.co.uk,2005:story/2017/04/12/nvidia_responds_to_googles_tpu_benchmark/</id>
+    <updated>2017-04-12T01:42:47Z</updated>
+    <author>
+      <name>Richard Chirgwin</name>
+      <uri>https://search.theregister.co.uk/?author=Richard%20Chirgwin</uri>
+    </author>
+    <link rel="alternate" type="text/html" href="http://go.theregister.com/feed/www.theregister.co.uk/2017/04/12/nvidia_responds_to_googles_tpu_benchmark/"/>
+    <title type="html">Nvidia says Google's TPU benchmark compared wrong kit</title>
+    <summary type="html" xml:base="http://www.theregister.co.uk/">&lt;h4&gt;You're faster than the Kepler, but what about the newer and better Pascal?&lt;/h4&gt; &lt;p&gt;It's not easy being Nvidia: the rise of AI has put a rocket under demand for GPUs, but the corollary to that is World+Dog publishing benchmarks to try and knock Nvidia off its perch.…&lt;/p&gt;</summary>
+  </entry>
+  <entry>
+    <id>tag:theregister.co.uk,2005:story/2017/04/11/algorithm_bots_cooperative_machinehuman_relationship/</id>
+    <updated>2017-04-11T07:01:10Z</updated>
+    <author>
+      <name>Katyanna Quach</name>
+      <uri>https://search.theregister.co.uk/?author=Katyanna%20Quach</uri>
+    </author>
+    <link rel="alternate" type="text/html" href="http://go.theregister.com/feed/www.theregister.co.uk/2017/04/11/algorithm_bots_cooperative_machinehuman_relationship/"/>
+    <title type="html">Intelligent robots can walk the walk – but if they can't talk the talk, we can't get along</title>
+    <summary type="html" xml:base="http://www.theregister.co.uk/">&lt;h4&gt;AI must master gift of the gab, humans have to play nice too&lt;/h4&gt; &lt;p&gt;The AI hype has triggered a moral panic as people entertain the idea that super-intelligent machines may one day dominate Earth.…&lt;/p&gt;</summary>
+  </entry>
+  <entry>
+    <id>tag:theregister.co.uk,2005:story/2017/04/10/reg_robots_radicals_lectures/</id>
+    <updated>2017-04-10T12:52:12Z</updated>
+    <author>
+      <name>Joe Fay</name>
+      <uri>https://search.theregister.co.uk/?author=Joe%20Fay</uri>
+    </author>
+    <link rel="alternate" type="text/html" href="http://go.theregister.com/feed/www.theregister.co.uk/2017/04/10/reg_robots_radicals_lectures/"/>
+    <title type="html">Sex robots and Radicals set to gatecrash &lt;i&gt;Reg&lt;/i&gt; lectures</title>
+    <summary type="html" xml:base="http://www.theregister.co.uk/">&lt;h4&gt;Society is changing - we’ll show you why and how&lt;/h4&gt; &lt;p&gt;Society is changing before our eyes, and whether you think revolutionaries or robots are to blame, technology is often at the heart of the matter.…&lt;/p&gt;</summary>
+  </entry>
+  <entry>
+    <id>tag:theregister.co.uk,2005:story/2017/04/08/ubers_response_waymos_trade_secret_suit/</id>
+    <updated>2017-04-08T11:31:08Z</updated>
+    <author>
+      <name>Shaun Nichols</name>
+      <uri>https://search.theregister.co.uk/?author=Shaun%20Nichols</uri>
+    </author>
+    <link rel="alternate" type="text/html" href="http://go.theregister.com/feed/www.theregister.co.uk/2017/04/08/ubers_response_waymos_trade_secret_suit/"/>
+    <title type="html">Uber responds to Waymo: We don't even use that tech you say we stole</title>
+    <summary type="html" xml:base="http://www.theregister.co.uk/">&lt;h4&gt;LiDAR? I barely know her!&lt;/h4&gt; &lt;p&gt;Uber has filed its response to Waymo's trade secret suit, arguing it does not even use the self-driving car technology described in the complaint.…&lt;/p&gt;</summary>
+  </entry>
+  <entry>
+    <id>tag:theregister.co.uk,2005:story/2017/04/07/deepmind_releases_sonnet_its_own_tensorflow_library_for_the_good_of_ai/</id>
+    <updated>2017-04-07T20:46:51Z</updated>
+    <author>
+      <name>Katyanna Quach</name>
+      <uri>https://search.theregister.co.uk/?author=Katyanna%20Quach</uri>
+    </author>
+    <link rel="alternate" type="text/html" href="http://go.theregister.com/feed/www.theregister.co.uk/2017/04/07/deepmind_releases_sonnet_its_own_tensorflow_library_for_the_good_of_ai/"/>
+    <title type="html">DeepMind hopes its TensorFlow lib Sonnet is music to ears of AI devs</title>
+    <summary type="html" xml:base="http://www.theregister.co.uk/">&lt;h4&gt;Code dumped on GitHub for you to play with this weekend (and maybe beyond)&lt;/h4&gt; &lt;p&gt;Alphabet’s AI outfit DeepMind has released &lt;a target="_blank" rel="nofollow" href="https://github.com/deepmind/sonnet"&gt;Sonnet&lt;/a&gt;, a framework that allows developers to construct neural network components more easily in TensorFlow.…&lt;/p&gt;</summary>
+  </entry>
+  <entry>
+    <id>tag:theregister.co.uk,2005:story/2017/04/07/water_company_picks_nbiot_craps_rival_techs/</id>
+    <updated>2017-04-07T16:00:11Z</updated>
+    <author>
+      <name>Gareth Corfield</name>
+      <uri>https://search.theregister.co.uk/?author=Gareth%20Corfield</uri>
+    </author>
+    <link rel="alternate" type="text/html" href="http://go.theregister.com/feed/www.theregister.co.uk/2017/04/07/water_company_picks_nbiot_craps_rival_techs/"/>
+    <title type="html">Utility company picks NB-IoT, actively spurns rival techs' USPs</title>
+    <summary type="html" xml:base="http://www.theregister.co.uk/">&lt;h4&gt;'Plug-and-play' connectivity tech sealed the deal, says firm&lt;/h4&gt; &lt;p&gt;A utility company has opted for Narrowband Internet of Things (NB-IoT) connectivity technology for its IoT deployment, crapping all over competing connectivity techs in the process.…&lt;/p&gt;</summary>
+  </entry>
+  <entry>
+    <id>tag:theregister.co.uk,2005:story/2017/04/07/facebooks_delightful_ai_clippy_the_paperclip_creeps_into_messenger/</id>
+    <updated>2017-04-07T14:15:09Z</updated>
+    <author>
+      <name>Andrew Orlowski</name>
+      <uri>https://search.theregister.co.uk/?author=Andrew%20Orlowski</uri>
+    </author>
+    <link rel="alternate" type="text/html" href="http://go.theregister.com/feed/www.theregister.co.uk/2017/04/07/facebooks_delightful_ai_clippy_the_paperclip_creeps_into_messenger/"/>
+    <title type="html">Facebook's 'delightful' AI Clippy the Paperclip creeps into Messenger</title>
+    <summary type="html" xml:base="http://www.theregister.co.uk/">&lt;h4&gt;What fresh hell&lt;/h4&gt; &lt;p&gt;Facebook's first practical attempt to implement machine learning &lt;a target="_blank" href="https://www.theregister.co.uk/2017/03/02/facebook_shifts_from_ai_bots_working/"&gt;blew up badly&lt;/a&gt;. After suffering a 70 per cent failure rate, the Messenger Bot was redesigned to provide a potentially useful menu driven service.…&lt;/p&gt;</summary>
+  </entry>
+  <entry>
+    <id>tag:theregister.co.uk,2005:story/2017/04/07/intel_chainer_ai_day/</id>
+    <updated>2017-04-07T07:32:10Z</updated>
+    <author>
+      <name>Simon Sharwood</name>
+      <uri>https://search.theregister.co.uk/?author=Simon%20Sharwood</uri>
+    </author>
+    <link rel="alternate" type="text/html" href="http://go.theregister.com/feed/www.theregister.co.uk/2017/04/07/intel_chainer_ai_day/"/>
+    <title type="html">Big-in-Japan AI code 'Chainer' shows how Intel will gun for GPUs</title>
+    <summary type="html" xml:base="http://www.theregister.co.uk/">&lt;h4&gt;Chainer makes TensorFlow look like treacle, but until this week it didn't speak Xeon&lt;/h4&gt; &lt;p&gt;Ever heard of “Chainer”, the open-source framework for creating neural networks?…&lt;/p&gt;</summary>
+  </entry>
+  <entry>
+    <id>tag:theregister.co.uk,2005:story/2017/04/06/zunum_aero_electric_powered_airliner_concept/</id>
+    <updated>2017-04-06T16:03:11Z</updated>
+    <author>
+      <name>Gareth Corfield</name>
+      <uri>https://search.theregister.co.uk/?author=Gareth%20Corfield</uri>
+    </author>
+    <link rel="alternate" type="text/html" href="http://go.theregister.com/feed/www.theregister.co.uk/2017/04/06/zunum_aero_electric_powered_airliner_concept/"/>
+    <title type="html">Boeing-backed US upstart reckons it'll be building electric airliners</title>
+    <summary type="html" xml:base="http://www.theregister.co.uk/">&lt;h4&gt;Let's hope they walk the walk better than they talk the talk&lt;/h4&gt; &lt;p&gt;A naïve American startup run by "dreamers" claims that its electrically powered airliner concept will magically sweep away all of the world's existing problems with air travel.…&lt;/p&gt; &lt;p&gt;&lt;!--#include virtual='/data_centre/_whitepaper_textlinks_top.html' --&gt;&lt;/p&gt;</summary>
+  </entry>
+  <entry>
+    <id>tag:theregister.co.uk,2005:story/2017/04/06/your_machine_used_to_crunch_numbers_now_it_can_chew_over_what_they_mean_too/</id>
+    <updated>2017-04-06T10:56:05Z</updated>
+    <author>
+      <name>Danny Bradbury</name>
+      <uri>https://search.theregister.co.uk/?author=Danny%20Bradbury</uri>
+    </author>
+    <link rel="alternate" type="text/html" href="http://go.theregister.com/feed/www.theregister.co.uk/2017/04/06/your_machine_used_to_crunch_numbers_now_it_can_chew_over_what_they_mean_too/"/>
+    <title type="html">Your machine used to crunch numbers. Now it can chew over what they mean, too</title>
+    <summary type="html" xml:base="http://www.theregister.co.uk/">&lt;h4&gt;Moving beyond analytics&lt;/h4&gt; &lt;p&gt;&lt;strong&gt;Promo&lt;/strong&gt;  Artificial intelligence can solve all your problems. It can raise your children, argue with idiots for you on Facebook, order you a curry from the shop down the road, and even give you a foot massage while you’re eating it.…&lt;/p&gt;</summary>
+  </entry>
+  <entry>
+    <id>tag:theregister.co.uk,2005:story/2017/04/06/ekranoplan_returns/</id>
+    <updated>2017-04-06T09:07:04Z</updated>
+    <author>
+      <name>Andrew Orlowski</name>
+      <uri>https://search.theregister.co.uk/?author=Andrew%20Orlowski</uri>
+    </author>
+    <link rel="alternate" type="text/html" href="http://go.theregister.com/feed/www.theregister.co.uk/2017/04/06/ekranoplan_returns/"/>
+    <title type="html">The beast is back: Reborn ekranoplan heads for the Arctic</title>
+    <summary type="html" xml:base="http://www.theregister.co.uk/">&lt;h4&gt;Not quite the Caspian Sea Monster, but the ground effect vehicle has returned&lt;/h4&gt; &lt;p&gt;Russia has posted pictures of a new ground effect vehicle, or ekranoplan. The new design is more modest than the "Caspian Sea Monster" that so alarmed Western intelligence during the Cold War, and can only be seen taxiing.…&lt;/p&gt;</summary>
+  </entry>
+  <entry>
+    <id>tag:theregister.co.uk,2005:story/2017/04/06/google_ai_chips_trounce_intel_nvidia/</id>
+    <updated>2017-04-06T07:01:07Z</updated>
+    <author>
+      <name>Thomas Claburn</name>
+      <uri>https://search.theregister.co.uk/?author=Thomas%20Claburn</uri>
+    </author>
+    <link rel="alternate" type="text/html" href="http://go.theregister.com/feed/www.theregister.co.uk/2017/04/06/google_ai_chips_trounce_intel_nvidia/"/>
+    <title type="html">Revealed: Blueprints to Google's AI FPU aka the Tensor Processing Unit</title>
+    <summary type="html" xml:base="http://www.theregister.co.uk/">&lt;h4&gt;PCIe-connected super-calculator trounces outdated competition&lt;/h4&gt; &lt;p&gt;&lt;strong&gt;Analysis&lt;/strong&gt;  In 2013, Google realized that its growing dependence on machine learning would force it to double the number of data centers it operates to handle projected workloads.…&lt;/p&gt;</summary>
+  </entry>
+  <entry>
+    <id>tag:theregister.co.uk,2005:story/2017/04/05/london_driverless_cars_trial/</id>
+    <updated>2017-04-05T12:24:11Z</updated>
+    <author>
+      <name>Gareth Corfield</name>
+      <uri>https://search.theregister.co.uk/?author=Gareth%20Corfield</uri>
+    </author>
+    <link rel="alternate" type="text/html" href="http://go.theregister.com/feed/www.theregister.co.uk/2017/04/05/london_driverless_cars_trial/"/>
+    <title type="html">Londoners will be trialling driverless cars in pedestrianised area</title>
+    <summary type="html" xml:base="http://www.theregister.co.uk/">&lt;h4&gt;What's a squashed jogger or two in the name of progress?&lt;/h4&gt; &lt;p&gt;Around a hundred Londoners will travel in Blighty’s first public driverless cars over the next few weeks, it was announced this morning.…&lt;/p&gt;</summary>
+  </entry>
+  <entry>
+    <id>tag:theregister.co.uk,2005:story/2017/04/05/building_bridges_to_the_brain/</id>
+    <updated>2017-04-05T08:01:13Z</updated>
+    <author>
+      <name>Thomas Claburn</name>
+      <uri>https://search.theregister.co.uk/?author=Thomas%20Claburn</uri>
+    </author>
+    <link rel="alternate" type="text/html" href="http://go.theregister.com/feed/www.theregister.co.uk/2017/04/05/building_bridges_to_the_brain/"/>
+    <title type="html">It's not just Elon building bridges to the brain: The Internet of Things is coming to a head</title>
+    <summary type="html" xml:base="http://www.theregister.co.uk/">&lt;h4&gt;Literally – meet the $100m project to read/write the mind&lt;/h4&gt; &lt;p&gt;Technical work demands tools. Software developers have integrated development environments and text editors. Genetic researchers have gene sequencing machines and CRISPR. Doctors have too many toys to name.…&lt;/p&gt;</summary>
+  </entry>
+</feed>

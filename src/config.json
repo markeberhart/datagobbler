@@ -21,13 +21,13 @@
                 }
             }
         },
-        "csv":{
-            "title":"CSV",
+        "csv-data":{
+            "title":"CSV-DATA",
             "api_info": {
-                "url":"./src/data/earthquakes.csv",
+                "url":"./src/data/csv-data.csv",
                 "file_type":"csv",
                 "filter_out":[],
-                "group_by":["sig"],
+                "group_by":[],
                 "proxy_url":null,
                 "date_info": {
                     "date_field":"time",
@@ -42,10 +42,115 @@
                 }
             }
         },
+        "csv-geo":{
+            "title":"CSV-GEO",
+            "api_info": {
+                "url":"./src/data/csv-geo.csv",
+                "file_type":"csv",
+                "filter_out":[],
+                "group_by":["sig"],
+                "proxy_url":null,
+                "date_info": {
+                    "date_field":"time",
+                    "date_format":"x",
+                    "offset_type":"days",
+                    "date_start_offset":0,
+                    "date_end_offset":0
+                },
+                "if_not_geospatial_file_type":{
+                    "field_to_use_for_latitude":"latitude",
+                    "field_to_use_for_longitude":"longitude"
+                }
+            }
+        },
+        "atom":{
+            "title":"ATOM",
+            "api_info": {
+                "url":"./src/data/atom.atom",
+                "file_type":"atom",
+                "filter_out":[],
+                "group_by":[],
+                "proxy_url":null,
+                "date_info": {
+                    "date_field":null,
+                    "date_format":null,
+                    "offset_type":"days",
+                    "date_start_offset":0,
+                    "date_end_offset":0
+                },
+                "if_not_geospatial_file_type":{
+                    "field_to_use_for_latitude":null,
+                    "field_to_use_for_longitude":null
+                }
+            }
+        },
+        "atom-geo":{
+            "title":"ATOM-GEO",
+            "api_info": {
+                "url":"./src/data/atom-geo.atom",
+                "file_type":"atom",
+                "filter_out":[],
+                "group_by":[],
+                "proxy_url":null,
+                "date_info": {
+                    "date_field":"updated",
+                    "date_format":"x",
+                    "offset_type":"days",
+                    "date_start_offset":0,
+                    "date_end_offset":0
+                },
+                "if_not_geospatial_file_type":{
+                    "field_to_use_for_latitude":null,
+                    "field_to_use_for_longitude":null
+                }
+            }
+        },
+        "georss":{
+            "title":"GEORSS",
+            "api_info": {
+                "url":"./src/data/georss.rss",
+                "file_type":"georss",
+                "filter_out":[],
+                "group_by":[],
+                "proxy_url":null,
+                "date_info": {
+                    "date_field":"updated",
+                    "date_format":"x",
+                    "offset_type":"days",
+                    "date_start_offset":0,
+                    "date_end_offset":0
+                },
+                "if_not_geospatial_file_type":{
+                    "field_to_use_for_latitude":null,
+                    "field_to_use_for_longitude":null
+                }
+            }
+        },
         "kml":{
             "title":"KML",
             "api_info": {
-                "url":"./src/data/earthquakes.kml",
+                "url":"./src/data/kml.kml",
+                "file_type":"kml",
+                "filter_out":[],
+                "group_by":[],
+                "proxy_url":null,
+                "date_info": {
+                    "date_field":null,
+                    "date_format":null,
+                    "offset_type":"days",
+                    "date_start_offset":0,
+                    "date_end_offset":0
+                },
+                "if_not_geospatial_file_type":{
+                    "field_to_use_for_latitude":null,
+                    "field_to_use_for_longitude":null
+                }
+            }
+        },
+        "kml-time":{
+            "title":"KML-TIME",
+            "api_info": {
+                "url":"./src/data/kml-time.kml",
                 "file_type":"kml",
                 "filter_out":[],
                 "group_by":[],
@@ -87,7 +192,7 @@
         "geojson":{
             "title":"GEOJSON",
             "api_info": {
-                "url":"src/data/earthquakes2.geojson",
+                "url":"src/data/geojson.geojson",
                 "file_type":"geojson",
                 "filter_out":[{"property":"sig","operator":"==","value":"4"}],
                 "group_by":["sig"],
@@ -108,7 +213,7 @@
         "topojson":{
             "title":"TOPOJSON",
             "api_info": {
-                "url":"src/data/world.topojson",
+                "url":"src/data/topojson.topojson",
                 "file_type":"topojson",
                 "filter_out":[],
                 "group_by":[],
@@ -129,7 +234,7 @@
         "shp":{
             "title":"SHP",
             "api_info": {
-                "url":"src/data/earthquakes/Earthquakes1970.shp",
+                "url":"src/data/shp/Earthquakes1970.shp",
                 "file_type":"shp",
                 "filter_out":[],
                 "group_by":[],

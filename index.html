@@ -1,40 +1,58 @@
 <html>
 <head>
 <title>DataGobbler 0.1.2</title>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+
+<!-- CSS TO VIEW DATAGOBBLER OBJECT -->
+<link href="./src/js/jsoneditor/jsoneditor.min.css" rel="stylesheet" type="text/css">
+    
+<style>
+    #apptitle{
+        font-family: sans-serif;
+        font-size: 3em;
+        color:rgb(56,131,250);
+        padding-top: 20px;
+        padding-bottom: 20px;
+    }
+    body{
+        background-color:rgb(235,235,235);
+        padding-left: 20px;
+        padding-right: 20px;
+        padding-bottom: 20px;
+    }
+</style>
 </head>
     
 <body>
+<div id="apptitle">DataGobbler ver0.1.2</div>
     
-<!--
-<script src="./resources/js/jquery/jquery-1.11.1.min.js"></script>
-<script src="./resources/js/d3/d3.min.js"></script>
-<script src="./resources/js/moment/moment.min.js"></script>
-<script src="./resources/js/shapefilejs/shp.min.js"></script>
-<script src="./resources/js/d3/topojson.min.js"></script>
-<script src="./resources/js/convertFromEsriJson.js"></script>
-<script src="./resources/js/datagobbler/datagobbler.js"></script>
--->
+<!-- DIV TO VIEW DATAGOBBLER OBJECT -->
+<div id="jsoneditor" style="width: 100%; height: 100%;"></div>
     
 <!-- DataGobbler Files -->
 <script src="./src/js/jquery/jquery-1.11.1.min.js"></script>
+<script src="./src/js/xml2json/xml2json.min.js"></script>
 <script src="./src/js/d3/d3.min.js"></script>
 <script src="./src/js/moment/moment.min.js"></script>
 <script src="./src/js/shapefilejs/shp.min.js"></script>
 <script src="./src/js/d3/topojson.min.js"></script>
 <script src="./src/js/arcjson2geojson/arcjson2geojson.js"></script>
 <script src="./src/js/togeojson/togeojson.js"></script>
-    
-<!-- 
-<script src="./src/js/promises/promises.js"></script>
-<script src="./src/js/shapefilejs/jszip.min.js"></script>
-<script src="./src/js/shapefilejs/unzip.js"></script>
-<script src="./src/js/shapefilejs/parseShp.js"></script>
--->
+<script src="./src/js/georsstogeojson/georsstogeojson.js"></script>
 <script src="./src/js/datagobbler/datagobbler-v0.1.2.js"></script>
+    
+<!-- SCRIPT TO VIEW DATAGOBBLER OBJECT -->
+<script src="./src/js/jsoneditor/jsoneditor.min.js"></script>
+
 
 <script>
 
-
+// CODE FOR DATAGOBBLER VIEWER (BEGIN)
+var container = document.getElementById("jsoneditor");
+var options = {};
+var editor = new JSONEditor(container, options);
+// CODE FOR DATAGOBBLER VIEWER (END)
+    
 var dgb = new datagobbler.getData({
     configFile:"./src/config.json",
     callbackFunction:onDataLoaded,
@@ -47,6 +65,12 @@ function onDataLoading(data){
 }
 
 function onDataLoaded(data){
+    
+    // CODE FOR DATAGOBBLER VIEWER (BEGIN)
+    editor.set(data);
+    var json = editor.get();
+    // CODE FOR DATAGOBBLER VIEWER (END)
+    
     console.log("DataGobbler has loaded.",data);
 }
 </script>

@@ -300,6 +300,14 @@
                         datagobbler.layerHasGeospatialData(dl,true);
                         datagobbler.downloadDataKML(dl);
                         break;
+                    case "atom":
+                        datagobbler.layerHasGeospatialData(dl);
+                        datagobbler.downloadDataATOM(dl);
+                        break;
+                    case "georss":
+                        datagobbler.layerHasGeospatialData(dl,true);
+                        datagobbler.downloadDataGEORSS(dl);
+                        break;
                     case "csv":
                         datagobbler.checkIfGeospatial(dl);
                         datagobbler.downloadDataCSV(dl);
@@ -554,6 +562,7 @@
         var _filetype = datagobbler.data_layers[dl].api_info.file_type;
         //_arr[] = _data;
         //for (i = 0; i < _data.length; i++) {
+        
         var _type = datagobbler.getDataType(_data.features[0].geometry.type);
         _data[_type.name] = _type.type;
         _data.has_geospatial_data = datagobbler.data_layers[layer].api_info.has_geospatial_data;
@@ -573,6 +582,7 @@
         
         var errorArcJson = function(error){
             _loadingStatus.downloadCompleted = false;
+            _loadingStatus.pendingDownload = false;
             _loadingStatus.downloadError = true;
             datagobbler.data_layers[layer].api_info['data'] = null;
             datagobbler.DownloadError(layer,error);
@@ -580,6 +590,7 @@
         }
         var successArcJson = function(data){
             _loadingStatus.downloadCompleted = true;
+            _loadingStatus.pendingDownload = false;
             var _esri = esriConverter();
             var _geojson = _esri.toGeoJson(data);
             datagobbler.data_layers[layer].api_info['data'] = _geojson;
@@ -628,6 +639,7 @@
             function(data){ //If successful loading
                 //console.log("Loaded Shapefile!",data);
                 _loadingStatus.downloadCompleted = true;
+                _loadingStatus.pendingDownload = false;
                 var _arr = [];
                 _arr[0] = data;
                 datagobbler.data_layers[layer].api_info['data'] = _arr;
@@ -639,6 +651,7 @@
             function(event){ //If fails to load
                 //console.log("Sorry, could not load Shapefile.");
                 _loadingStatus.downloadCompleted = false;
+                _loadingStatus.pendingDownload = false;
                 _loadingStatus.downloadError = true;
                 datagobbler.data_layers[layer].api_info['data'] = null;
                 datagobbler.data_layers[layer].api_info['objects'] = null;
@@ -662,8 +675,10 @@
             function(data){ //If successful loading
                 //console.log("downloadDataSHPZIP",data);
                 //console.log("downloadDataSHPZIP OK",data);
+                _arr.push(data);
                 _loadingStatus.downloadCompleted = true;
-                datagobbler.data_layers[layer].api_info['data'] = data;
+                _loadingStatus.pendingDownload = false;
+                datagobbler.data_layers[layer].api_info['data'] = _arr;
                 datagobbler.DownloadSuccess(layer);
                 datagobbler.decodeDataSHPGEOJSON(layer); //TODO make sure we get geojson into an array format like the others
                 console.log("downloadDataSHPZIP OK");
@@ -672,6 +687,7 @@
                 //console.log("Sorry, could not load Shapefile.",event);
                 datagobbler.logSystemErrorForLayer({'layer':layer,'errorEvent':event});
                 _loadingStatus.downloadCompleted = false;
+                _loadingStatus.pendingDownload = false;
                 _loadingStatus.downloadError = true;
                 datagobbler.data_layers[layer].api_info['data'] = null;
                 datagobbler.data_layers[layer].api_info['objects'] = null;
@@ -685,7 +701,6 @@
         var _data = datagobbler.data_layers[layer].api_info.data;
         for(d in _data){
             var _type = datagobbler.getDataType(_data[d].features[0].geometry.type);
-            //console.log(d,_type);
             _data[d][_type.name] = _type.type;
             if(_data[d].fileName){
                 _data[d]['name'] = _data[d].fileName;
@@ -694,7 +709,6 @@
             }
             _data[d].has_geospatial_data = datagobbler.data_layers[layer].api_info.has_geospatial_data;
         }
-        //console.log("downloadDataSHP/SHP.ZIP OK",_data);
         datagobbler.data_layers[layer].api_info['objects'] = _data;
         datagobbler.checkGlobalDownloadStatus();
     }
@@ -770,7 +784,7 @@
                  "features":_data
              };
              var _type = datagobbler.getDataType("none");
-            _recordsObj[_type.name] = _type.type;
+             _recordsObj[_type.name] = _type.type;
              _arr[0] = _recordsObj;
          }
          //else, just set arr to the normal data (_arr = _data)
@@ -780,6 +794,67 @@
         datagobbler.checkGlobalDownloadStatus();
     }
      
+    datagobbler.downloadDataATOM = function(layer){
+        var _url = datagobbler.data_layers[layer].api_info.url;
+        var _loadingStatus = datagobbler.data_layers[layer].loadingStatus;
+        _loadingStatus.pendingDownload = true;
+        var _arr = [];
+        d3.xml(_url, function(error, data) {
+            if(error){
+                _loadingStatus.downloadCompleted = false;
+                _loadingStatus.pendingDownload = false;
+                _loadingStatus.downloadError = true;
+                datagobbler.data_layers[layer].api_info['data'] = null;
+                datagobbler.DownloadError(layer,error);
+                console.log("downloadDataATOM BAD");
+            }else{
+                var _geojson = GeoRSSToGeoJSON(data,{layer:layer,datagobbler:datagobbler});
+                _loadingStatus.downloadCompleted = true;
+                _loadingStatus.pendingDownload = false;
+                datagobbler.DownloadSuccess(layer);
+                
+                datagobbler.data_layers[layer].api_info['data'] = _geojson;
+                if(_geojson.features[0].geometry){
+                    datagobbler.data_layers[layer].api_info.has_geospatial_data = _geojson.has_geospatial_data = true;
+                    var _type = datagobbler.getDataType("point");
+                    _geojson[_type.name] = _type.type;
+                    datagobbler.decodeDataGEOJSON(layer);
+                }else{
+                    datagobbler.data_layers[layer].api_info.has_geospatial_data = _geojson.has_geospatial_data = false;
+                    var _type = datagobbler.getDataType("none");
+                    _geojson[_type.name] = _type.type;
+                    _arr[0] = _geojson;
+                    datagobbler.data_layers[layer].api_info['objects'] = _arr;
+                }
+                console.log("downloadDataATOM OK",_arr);
+            }
+        });
+    }
+     
+    datagobbler.downloadDataGEORSS = function(layer){
+        var _url = datagobbler.data_layers[layer].api_info.url;
+        var _loadingStatus = datagobbler.data_layers[layer].loadingStatus;
+        _loadingStatus.pendingDownload = true;
+        d3.xml(_url, function(error, data) {
+            if(error){
+                _loadingStatus.downloadCompleted = false;
+                _loadingStatus.pendingDownload = false;
+                _loadingStatus.downloadError = true;
+                datagobbler.data_layers[layer].api_info['data'] = null;
+                datagobbler.DownloadError(layer,error);
+                console.log("downloadDataGEORSS BAD");
+            }else{
+                var _geojson = GeoRSSToGeoJSON(data,{layer:layer,datagobbler:datagobbler});
+                _loadingStatus.downloadCompleted = true;
+                _loadingStatus.pendingDownload = false;
+                datagobbler.data_layers[layer].api_info['data'] = _geojson;
+                datagobbler.DownloadSuccess(layer);
+                datagobbler.decodeDataGEOJSON(layer);
+                console.log("downloadDataGEORSS OK");
+            }
+        });
+    }
+    
     datagobbler.downloadDataKML = function(layer){
         //console.log('datagobbler.downloadDataKML',toGeoJSON);
         var _url = datagobbler.data_layers[layer].api_info.url;
@@ -789,6 +864,7 @@
         d3.xml(_url, function(error, data) {
             if(error){
                 _loadingStatus.downloadCompleted = false;
+                _loadingStatus.pendingDownload = false;
                 _loadingStatus.downloadError = true;
                 datagobbler.data_layers[layer].api_info['data'] = null;
                 datagobbler.DownloadError(layer,error);
@@ -796,6 +872,7 @@
             }else{
                 var _geojson = toGeoJSON.kml(data);
                 _loadingStatus.downloadCompleted = true;
+                _loadingStatus.pendingDownload = false;
                 datagobbler.data_layers[layer].api_info['data'] = _geojson;
                 datagobbler.DownloadSuccess(layer);
                 datagobbler.decodeDataGEOJSON(layer);
