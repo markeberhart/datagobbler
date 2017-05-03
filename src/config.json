@@ -156,8 +156,8 @@
                 "group_by":[],
                 "proxy_url":null,
                 "date_info": {
-                    "date_field":null,
-                    "date_format":null,
+                    "date_field":"timestamp",
+                    "date_format":"YYYY-MM-DD",
                     "offset_type":"days",
                     "date_start_offset":0,
                     "date_end_offset":0
@@ -240,7 +240,7 @@
                 "group_by":[],
                 "proxy_url":null,
                 "date_info": {
-                    "date_field":null,
+                    "date_field":"YYYYMMDD",
                     "date_format":"YYYYMMDD",
                     "offset_type":"days",
                     "date_start_offset":0,
