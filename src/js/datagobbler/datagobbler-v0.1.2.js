@@ -1006,6 +1006,35 @@
                 _is_temporal = false;
             }
             datagobbler.data_layers[layer].api_info.objects[k].is_temporal = _is_temporal;
+            
+            for(f in _features){
+                
+                if(_is_temporal){
+
+                    var _time;
+                    // verify whether the time/date field is meant to be
+                    // text or a number
+                    if(isNaN(Number(_features[f].properties[_dateField]))){
+                        _time = _features[f].properties[_dateField]; //treat as text
+                    }else{
+                        _time = Number(_features[f].properties[_dateField]); //treat as a number (eg. UNIX)
+                    }
+                    //console.log(_features[f]);
+                    _features[f].properties["idate"] = _time;
+                    _features[f].properties["itime"] = datagobbler.getCommonTime({time:_time,format:_dateFormat,props:_features});
+                    _features[f].properties["prettytime"] = datagobbler.getCommonTime({time:_time,format:_dateFormat}).prettytime;
+                    _features[f].properties["numbertime"] = datagobbler.getCommonTime({time:_time,format:_dateFormat}).numbertime;
+                    
+                    if(_features[f].properties["itime"].isInGlobalDateRange){
+                        //datagobbler.checkForDataLayerDateInRangeObject(layer,_features[f].properties["itime"]);
+                        _keepFeature = true;
+                    }else{
+                        //datagobbler.checkForDataLayerDateOutsideRangeObject(layer,_features[f].properties["itime"]);
+                        //_keepFeature = false;
+                    }
+                    //console.log("filterDataLayer: ",_features[f].properties.itime.isInGlobalDateRange);
+                }
+            }
         }
         console.log(datagobbler.data_layers[layer]);
         datagobbler.filterSuccess(layer);
