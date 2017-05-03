@@ -819,14 +819,16 @@
                     var _type = datagobbler.getDataType("point");
                     _geojson[_type.name] = _type.type;
                     datagobbler.decodeDataGEOJSON(layer);
+                    console.log("downloadDataATOM-GEO OK");
                 }else{
                     datagobbler.data_layers[layer].api_info.has_geospatial_data = _geojson.has_geospatial_data = false;
                     var _type = datagobbler.getDataType("none");
                     _geojson[_type.name] = _type.type;
                     _arr[0] = _geojson;
                     datagobbler.data_layers[layer].api_info['objects'] = _arr;
+                    console.log("downloadDataATOM OK");
                 }
-                console.log("downloadDataATOM OK",_arr);
+                
             }
         });
     }
@@ -972,10 +974,9 @@
     datagobbler.filterAllLayers = function(){
         //console.log("datagobbler.filterAllLayers",datagobbler.data_layers);
         for(dl in datagobbler.data_layers){
-            console.log(datagobbler.data_layers[dl]);
             if(datagobbler.data_layers[dl].layerOkToFilter){
-                console.log("EVERYTHING LOADED.",dl);
-                //datagobbler.data_layers[dl].api_info.objects = datagobbler.filterDataLayer(dl);
+                
+                datagobbler.data_layers[dl].api_info.objects = datagobbler.filterDataLayer3(dl);
                 //console.log("----------------------------");
                 //console.log("datagobbler.data_layers[dl].api_info.objects",dl);
                 //console.log(datagobbler.data_layers[dl].api_info.objects);
@@ -983,6 +984,33 @@
         }
         //DataGobbler is finished!
         datagobbler.ondataLoaded(datagobbler.data);
+    }
+    
+    datagobbler.filterDataLayer3 = function(layer){
+
+        var _objects        = datagobbler.data_layers[layer].api_info.objects;
+        var _dateField      = datagobbler.data_layers[layer].api_info.date_info.date_field;
+        var _filterOutArr   = datagobbler.data_layers[layer].api_info.filter_out;
+        var _dateFormat     = datagobbler.data_layers[layer].api_info.date_info.date_format;
+        
+        for(k in _objects){
+            _objects[k]['data_layer'] = layer;
+            _objects[k].featuresFiltered = [];
+            
+            var _features = _objects[k].features;
+            var _temp_features = [];
+            var _is_temporal;
+            if(_features[0].properties[_dateField]){
+                _is_temporal = true;
+            }else{
+                _is_temporal = false;
+            }
+            datagobbler.data_layers[layer].api_info.objects[k].is_temporal = _is_temporal;
+        }
+        console.log(datagobbler.data_layers[layer]);
+        datagobbler.filterSuccess(layer);
+        datagobbler.numOfDataFilesFiltered++;
+        return _objects;
     }
     
     datagobbler.filterDataLayer = function(layer){
@@ -1247,7 +1275,7 @@
     
         if(!_time._isValid){
            //console.log(args.props,args.time, "<- Format given does not match time stamp. Trying to fix...");
-            console.log(args.time);
+            //console.log(args.time);
             _time = moment(args.time).utc();
             args.format = _time._f;
             //console.log("-------","fixed?",args.time,_time);
