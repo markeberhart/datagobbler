@@ -1015,14 +1015,18 @@
             }else{
                 _is_temporal = false;
             }
+            
+            _objects[k].is_temporal = _is_temporal;
+            _objects[k].is_geospatial = datagobbler.data_layers[layer].api_info.has_geospatial_data;
+            
             datagobbler.data_layers[layer].api_info.objects[k].is_temporal = _is_temporal;
             
             for(f in _features){
                 var _keepFeature = true;
                 var _outsideTimeRange = false;
                 _features[f].id = datagobbler.numRecords;
-                _features[f].isTemporal = _is_temporal;
-                _features[f].isGeospatial = datagobbler.data_layers[layer].api_info.has_geospatial_data;
+                _features[f].is_temporal = _is_temporal;
+                _features[f].is_geospatial = datagobbler.data_layers[layer].api_info.has_geospatial_data;
                 
                 if(_is_temporal){
                     
