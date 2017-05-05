@@ -7,7 +7,7 @@
 //https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/2.5_month_depth_link.kml
 
 //DataGobbler version 0.1.2
-//Last updated 05/04/2017
+//Last updated 05/05/2017
 
 //load initial json config options
 
@@ -983,10 +983,22 @@
                 //datagobbler.data_layers[dl].api_info.objects = datagobbler.filterDataLayer3(dl);
                 datagobbler.data_layers[dl].api_info["data_filtered"] = datagobbler.filterDataLayer(dl);
                 
+                //TODO, 5MAY2017: Pick up developing functions to return data
+                
                 //Create layer functions to return data
+                //datagobbler.data.by_layer_name.atom.by_date({"a":"b"});
+                //datagobbler.data.by_layer_name.topojson.by_date({"a":"b"});
                 datagobbler.data.by_layer_name[dl].by_date = function(args){
                     //console.log("get this layer by date");
-                    return args;
+                    for(fd in datagobbler.data_layers[dl].api_info.data_filtered){
+                       // array datagobbler.data_layers[dl].api_info.data_filtered[fd]
+                        //function by_date(d){
+                            //console.log(d);
+                        //}
+                        //var _retData = datagobbler.data_layers[dl].api_info.data_filtered[fd].filter(by_date)
+                        console.log(fd,datagobbler.data_layers[dl].api_info.data_filtered[fd]);
+                    }
+                    //return args;
                 }
                 
                 /*
