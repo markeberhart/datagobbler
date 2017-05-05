@@ -7,7 +7,7 @@
 //https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/2.5_month_depth_link.kml
 
 //DataGobbler version 0.1.2
-//Last updated 04/20/2017
+//Last updated 05/04/2017
 
 //load initial json config options
 
@@ -21,8 +21,12 @@
     datagobbler.numOfDataFilesFiltered = 0;
     datagobbler.numRecords = 0;
     datagobbler.data = {
-        by_date: {inside_range:{},outside_range:{}},
+        by_date: {
+            inside_range:{},
+            outside_range:{}
+        },
         by_layer_name:{},
+        by_virtual_layer_name:{},
         all_data:{
             geospatial:[],
             regular:[],
@@ -739,8 +743,8 @@
     }
 
      datagobbler.decodeDataCSV = function(layer){
-        var _data       = datagobbler.data_layers[layer].api_info.data;//$.extend(true,[],datagobbler.data_layers[layer].api_info.data);
-         var _arr = [];
+         var _data  = datagobbler.data_layers[layer].api_info.data;//$.extend(true,[],datagobbler.data_layers[layer].api_info.data);
+         var _arr   = [];
          /*
          If it's not geospatial, then don't build-out object records as geojson
          If it's geospatial, build-out objects as geojson
@@ -976,7 +980,10 @@
         for(dl in datagobbler.data_layers){
             if(datagobbler.data_layers[dl].layerOkToFilter){
                 
-                datagobbler.data_layers[dl].api_info.objects = datagobbler.filterDataLayer3(dl);
+                //datagobbler.data_layers[dl].api_info.objects = datagobbler.filterDataLayer3(dl);
+                datagobbler.data_layers[dl].api_info["data_filtered"] = datagobbler.filterDataLayer3(dl);
+                //datagobbler.data_layers[dl].api_info.TEST.features = $.extend(true,[],datagobbler.data_layers[dl].api_info.TEST.featuresFiltered);
+                //$.extend(true,{},datagobbler.data_layers[_targLayer].api_info.data);
                 //console.log("----------------------------");
                 //console.log("datagobbler.data_layers[dl].api_info.objects",dl);
                 //console.log(datagobbler.data_layers[dl].api_info.objects);
@@ -988,18 +995,21 @@
     
     datagobbler.filterDataLayer3 = function(layer){
 
-        var _objects        = datagobbler.data_layers[layer].api_info.objects;
+        var _objects        = $.extend(true,{},datagobbler.data_layers[layer].api_info.objects);
         var _dateField      = datagobbler.data_layers[layer].api_info.date_info.date_field;
         var _filterOutArr   = datagobbler.data_layers[layer].api_info.filter_out;
         var _dateFormat     = datagobbler.data_layers[layer].api_info.date_info.date_format;
         
         for(k in _objects){
             _objects[k]['data_layer'] = layer;
-            _objects[k].featuresFiltered = [];
+            _objects[k].featuresKept = [];
+            _objects[k].featuresOutsideDateRange = [];
+            _objects[k].featuresFilteredOut = [];
             
             var _features = _objects[k].features;
             var _temp_features = [];
             var _is_temporal;
+            
             if(_features[0].properties[_dateField]){
                 _is_temporal = true;
             }else{
@@ -1008,192 +1018,68 @@
             datagobbler.data_layers[layer].api_info.objects[k].is_temporal = _is_temporal;
             
             for(f in _features){
-                
-                if(_is_temporal){
-
-                    var _time;
-                    // verify whether the time/date field is meant to be
-                    // text or a number
-                    if(isNaN(Number(_features[f].properties[_dateField]))){
-                        _time = _features[f].properties[_dateField]; //treat as text
-                    }else{
-                        _time = Number(_features[f].properties[_dateField]); //treat as a number (eg. UNIX)
-                    }
-                    //console.log(_features[f]);
-                    _features[f].properties["idate"] = _time;
-                    _features[f].properties["itime"] = datagobbler.getCommonTime({time:_time,format:_dateFormat,props:_features});
-                    _features[f].properties["prettytime"] = datagobbler.getCommonTime({time:_time,format:_dateFormat}).prettytime;
-                    _features[f].properties["numbertime"] = datagobbler.getCommonTime({time:_time,format:_dateFormat}).numbertime;
-                    
-                    if(_features[f].properties["itime"].isInGlobalDateRange){
-                        //datagobbler.checkForDataLayerDateInRangeObject(layer,_features[f].properties["itime"]);
-                        _keepFeature = true;
-                    }else{
-                        //datagobbler.checkForDataLayerDateOutsideRangeObject(layer,_features[f].properties["itime"]);
-                        //_keepFeature = false;
-                    }
-                    //console.log("filterDataLayer: ",_features[f].properties.itime.isInGlobalDateRange);
-                }
-            }
-        }
-        console.log(datagobbler.data_layers[layer]);
-        datagobbler.filterSuccess(layer);
-        datagobbler.numOfDataFilesFiltered++;
-        return _objects;
-    }
-    
-    datagobbler.filterDataLayer = function(layer){
-
-        var _objects        = datagobbler.data_layers[layer].api_info.objects;
-        var _dateField      = datagobbler.data_layers[layer].api_info.date_info.date_field;
-        var _filterOutArr   = datagobbler.data_layers[layer].api_info.filter_out;
-        var _dateFormat     = datagobbler.data_layers[layer].api_info.date_info.date_format;
-        
-        for(k in _objects){
-            _objects[k]['data_layer'] = layer;
-            _objects[k].featuresFiltered = [];
-            
-            var _features = _objects[k].features;
-            var _temp_features = [];
-            var _is_temporal;
-            if(_features[0].properties[_dateField]){
-                _is_temporal = true;
-            }else{
-                _is_temporal = false;
-            }
-            datagobbler.data_layers[layer].api_info.objects[k].is_temporal = _is_temporal;
-            
-            for(f in _features){
-                
-                if(_is_temporal){
-
-                    var _time;
-                    // verify whether the time/date field is meant to be
-                    // text or a number
-                    if(isNaN(Number(_features[f].properties[_dateField]))){
-                        _time = _features[f].properties[_dateField]; //treat as text
-                    }else{
-                        _time = Number(_features[f].properties[_dateField]); //treat as a number (eg. UNIX)
-                    }
-                    //console.log(_features[f]);
-                    _features[f].properties["idate"] = _time;
-                    _features[f].properties["itime"] = datagobbler.getCommonTime({time:_time,format:_dateFormat,props:_features});
-                    _features[f].properties["prettytime"] = datagobbler.getCommonTime({time:_time,format:_dateFormat}).prettytime;
-                    _features[f].properties["numbertime"] = datagobbler.getCommonTime({time:_time,format:_dateFormat}).numbertime;
-                    
-                    
-                    //console.log(layer,_time,_features[f].properties.itime,_features[f].properties.itime.format,_dateFormat);
-                    
-                    if(_features[f].properties["itime"].isInGlobalDateRange){
-                        //datagobbler.checkForDataLayerDateInRangeObject(layer,_features[f].properties["itime"]);
-                        _keepFeature = true;
-                    }else{
-                        //datagobbler.checkForDataLayerDateOutsideRangeObject(layer,_features[f].properties["itime"]);
-                        //_keepFeature = false;
-                    }
-                    //console.log("filterDataLayer: ",_features[f].properties.itime.isInGlobalDateRange);
-                }
-            }
-            
-        }
-        
-    }
-
-    datagobbler.filterDataLayer2 = function(layer){
-
-        var _objects        = datagobbler.data_layers[layer].api_info.objects;
-        var _dateField      = datagobbler.data_layers[layer].api_info.date_info.date_field;
-        var _filterOutArr   = datagobbler.data_layers[layer].api_info.filter_out;
-        var _dateFormat     = datagobbler.data_layers[layer].api_info.date_info.date_format;
-        console.log("Filtering "+ layer, _objects);
-        
-        // If it is a topojson file matching Mapbox style, focus on just one layer
-        // for each mapbox style layer - this attribute/property is 
-        // added automatically for each layer by lastmap 
-        // TODO : find a cleaner weay to accomplish this work-around
-        // maybe just have lastmap force a function before layer is passed?
-        if(datagobbler.data_layers[layer].api_info.single_layer_only){
-            function arrayFilter(value) {
-                console.log("topojson filtering:",value.name, "=", value.name == datagobbler.data_layers[layer].title);
-                return value.name == datagobbler.data_layers[layer].title;
-            }
-            //console.log(datagobbler.data_layers[layer].title);
-            //var _sourceDataObjects = lastmap.mapData.raw.by_layer_name[_styleSource].all_data.objects;
-            _objects = _objects.filter(arrayFilter);
-        }
-        
-        //console.log(_objects.length + " objects found.")
-        for(k in _objects){
-            _objects[k]['data_layer'] = layer;
-            _objects[k].featuresFiltered = [];
-            //console.log("Object #"+k+":",_objects[k]);
-            var _features = _objects[k].features;
-            var _temp_features = [];
-            var _is_temporal;
-            if(_features[0].properties[_dateField]){
-                _is_temporal = true;
-            }else{
-                _is_temporal = false;
-            }
-            datagobbler.data_layers[layer].api_info.objects[k].is_temporal = _is_temporal;
-
-            for(f in _features){
-                //console.log(f);
                 var _keepFeature = true;
-                if(_keepFeature){
-                    if(_is_temporal){
-
-                        var _time;
-                        // verify whether the time/date field is meant to be
-                        // text or a number
-                        if(isNaN(Number(_features[f].properties[_dateField]))){
-                            _time = _features[f].properties[_dateField]; //treat as text
-                        }else{
-                            _time = Number(_features[f].properties[_dateField]); //treat as a number (eg. UNIX)
-                        }
-                        //isNaN(
-                        //console.log("_dateField",_dateField);
-                        console.log(_features[f]);
-                        _features[f].properties["idate"] = _time;
-                        _features[f].properties["itime"] = datagobbler.getCommonTime({time:_time,format:_dateFormat,props:_features});
-                        _features[f].properties["prettytime"] = datagobbler.getCommonTime({time:_time,format:_dateFormat}).prettytime;
-                        _features[f].properties["numbertime"] = datagobbler.getCommonTime({time:_time,format:_dateFormat}).numbertime;
-
-                        if(_features[f].properties["itime"].isInGlobalDateRange){
-                            //datagobbler.checkForDataLayerDateInRangeObject(layer,_features[f].properties["itime"]);
-                            _keepFeature = true;
-                        }else{
-                            //datagobbler.checkForDataLayerDateOutsideRangeObject(layer,_features[f].properties["itime"]);
-                            _keepFeature = false;
-                        }
-                        //console.log("IS_TEMPORAL");
+                var _outsideTimeRange = false;
+                _features[f].id = datagobbler.numRecords;
+                _features[f].isTemporal = _is_temporal;
+                _features[f].isGeospatial = datagobbler.data_layers[layer].api_info.has_geospatial_data;
+                
+                if(_is_temporal){
+                    
+                    var _time;
+                    // verify whether the time/date field is meant to be
+                    // text or a number
+                    if(isNaN(Number(_features[f].properties[_dateField]))){
+                        _time = _features[f].properties[_dateField]; //treat as text
                     }else{
-                        datagobbler.data_layers[layer].api_info.is_temporal = false;
+                        _time = Number(_features[f].properties[_dateField]); //treat as a number (eg. UNIX)
+                    }
+                    //console.log(_features[f].properties.Victim);
+                    _features[f].properties["idate"] = _time;
+                    _features[f].properties["itime"] = datagobbler.getCommonTime({time:_time,format:_dateFormat,props:_features});
+                    _features[f].properties["prettytime"] = datagobbler.getCommonTime({time:_time,format:_dateFormat}).prettytime;
+                    _features[f].properties["numbertime"] = datagobbler.getCommonTime({time:_time,format:_dateFormat}).numbertime;
+                    
+                    if(_features[f].properties["itime"].isInGlobalDateRange){
                         _keepFeature = true;
+                    }else{
+                        _keepFeature = false;
+                        _outsideTimeRange = true;
+                        _objects[k].featuresOutsideDateRange.push(_features[f]);
                     }
-                }
-
-                if(_keepFeature){
-                    if(_filterOutArr.length>0){
-                        //console("_filterOutArr exists!");
-                        for(fo in _filterOutArr){
-                             var _filterOutArgs = {};
-                            _filterOutArgs = {
-                                'property':_filterOutArr[fo].property,
-                                'operator':_filterOutArr[fo].operator,
-                                'val1':_features[f].properties[_filterOutArr[fo].property],
-                                'val2':_filterOutArr[fo].value
-                            };
-                            if(datagobbler.getFilter(_filterOutArgs)){
-                                _keepFeature = false;
-                            }
-
-                        }
-                    }
-                    //console.log(_keepFeature,_filterOutArgs);
+                    //console.log("filterDataLayer: ",_features[f].properties.itime.isInGlobalDateRange);
+                }else{
+                    //console.log("no time",_features[f].properties);
                 }
                 
-                _features[f].id = datagobbler.numRecords;
+                var _removeFeature = {doRemove:false};
+                if(_keepFeature && _filterOutArr.length>0){
+                    for(fo in _filterOutArr){
+                        _filterOutArgs = {
+                            'property':_filterOutArr[fo].property,
+                            'operator':_filterOutArr[fo].operator,
+                            'val1':_features[f].properties[_filterOutArr[fo].property],
+                            'val2':_filterOutArr[fo].value
+                        };
+                        if(datagobbler.getFilter(_filterOutArgs)){
+                            _keepFeature = false;
+                            _removeFeature.doRemove = true;
+                            //console.log(_removeFeature,_filterOutArgs,_features[f].properties);
+                       }
+                        //console.log(fo,_filterOutArgs,datagobbler.getFilter(_filterOutArgs));
+                    }
+                }
+                
+                if(_removeFeature.doRemove && !_keepFeature){
+                    _objects[k].featuresFilteredOut.push(_features[f]);
+                }
+                if(!_removeFeature.doRemove && _keepFeature){
+                    _objects[k].featuresKept.push(_features[f]);
+                }
+                if(!_outsideTimeRange){
+                    //console.log(_removeFeature.doRemove,_features[f].properties);
+                }
+                
                 var _args = {
                     feature:_features[f],
                     keepFeature:_keepFeature,
@@ -1204,26 +1090,25 @@
                     is_temporal:_is_temporal
                 };  
                 datagobbler.numRecords++;
-                if(_keepFeature){
-                    _objects[k].featuresFiltered.push(_features[f]);
-                }
-                datagobbler.addFeatureToData(_args);
-
-            }//end _features
-            //datagobbler.data.by_layer_name[layer]
-           // _objects[k].featuresFiltered =
-            datagobbler.addObjectToData(_objects[k]);
-            //console.log("_objects[k]",_objects[k]);
-            //console.log(_temp_features);
             
-        }//end _objects
-        //console.log(datagobbler.data_layers[layer].api_info.objects);//_objects);
+            }
+            delete _objects[k].features;
+            //delete _objects[k].objects;
+            //$.extend(true,{},datagobbler.data_layers[_targLayer].api_info.data);
+            //_objects[k].features = $.extend(true,[],_objects[k].featuresFiltered);
+            
+        }
+        //datagobbler.data_layers[dl].api_info
+        delete datagobbler.data_layers[layer].api_info.objects;
+        console.log(datagobbler.data_layers[layer]);
         datagobbler.filterSuccess(layer);
         datagobbler.numOfDataFilesFiltered++;
         return _objects;
     }
     
-    datagobbler.checkForDataLayerDateInRangeObject = function(args){
+    datagobbler.createInsideRanges = function(args){
+        
+        //console.log("datagobbler.addFeatureToInsideRanges", args);
         
         var _yyyy = args.itime.year;
         var _mm = args.itime.month;
@@ -1238,8 +1123,8 @@
         }
         if(!datagobbler.data.by_date.inside_range[_yyyy][_mm][_dd]){
             datagobbler.data.by_date.inside_range[_yyyy][_mm][_dd] = [];
-            datagobbler.data.all_dates.byArray.inside_range[_numbertime] = args.itime;
-            datagobbler.data.all_dates.byObject.inside_range[_numbertime] = args.itime;
+            //datagobbler.data.all_dates.byArray.inside_range[_numbertime] = args.itime;
+            //datagobbler.data.all_dates.byObject.inside_range[_numbertime] = args.itime;
         }
         
         if(!datagobbler.data.by_layer_name[args.layer].by_date.inside_range[_yyyy]){
@@ -1250,29 +1135,31 @@
         }
         if(!datagobbler.data.by_layer_name[args.layer].by_date.inside_range[_yyyy][_mm][_dd]){
             datagobbler.data.by_layer_name[args.layer].by_date.inside_range[_yyyy][_mm][_dd] = [];
-            datagobbler.data.by_layer_name[args.layer].all_dates.byArray.inside_range[_numbertime] = args.itime;
-            datagobbler.data.by_layer_name[args.layer].all_dates.byObject.inside_range[_numbertime] = args.itime;
+            //datagobbler.data.by_layer_name[args.layer].all_dates.byArray.inside_range[_numbertime] = args.itime;
+            //datagobbler.data.by_layer_name[args.layer].all_dates.byObject.inside_range[_numbertime] = args.itime;
         }
         
     }
     
-    datagobbler.checkForDataLayerDateOutsideRangeObject = function(args){
+    datagobbler.createOutsideRanges = function(args){
         
         var _yyyy = args.itime.year;
         var _mm = args.itime.month;
         var _dd = args.itime.day;
         var _numbertime = args.itime.numbertime;
         
+        //console.log(_numbertime);
+        
         if(!datagobbler.data.by_date.outside_range[_yyyy]){
-            datagobbler.data.by_date.outside_range[_yyyy] = {};
+            //datagobbler.data.by_date.outside_range[_yyyy] = {};
         }
         if(!datagobbler.data.by_date.outside_range[_yyyy][_mm]){
-            datagobbler.data.by_date.outside_range[_yyyy][_mm] = {};
+            //datagobbler.data.by_date.outside_range[_yyyy][_mm] = {};
         }
         if(!datagobbler.data.by_date.outside_range[_yyyy][_mm][_dd]){
-            datagobbler.data.by_date.outside_range[_yyyy][_mm][_dd] = [];
-            datagobbler.data.all_dates.byArray.outside_range[_numbertime] = args.itime;
-            datagobbler.data.all_dates.byObject.outside_range[_numbertime] = args.itime;
+            //datagobbler.data.by_date.outside_range[_yyyy][_mm][_dd] = [];
+            //datagobbler.data.all_dates.byArray.outside_range[_numbertime] = args.itime;
+            //datagobbler.data.all_dates.byObject.outside_range[_numbertime] = args.itime;
         }
         
         if(!datagobbler.data.by_layer_name[args.layer].by_date.outside_range[_yyyy]){
@@ -1283,10 +1170,10 @@
         }
         if(!datagobbler.data.by_layer_name[args.layer].by_date.outside_range[_yyyy][_mm][_dd]){
             datagobbler.data.by_layer_name[args.layer].by_date.outside_range[_yyyy][_mm][_dd] = [];
-            datagobbler.data.by_layer_name[args.layer].all_dates.byArray.outside_range[_numbertime] = args.itime;
-            datagobbler.data.by_layer_name[args.layer].all_dates.byObject.outside_range[_numbertime] = args.itime;
+            //datagobbler.data.by_layer_name[args.layer].all_dates.byArray.outside_range[_numbertime] = args.itime;
+            //datagobbler.data.by_layer_name[args.layer].all_dates.byObject.outside_range[_numbertime] = args.itime;
         }
-        
+        /**/
         //['all_dates'] = { byArray:{inside_range:[],outside_range:[]}, byObject:{inside_range:{},outside_range:{}} };
         
     }
@@ -1304,14 +1191,8 @@
     
         if(!_time._isValid){
            //console.log(args.props,args.time, "<- Format given does not match time stamp. Trying to fix...");
-            //console.log(args.time);
             _time = moment(args.time).utc();
-            args.format = _time._f;
-            //console.log("-------","fixed?",args.time,_time);
-            if(!args.time){
-               console.log("could not fix! ",args.props); 
-            }
-            
+            args.format = _time._f;  
         }
         
         //console.log(this);
@@ -1372,20 +1253,27 @@
             _isInRange = true;
         }
         //console.log(_isInRange);
-        //console.log("===============");
         return _isInRange;
     }
 
 
     datagobbler.getFilter = function(args){
+        
+        // Check to see if value can be converted to 
+        // a valid number
+        var _val1IsNumber = !isNaN(Number(args.val1));
+        var _val2IsNumber = !isNaN(Number(args.val2));
+
+        if(_val1IsNumber && _val2IsNumber){ // if yes to both, force both to number
+            args.val1 = Number(args.val1);
+            args.val2 = Number(args.val2); 
+        }else{ //if no, then force both to string
+            args.val1 = String(args.val1);
+            args.val2 = String(args.val2); 
+        }
+        
         //Check if we are passing a number as text
         //If so, change it to a number
-        var _type = Number(args.val2);
-        //console.log(_type,isNaN(_type));
-        if(!isNaN(_type)){
-            args.val1 = Number(args.val1);
-            args.val2 = Number(args.val2);
-        }
         //console.log(args);
         switch(args.operator) {
             case "!=":
@@ -1409,9 +1297,9 @@
             case ">=":
                 return args.val1 >= args.val2;
             case "LIKE"||"like"||"IS LIKE"||"is like":
-                return (String(args.val1).indexOf(String(val2))>=0);
+                return (String(args.val1).indexOf(String(args.val2))>=0);
             case "NOT LIKE"||"not like"||"!LIKE"||"!like":
-                return (String(args.val1).indexOf(String(val2))<0);
+                return (String(args.val1).indexOf(String(args.val2))<0);
         }
     }
 
@@ -1426,6 +1314,8 @@
         var _isTemporal = args.is_temporal;
         var _hasGroupByObjects = datagobbler.data_layers[layer].api_info.group_by.length;
         
+        console.log(args);
+        /*
         if(keepFeature){
             if(_hasGroupByObjects>0){ //if we defined or requested byProperty objects in config.json
                 //console.log("has property objects!",_hasPropertyObjects);
@@ -1463,16 +1353,16 @@
             
             // Add the object to the array corresponding to the year->month->day that the UI object represents
             if(_inRange){
-                datagobbler.checkForDataLayerDateInRangeObject({layer:layer,itime:feature.properties.itime});
+                datagobbler.createInsideRanges({layer:layer,itime:feature.properties.itime});
                 datagobbler.data.by_date.inside_range[feature.properties.itime.year][feature.properties.itime.month][feature.properties.itime.day].push(feature);
                 datagobbler.data.by_layer_name[layer].by_date.inside_range[feature.properties.itime.year][feature.properties.itime.month][feature.properties.itime.day].push(feature);
             }else{
-                datagobbler.checkForDataLayerDateOutsideRangeObject({layer:layer,itime:feature.properties.itime});
+                datagobbler.createOutsideRanges({layer:layer,itime:feature.properties.itime});
                 datagobbler.data.by_date.outside_range[feature.properties.itime.year][feature.properties.itime.month][feature.properties.itime.day].push(feature);
                 datagobbler.data.by_layer_name[layer].by_date.outside_range[feature.properties.itime.year][feature.properties.itime.month][feature.properties.itime.day].push(feature);
             }
-
         }
+        */
 
     }
     

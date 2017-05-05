@@ -1,37 +1,16 @@
 {
     "data_layers":{
-        "shpzip":{
-            "title":"SHPZIP",
+        "atom":{
+            "title":"ATOM",
             "api_info": {
-                "url":"src/data/counties.zip",
-                "file_type":"shp.zip",
-                "filter_out":[],
+                "url":"./src/data/atom.atom",
+                "file_type":"atom",
+                "filter_out":[{"property":"id","operator":"LIKE","value":"underwater"}],
                 "group_by":[],
                 "proxy_url":null,
                 "date_info": {
-                    "date_field":"time",
-                    "date_format":"x",
-                    "offset_type":"days",
-                    "date_start_offset":0,
-                    "date_end_offset":0
-                },
-                "if_not_geospatial_file_type":{
-                    "field_to_use_for_latitude":null,
-                    "field_to_use_for_longitude":null
-                }
-            }
-        },
-        "csv-data":{
-            "title":"CSV-DATA",
-            "api_info": {
-                "url":"./src/data/csv-data.csv",
-                "file_type":"csv",
-                "filter_out":[],
-                "group_by":[],
-                "proxy_url":null,
-                "date_info": {
-                    "date_field":"time",
-                    "date_format":"x",
+                    "date_field":"updated",
+                    "date_format":"utm",
                     "offset_type":"days",
                     "date_start_offset":0,
                     "date_end_offset":0
@@ -63,185 +42,17 @@
                 }
             }
         },
-        "atom":{
-            "title":"ATOM",
+        "time-doc-kml":{
+            "title":"TIME-DOC-KML",
             "api_info": {
-                "url":"./src/data/atom.atom",
-                "file_type":"atom",
-                "filter_out":[],
-                "group_by":[],
-                "proxy_url":null,
-                "date_info": {
-                    "date_field":null,
-                    "date_format":null,
-                    "offset_type":"days",
-                    "date_start_offset":0,
-                    "date_end_offset":0
-                },
-                "if_not_geospatial_file_type":{
-                    "field_to_use_for_latitude":null,
-                    "field_to_use_for_longitude":null
-                }
-            }
-        },
-        "atom-geo":{
-            "title":"ATOM-GEO",
-            "api_info": {
-                "url":"./src/data/atom-geo.atom",
-                "file_type":"atom",
-                "filter_out":[],
-                "group_by":[],
-                "proxy_url":null,
-                "date_info": {
-                    "date_field":"updated",
-                    "date_format":"x",
-                    "offset_type":"days",
-                    "date_start_offset":0,
-                    "date_end_offset":0
-                },
-                "if_not_geospatial_file_type":{
-                    "field_to_use_for_latitude":null,
-                    "field_to_use_for_longitude":null
-                }
-            }
-        },
-        "georss":{
-            "title":"GEORSS",
-            "api_info": {
-                "url":"./src/data/georss.rss",
-                "file_type":"georss",
-                "filter_out":[],
-                "group_by":[],
-                "proxy_url":null,
-                "date_info": {
-                    "date_field":"updated",
-                    "date_format":"x",
-                    "offset_type":"days",
-                    "date_start_offset":0,
-                    "date_end_offset":0
-                },
-                "if_not_geospatial_file_type":{
-                    "field_to_use_for_latitude":null,
-                    "field_to_use_for_longitude":null
-                }
-            }
-        },
-        "kml":{
-            "title":"KML",
-            "api_info": {
-                "url":"./src/data/kml.kml",
+                "url":"./src/data/time-doc.kml",
                 "file_type":"kml",
-                "filter_out":[],
-                "group_by":[],
-                "proxy_url":null,
-                "date_info": {
-                    "date_field":null,
-                    "date_format":null,
-                    "offset_type":"days",
-                    "date_start_offset":0,
-                    "date_end_offset":0
-                },
-                "if_not_geospatial_file_type":{
-                    "field_to_use_for_latitude":null,
-                    "field_to_use_for_longitude":null
-                }
-            }
-        },
-        "kml-time":{
-            "title":"KML-TIME",
-            "api_info": {
-                "url":"./src/data/kml-time.kml",
-                "file_type":"kml",
-                "filter_out":[],
+                "filter_out":[{"property":"description","operator":"LIKE","value":"87"},{"property":"name","operator":">","value":"1986"}],
                 "group_by":[],
                 "proxy_url":null,
                 "date_info": {
                     "date_field":"timestamp",
-                    "date_format":"YYYY-MM-DD",
-                    "offset_type":"days",
-                    "date_start_offset":0,
-                    "date_end_offset":0
-                },
-                "if_not_geospatial_file_type":{
-                    "field_to_use_for_latitude":null,
-                    "field_to_use_for_longitude":null
-                }
-            }
-        },
-        "arcjson":{
-            "title":"ARCJSON",
-            "api_info": {
-                "url":"http://sampleserver3.arcgisonline.com/ArcGIS/rest/services/Earthquakes/EarthquakesFromLastSevenDays/FeatureServer/0/query?objectIds=&where=magnitude+%3E+4.5&time=&geometry=&geometryType=esriGeometryEnvelope&inSR=&spatialRel=esriSpatialRelIntersects&relationParam=&outFields=*&returnGeometry=true&outSR=&returnCountOnly=false&returnIdsOnly=false&f=pjson",
-                "file_type":"arcjson",
-                "filter_out":[{"property":"magnitude","operator":">","value":"5"}],
-                "group_by":["region"],
-                "proxy_url":null,
-                "date_info": {
-                    "date_field":"datetime",
-                    "date_format":"x",
-                    "offset_type":"days",
-                    "date_start_offset":0,
-                    "date_end_offset":0
-                },
-                "if_not_geospatial_file_type":{
-                    "field_to_use_for_latitude":null,
-                    "field_to_use_for_longitude":null
-                }
-            }
-        },
-        "geojson":{
-            "title":"GEOJSON",
-            "api_info": {
-                "url":"src/data/geojson.geojson",
-                "file_type":"geojson",
-                "filter_out":[{"property":"sig","operator":"==","value":"4"}],
-                "group_by":["sig"],
-                "proxy_url":null,
-                "date_info": {
-                    "date_field":"time",
-                    "date_format":"x",
-                    "offset_type":"days",
-                    "date_start_offset":0,
-                    "date_end_offset":0
-                },
-                "if_not_geospatial_file_type":{
-                    "field_to_use_for_latitude":null,
-                    "field_to_use_for_longitude":null
-                }
-            }
-        },
-        "topojson":{
-            "title":"TOPOJSON",
-            "api_info": {
-                "url":"src/data/topojson.topojson",
-                "file_type":"topojson",
-                "filter_out":[],
-                "group_by":[],
-                "proxy_url":null,
-                "date_info": {
-                    "date_field":null,
-                    "date_format":null,
-                    "offset_type":"days",
-                    "date_start_offset":0,
-                    "date_end_offset":0
-                },
-                "if_not_geospatial_file_type":{
-                    "field_to_use_for_latitude":null,
-                    "field_to_use_for_longitude":null
-                }
-            }
-        },
-        "shp":{
-            "title":"SHP",
-            "api_info": {
-                "url":"src/data/shp/Earthquakes1970.shp",
-                "file_type":"shp",
-                "filter_out":[],
-                "group_by":[],
-                "proxy_url":null,
-                "date_info": {
-                    "date_field":"YYYYMMDD",
-                    "date_format":"YYYYMMDD",
+                    "date_format":"YYYY",
                     "offset_type":"days",
                     "date_start_offset":0,
                     "date_end_offset":0
@@ -258,8 +69,8 @@
         "default_proxy_url":"./resources/data/data.aspx?url=",
         "default_dates": {
             "date_format":"MM/DD/YYYY",
-            "date_start":"01/01/1980",
-            "date_end":"11/10/2016"
+            "date_start":"01/01/1984",
+            "date_end":"12/31/2017"
         },
         "dataBounds": {
             "north":90,
