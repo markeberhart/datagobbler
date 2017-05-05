@@ -989,6 +989,16 @@
                     return args;
                 }
                 
+                /*
+                var ages = [32, 33, 16, 40];
+                function checkAdult(age) {
+                    return age >= 18;
+                }
+                function myFunction() {
+                    document.getElementById("demo").innerHTML = ages.filter(checkAdult);
+                }
+                */
+                
                 //datagobbler.data_layers[dl].api_info.TEST.features = $.extend(true,[],datagobbler.data_layers[dl].api_info.TEST.featuresFiltered);
                 //$.extend(true,{},datagobbler.data_layers[_targLayer].api_info.data);
                 //console.log("----------------------------");
