@@ -139,9 +139,9 @@
             if(!datagobbler.data.by_layer_name[dl]){
                 datagobbler.data.by_layer_name[dl] = {};
                 //datagobbler.data.by_layer_name[dl]['objects'] = [];
-                datagobbler.data.by_layer_name[dl]['all_data'] = {regular:[],geospatial:[],objects:[]};
-                datagobbler.data.by_layer_name[dl]['by_date'] = {inside_range:{},outside_range:{}};
-                datagobbler.data.by_layer_name[dl]['all_dates'] = { byArray:{inside_range:[],outside_range:[]}, byObject:{inside_range:{},outside_range:{}} };
+                datagobbler.data.by_layer_name[dl]['all_data'] = {};//regular:[],geospatial:[],objects:[]};
+                datagobbler.data.by_layer_name[dl]['by_date'] = {};//{inside_range:{},outside_range:{}};
+                datagobbler.data.by_layer_name[dl]['all_dates'] = {};// byArray:{inside_range:[],outside_range:[]}, byObject:{inside_range:{},outside_range:{}} };
                 datagobbler.data.by_layer_name[dl]['by_group'] = {};
                 datagobbler.data.by_layer_name[dl]['errors'] = {};
             }
@@ -981,7 +981,14 @@
             if(datagobbler.data_layers[dl].layerOkToFilter){
                 
                 //datagobbler.data_layers[dl].api_info.objects = datagobbler.filterDataLayer3(dl);
-                datagobbler.data_layers[dl].api_info["data_filtered"] = datagobbler.filterDataLayer3(dl);
+                datagobbler.data_layers[dl].api_info["data_filtered"] = datagobbler.filterDataLayer(dl);
+                
+                //Create layer functions to return data
+                datagobbler.data.by_layer_name[dl].by_date = function(args){
+                    //console.log("get this layer by date");
+                    return args;
+                }
+                
                 //datagobbler.data_layers[dl].api_info.TEST.features = $.extend(true,[],datagobbler.data_layers[dl].api_info.TEST.featuresFiltered);
                 //$.extend(true,{},datagobbler.data_layers[_targLayer].api_info.data);
                 //console.log("----------------------------");
@@ -990,10 +997,11 @@
             }
         }
         //DataGobbler is finished!
+        console.log(datagobbler.data);
         datagobbler.ondataLoaded(datagobbler.data);
     }
     
-    datagobbler.filterDataLayer3 = function(layer){
+    datagobbler.filterDataLayer = function(layer){
 
         var _objects        = $.extend(true,{},datagobbler.data_layers[layer].api_info.objects);
         var _dateField      = datagobbler.data_layers[layer].api_info.date_info.date_field;
@@ -1051,6 +1059,7 @@
                         _outsideTimeRange = true;
                         _objects[k].featuresOutsideDateRange.push(_features[f]);
                     }
+                    
                     //console.log("filterDataLayer: ",_features[f].properties.itime.isInGlobalDateRange);
                 }else{
                     //console.log("no time",_features[f].properties);
