@@ -20,6 +20,7 @@
     datagobbler.numOfDataFilesToFilter = 0;
     datagobbler.numOfDataFilesFiltered = 0;
     datagobbler.numRecords = 0;
+    datagobbler.functions = {};
     datagobbler.data = {
         by_date: {
             inside_range:{},
@@ -143,6 +144,7 @@
                 datagobbler.data.by_layer_name[dl]['by_date'] = {};//{inside_range:{},outside_range:{}};
                 datagobbler.data.by_layer_name[dl]['all_dates'] = {};// byArray:{inside_range:[],outside_range:[]}, byObject:{inside_range:{},outside_range:{}} };
                 datagobbler.data.by_layer_name[dl]['by_group'] = {};
+                //datagobbler.data.by_layer_name[dl]['functions'] = {};
                 datagobbler.data.by_layer_name[dl]['errors'] = {};
             }
 
@@ -976,6 +978,7 @@
     }
 
     datagobbler.filterAllLayers = function(){
+        var _tempObj = {};
         //console.log("datagobbler.filterAllLayers",datagobbler.data_layers);
         for(dl in datagobbler.data_layers){
             if(datagobbler.data_layers[dl].layerOkToFilter){
@@ -983,45 +986,144 @@
                 //datagobbler.data_layers[dl].api_info.objects = datagobbler.filterDataLayer3(dl);
                 datagobbler.data_layers[dl].api_info["data_filtered"] = datagobbler.filterDataLayer(dl);
                 
-                //TODO, 5MAY2017: Pick up developing functions to return data
-                
-                //Create layer functions to return data
-                //datagobbler.data.by_layer_name.atom.by_date({"a":"b"});
-                //datagobbler.data.by_layer_name.topojson.by_date({"a":"b"});
-                datagobbler.data.by_layer_name[dl].by_date = function(args){
-                    //console.log("get this layer by date");
-                    for(fd in datagobbler.data_layers[dl].api_info.data_filtered){
-                       // array datagobbler.data_layers[dl].api_info.data_filtered[fd]
-                        //function by_date(d){
-                            //console.log(d);
-                        //}
-                        //var _retData = datagobbler.data_layers[dl].api_info.data_filtered[fd].filter(by_date)
-                        console.log(fd,datagobbler.data_layers[dl].api_info.data_filtered[fd]);
-                    }
-                    //return args;
-                }
-                
-                /*
-                var ages = [32, 33, 16, 40];
-                function checkAdult(age) {
-                    return age >= 18;
-                }
-                function myFunction() {
-                    document.getElementById("demo").innerHTML = ages.filter(checkAdult);
-                }
-                */
-                
-                //datagobbler.data_layers[dl].api_info.TEST.features = $.extend(true,[],datagobbler.data_layers[dl].api_info.TEST.featuresFiltered);
-                //$.extend(true,{},datagobbler.data_layers[_targLayer].api_info.data);
-                //console.log("----------------------------");
-                //console.log("datagobbler.data_layers[dl].api_info.objects",dl);
-                //console.log(datagobbler.data_layers[dl].api_info.objects);
+                datagobbler.addLayerFunctions(dl);
             }
+            _tempObj[dl]=datagobbler.data_layers[dl].api_info.data_filtered;
         }
         //DataGobbler is finished!
         console.log(datagobbler.data);
         datagobbler.ondataLoaded(datagobbler.data);
     }
+    
+    datagobbler.addLayerFunctions = function(layer){
+                            
+        datagobbler.data.by_layer_name[layer].functions = {
+            getAllFilteredData: function(){ //datagobbler.data.by_layer_name.atom.functions.getAllFilteredData()
+                return datagobbler.functions.getAllFilteredDataForLayer(layer) 
+            },
+            getAllFilteredDataByMonth: function(month){
+                //var _arr = this.getAllFilteredData();
+                var _is_temporal = this.getAllFilteredData()[0].is_temporal;
+                
+                if(_is_temporal){
+                    var _arrFiltered = this.getAllFilteredData().filter(function(value){
+                        return value.properties.itime.month == month;
+                        //console.log(value);
+                    });
+                    return _arrFiltered;
+                }else{
+                    return new Error("getAllFilteredDataByMonth: The layer you requested does not contain temporal data.");
+                }
+                //datagobbler.data.by_layer_name.atom.functions.getAllFilteredDataByMonth(3)
+            },
+            getAllFilteredDataByDayOfMonth: function(day){
+                //var _arr = this.getAllFilteredData();
+                var _is_temporal = this.getAllFilteredData()[0].is_temporal;
+                
+                if(_is_temporal){
+                    var _arrFiltered = this.getAllFilteredData().filter(function(value){
+                        return value.properties.itime.day == day;
+                        //console.log(value);
+                    });
+                    return _arrFiltered;
+                }else{
+                    return new Error("getAllFilteredDataByDayOfMonth: The layer you requested does not contain temporal data.");
+                }
+                //datagobbler.data.by_layer_name.atom.functions.getAllFilteredDataByDayOfMonth(9)
+            },
+            getAllFilteredDataByDayOfWeek: function(day){ 
+                var _is_temporal = this.getAllFilteredData()[0].is_temporal;
+                if(_is_temporal){
+                    var _arrFiltered = this.getAllFilteredData().filter(function(value){
+                        return value.properties.itime.dayOfWeekNum == day;
+                    });
+                    return _arrFiltered;
+                }else{
+                    return new Error("getAllFilteredDataByDayOfWeek: The layer you requested does not contain temporal data.");
+                }
+                //datagobbler.data.by_layer_name.atom.functions.getAllFilteredDataByDayOfWeek([0-6])
+            },
+            getAllFilteredDataByYear: function(year){ 
+                var _is_temporal = this.getAllFilteredData()[0].is_temporal;
+                if(_is_temporal){
+                    var _arrFiltered = this.getAllFilteredData().filter(function(value){
+                        return value.properties.itime.year == year;
+                    });
+                    return _arrFiltered;
+                }else{
+                    return new Error("getAllFilteredDataByYear: The layer you requested does not contain temporal data.");
+                }
+                //datagobbler.data.by_layer_name.atom.functions.getAllFilteredDataByYear([YYYY])
+            },
+            getAllFilteredDataByYearMonth: function(args){ //args: {year:2012,month:3}
+                var _is_temporal = this.getAllFilteredData()[0].is_temporal;
+                if(_is_temporal){
+                    var _arrFiltered = this.getAllFilteredData().filter(function(value){
+                        return (value.properties.itime.year == args.year && value.properties.itime.month == args.month);
+                    });
+                    return _arrFiltered;
+                }else{
+                    return new Error("getAllFilteredDataByYear: The layer you requested does not contain temporal data.");
+                }
+                //datagobbler.data.by_layer_name.csvgeo.functions.getAllFilteredDataByYearMonth({year:2012,month:3})
+            },
+            getAllFilteredDataByYearMonthDay: function(args){ //args: {year:2012,month:3,day:22}
+                var _is_temporal = this.getAllFilteredData()[0].is_temporal;
+                if(_is_temporal){
+                    var _arrFiltered = this.getAllFilteredData().filter(function(value){
+                        return (value.properties.itime.year==args.year && value.properties.itime.month==args.month && value.properties.itime.day==args.day);
+                    });
+                    return _arrFiltered;
+                }else{
+                    return new Error("getAllFilteredDataByYear: The layer you requested does not contain temporal data.");
+                }
+                //datagobbler.data.by_layer_name.csvgeo.functions.getAllFilteredDataByYearMonthDay({year:2012,month:3,day:22})
+            }
+        }
+        
+        if(datagobbler.data_layers[layer].api_info.group_by.length>0){
+            datagobbler.data.by_layer_name[layer].functions.getFilteredDataByGroup = {};
+            for(p in datagobbler.data_layers[layer].api_info.group_by){
+                //console.log(datagobbler.data_layers[layer].api_info.group_by[g]);
+                ////datagobbler.data.by_layer_name.csvgeo.functions.getAllFilteredDataByGroup.mag()
+                var _group = datagobbler.data_layers[layer].api_info.group_by[p];
+                if(!datagobbler.data.by_layer_name[layer].functions.getFilteredDataByGroup[_group]){
+                    datagobbler.data.by_layer_name[layer].functions.getFilteredDataByGroup[_group] = {};
+                    
+                }else{
+                    
+                }
+                //TODO: Need to determine how to dynamically categorize features by property subclasses as lists
+                //      Not sure of best approach- cannot even get basic object structure up and working
+                
+                
+                /*
+                var _prop = datagobbler.data_layers[layer].api_info.group_by[p];
+
+
+                if(!datagobbler.data.by_layer_name[layer].by_group[_prop]){
+                    datagobbler.data.by_layer_name[layer].by_group[_prop] = {};
+                }
+                if(datagobbler.data.by_layer_name[layer].by_group[_prop]){
+                    var _val = feature.properties[_prop];
+                    if(!datagobbler.data.by_layer_name[layer].by_group[_prop][_val]){
+                        datagobbler.data.by_layer_name[layer].by_group[_prop][_val] = [];
+                        //console.log(_val);
+                    }
+                    if(datagobbler.data.by_layer_name[layer].by_group[_prop][_val]){
+                        datagobbler.data.by_layer_name[layer].by_group[_prop][_val].push(feature);
+                    }
+                }
+                
+                */
+                
+                
+                
+            }
+        }
+        
+    }
+                
     
     datagobbler.filterDataLayer = function(layer){
 
@@ -1032,9 +1134,9 @@
         
         for(k in _objects){
             _objects[k]['data_layer'] = layer;
-            _objects[k].featuresKept = [];
-            _objects[k].featuresOutsideDateRange = [];
-            _objects[k].featuresFilteredOut = [];
+            _objects[k].features_kept = [];
+            _objects[k].features_outside_date_range = [];
+            _objects[k].features_filtered_out = [];
             
             var _features = _objects[k].features;
             var _temp_features = [];
@@ -1079,7 +1181,7 @@
                     }else{
                         _keepFeature = false;
                         _outsideTimeRange = true;
-                        _objects[k].featuresOutsideDateRange.push(_features[f]);
+                        _objects[k].features_outside_date_range.push(_features[f]);
                     }
                     
                     //console.log("filterDataLayer: ",_features[f].properties.itime.isInGlobalDateRange);
@@ -1106,10 +1208,10 @@
                 }
                 
                 if(_removeFeature.doRemove && !_keepFeature){
-                    _objects[k].featuresFilteredOut.push(_features[f]);
+                    _objects[k].features_filtered_out.push(_features[f]);
                 }
                 if(!_removeFeature.doRemove && _keepFeature){
-                    _objects[k].featuresKept.push(_features[f]);
+                    _objects[k].features_kept.push(_features[f]);
                 }
                 if(!_outsideTimeRange){
                     //console.log(_removeFeature.doRemove,_features[f].properties);
@@ -1117,7 +1219,7 @@
                 
                 var _args = {
                     feature:_features[f],
-                    keepFeature:_keepFeature,
+                    keep_feature:_keepFeature,
                     has_geospatial_data:_objects[k].has_geospatial_data,
                     geometry_type:_objects[k].geometry_type,
                     name:_objects[k].name,
@@ -1252,12 +1354,32 @@
         var _yyyy = String(_time.year());
         var _mm = String(_time.get('month')+1);
         var _dd = String(_time.get('date'));
+        var _dow = _time.day();
         var _isInGlobalDateRange = this.getCommonTime.dateInGlobalDateRange(_time);
         var _numbertime = (Number(_yyyy+getDouble(_mm)+getDouble(_dd)));
         
         function getDouble(num){ //returns a number like 6 or 7 as "06" or "07"
             num = Number(num);
             return num > 9 ? "" + num: "0" + num;
+        }
+        
+        function getDayOfWeekString(num){
+            switch(num) {
+                case 0:
+                    return "Sunday";
+                case 1:
+                    return "Monday";
+                case 2:
+                    return "Tuesday";
+                case 3:
+                    return "Wednesday";
+                case 4:
+                    return "Thursday";
+                case 5:
+                    return "Friday";
+                case 6:
+                    return "Saturday";
+            }
         }
 
         /*
@@ -1270,6 +1392,8 @@
             'month':_mm,
             'day':_dd,
             'date':_time,
+            'dayOfWeekNum':_dow,
+            'dayOfWeek':getDayOfWeekString(_dow),
             'prettytime':(_mm+"/"+_dd+"/"+_yyyy),
             'numbertime':_numbertime,
             'isInGlobalDateRange':_isInGlobalDateRange,
