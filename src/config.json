@@ -21,13 +21,34 @@
                 }
             }
         },
-        "csv-geo":{
+        "topojson":{
+            "title":"TOPOJSON",
+            "api_info": {
+                "url":"src/data/topojson.topojson",
+                "file_type":"topojson",
+                "filter_out":[],
+                "group_by":["featurecla","name"],
+                "proxy_url":null,
+                "date_info": {
+                    "date_field":null,
+                    "date_format":null,
+                    "offset_type":"days",
+                    "date_start_offset":0,
+                    "date_end_offset":0
+                },
+                "if_not_geospatial_file_type":{
+                    "field_to_use_for_latitude":null,
+                    "field_to_use_for_longitude":null
+                }
+            }
+        },
+        "csvgeo":{
             "title":"CSV-GEO",
             "api_info": {
                 "url":"./src/data/csv-geo.csv",
                 "file_type":"csv",
                 "filter_out":[],
-                "group_by":["sig"],
+                "group_by":["sig","status","magSource","mag"],
                 "proxy_url":null,
                 "date_info": {
                     "date_field":"time",
@@ -42,7 +63,7 @@
                 }
             }
         },
-        "time-doc-kml":{
+        "timedockml":{
             "title":"TIME-DOC-KML",
             "api_info": {
                 "url":"./src/data/time-doc.kml",
