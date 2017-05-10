@@ -43,12 +43,12 @@
             }
         },
         "csvgeo":{
-            "title":"CSV-GEO",
+            "title":"CSVGEO",
             "api_info": {
                 "url":"./src/data/csv-geo.csv",
                 "file_type":"csv",
                 "filter_out":[],
-                "group_by":["sig","status","magSource","mag"],
+                "group_by":["locationSource","status","magSource","mag"],
                 "proxy_url":null,
                 "date_info": {
                     "date_field":"time",
@@ -69,7 +69,7 @@
                 "url":"./src/data/time-doc.kml",
                 "file_type":"kml",
                 "filter_out":[{"property":"description","operator":"LIKE","value":"87"},{"property":"name","operator":">","value":"1986"}],
-                "group_by":[],
+                "group_by":["name"],
                 "proxy_url":null,
                 "date_info": {
                     "date_field":"timestamp",
