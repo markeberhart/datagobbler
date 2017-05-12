@@ -6,7 +6,6 @@
                 "url":"./src/data/atom.atom",
                 "file_type":"atom",
                 "filter_out":[{"property":"id","operator":"LIKE","value":"underwater"}],
-                "group_by":[],
                 "proxy_url":null,
                 "date_info": {
                     "date_field":"updated",
@@ -27,7 +26,6 @@
                 "url":"src/data/topojson.topojson",
                 "file_type":"topojson",
                 "filter_out":[],
-                "group_by":["featurecla","name"],
                 "proxy_url":null,
                 "date_info": {
                     "date_field":null,
@@ -48,7 +46,6 @@
                 "url":"./src/data/csv-geo.csv",
                 "file_type":"csv",
                 "filter_out":[],
-                "group_by":["locationSource","status","magSource","mag"],
                 "proxy_url":null,
                 "date_info": {
                     "date_field":"time",
@@ -63,13 +60,32 @@
                 }
             }
         },
+        "shpzip":{
+            "title":"SHPZIP",
+            "api_info": {
+                "url":"src/data/counties.zip",
+                "file_type":"shp.zip",
+                "filter_out":[],
+                "proxy_url":null,
+                "date_info": {
+                    "date_field":"time",
+                    "date_format":"x",
+                    "offset_type":"days",
+                    "date_start_offset":0,
+                    "date_end_offset":0
+                },
+                "if_not_geospatial_file_type":{
+                    "field_to_use_for_latitude":null,
+                    "field_to_use_for_longitude":null
+                }
+            }
+        },
         "timedockml":{
             "title":"TIME-DOC-KML",
             "api_info": {
                 "url":"./src/data/time-doc.kml",
                 "file_type":"kml",
                 "filter_out":[{"property":"description","operator":"LIKE","value":"87"},{"property":"name","operator":">","value":"1986"}],
-                "group_by":["name"],
                 "proxy_url":null,
                 "date_info": {
                     "date_field":"timestamp",

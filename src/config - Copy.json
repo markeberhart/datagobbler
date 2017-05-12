@@ -6,7 +6,6 @@
                 "url":"src/data/counties.zip",
                 "file_type":"shp.zip",
                 "filter_out":[],
-                "group_by":[],
                 "proxy_url":null,
                 "date_info": {
                     "date_field":"time",
@@ -27,7 +26,6 @@
                 "url":"./src/data/csv-data.csv",
                 "file_type":"csv",
                 "filter_out":[],
-                "group_by":[],
                 "proxy_url":null,
                 "date_info": {
                     "date_field":"time",
@@ -48,7 +46,6 @@
                 "url":"./src/data/csv-geo.csv",
                 "file_type":"csv",
                 "filter_out":[],
-                "group_by":["sig"],
                 "proxy_url":null,
                 "date_info": {
                     "date_field":"time",
@@ -69,7 +66,6 @@
                 "url":"./src/data/atom.atom",
                 "file_type":"atom",
                 "filter_out":[],
-                "group_by":[],
                 "proxy_url":null,
                 "date_info": {
                     "date_field":null,
@@ -90,7 +86,6 @@
                 "url":"./src/data/atom-geo.atom",
                 "file_type":"atom",
                 "filter_out":[],
-                "group_by":[],
                 "proxy_url":null,
                 "date_info": {
                     "date_field":"updated",
@@ -111,7 +106,6 @@
                 "url":"./src/data/georss.rss",
                 "file_type":"georss",
                 "filter_out":[],
-                "group_by":[],
                 "proxy_url":null,
                 "date_info": {
                     "date_field":"updated",
@@ -132,7 +126,6 @@
                 "url":"./src/data/kml.kml",
                 "file_type":"kml",
                 "filter_out":[],
-                "group_by":[],
                 "proxy_url":null,
                 "date_info": {
                     "date_field":null,
@@ -153,7 +146,6 @@
                 "url":"./src/data/kml-time.kml",
                 "file_type":"kml",
                 "filter_out":[],
-                "group_by":[],
                 "proxy_url":null,
                 "date_info": {
                     "date_field":"timestamp",
@@ -174,7 +166,6 @@
                 "url":"http://sampleserver3.arcgisonline.com/ArcGIS/rest/services/Earthquakes/EarthquakesFromLastSevenDays/FeatureServer/0/query?objectIds=&where=magnitude+%3E+4.5&time=&geometry=&geometryType=esriGeometryEnvelope&inSR=&spatialRel=esriSpatialRelIntersects&relationParam=&outFields=*&returnGeometry=true&outSR=&returnCountOnly=false&returnIdsOnly=false&f=pjson",
                 "file_type":"arcjson",
                 "filter_out":[{"property":"magnitude","operator":">","value":"5"}],
-                "group_by":["region"],
                 "proxy_url":null,
                 "date_info": {
                     "date_field":"datetime",
@@ -195,7 +186,6 @@
                 "url":"src/data/geojson.geojson",
                 "file_type":"geojson",
                 "filter_out":[{"property":"sig","operator":"==","value":"4"}],
-                "group_by":["sig"],
                 "proxy_url":null,
                 "date_info": {
                     "date_field":"time",
@@ -216,7 +206,6 @@
                 "url":"src/data/topojson.topojson",
                 "file_type":"topojson",
                 "filter_out":[],
-                "group_by":[],
                 "proxy_url":null,
                 "date_info": {
                     "date_field":null,
@@ -239,7 +228,6 @@
                 "filter_out":[
                     {"property":"Victim","operator":"!=","value":"KAISEI MARU NO. 55"}
                 ],
-                "group_by":[],
                 "proxy_url":null,
                 "date_info": {
                     "date_field":"DateOfOcc",
@@ -262,7 +250,6 @@
                 "filter_out":[
                     {"property":"Victim","operator":"NOT LIKE","value":"container ship HELMUTH RAMBOW"}
                 ],
-                "group_by":[],
                 "proxy_url":null,
                 "date_info": {
                     "date_field":"DateOfOcc",
@@ -283,7 +270,6 @@
                 "url":"src/data/ASAM_shp.zip",
                 "file_type":"shp.zip",
                 "filter_out":[{"property":"Victim","operator":"LIKE","value":"BOAT"},{"property":"Victim","operator":"LIKE","value":"MERCHANT"},{"property":"Aggressor","operator":"LIKE","value":"THIEVES"},{"property":"Aggressor","operator":"LIKE","value":"PIRATES"}],
-                "group_by":[],
                 "proxy_url":null,
                 "date_info": {
                     "date_field":"DateOfOcc",
@@ -304,7 +290,6 @@
                 "url":"./src/data/kml-time.kml",
                 "file_type":"kml",
                 "filter_out":[{"property":"description","operator":"LIKE","value":"NIGERIANS"},{"property":"description","operator":"LIKE","value":"Patriot"},{"property":"description","operator":"LIKE","value":"board"}],
-                "group_by":[],
                 "proxy_url":null,
                 "date_info": {
                     "date_field":"timestamp",
@@ -326,7 +311,6 @@
                 "url":"./src/data/kml-time.kml",
                 "file_type":"kml",
                 "filter_out":[{"property":"description","operator":"LIKE","value":"SHIP"}],
-                "group_by":[],
                 "proxy_url":null,
                 "date_info": {
                     "date_field":"timestamp",
@@ -347,7 +331,6 @@
                 "url":"src/data/shp/Earthquakes1970.shp",
                 "file_type":"shp",
                 "filter_out":[{"property":"Magnitude","operator":">=","value":"6"}],
-                "group_by":[],
                 "proxy_url":null,
                 "date_info": {
                     "date_field":"YYYYMMDD",
@@ -361,14 +344,13 @@
                     "field_to_use_for_longitude":null
                 }
             }
-        }
+        },
         "shp<=5":{
             "title":"SHP<=5",
             "api_info": {
                 "url":"src/data/shp/Earthquakes1970.shp",
                 "file_type":"shp",
                 "filter_out":[{"property":"Magnitude","operator":"<=","value":"5"}],
-                "group_by":[],
                 "proxy_url":null,
                 "date_info": {
                     "date_field":"YYYYMMDD",
@@ -389,7 +371,6 @@
                 "url":"src/data/shp/Earthquakes1970.shp",
                 "file_type":"shp",
                 "filter_out":[],
-                "group_by":[],
                 "proxy_url":null,
                 "date_info": {
                     "date_field":"YYYYMMDD",
