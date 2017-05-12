@@ -74,11 +74,11 @@ function onDataLoading(data){
 function onDataLoaded(data){
     
     // CODE FOR DATAGOBBLER VIEWER (BEGIN)
-    editor.set(data);
+    editor.set({"DataGobbler API Calls":data.api_help});
     var json = editor.get();
     // CODE FOR DATAGOBBLER VIEWER (END)
     
-    console.log("DataGobbler has loaded.",data);
+    console.log("DataGobbler has loaded.", data);
 }
 </script>
     
