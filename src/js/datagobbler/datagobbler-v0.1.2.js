@@ -1051,30 +1051,26 @@
                         var _featuresKept = datagobbler.data.data_layers[layer].data_filtered[p].features_kept;
                         _filteredData = _filteredData.concat(_featuresKept);
                     }
-                    //_allObj[layer] = _groupObj;
                 }
-                //for(p in datagobbler.data.data_layers[layer].data_filtered){
-                    //var _featuresKept = datagobbler.data.data_layers[layer].data_filtered[p].features_kept;
-                    //_filteredData = _filteredData.concat(_featuresKept);
-                //}
                 return _filteredData;
                 //datagobbler.data.functions.all_layers.getAllFilteredData()
+            },
+            getAllFilteredDataByMonth: function(month){
+                var _arrFiltered = this.getAllFilteredData().filter(function(value){
+                    if(value.is_temporal){
+                       return value.properties.itime.month == month;
+                    }
+                });
+                return _arrFiltered;
+                //datagobbler.data.functions.all_layers.getAllFilteredDataByMonth(4)
             }
             
-            /*,
-            getAllFilteredData: function(){ //datagobbler.data.by_layer_name.atom.functions.getAllFilteredData()
-                var _filteredData = [];
-                for(p in datagobbler.data.data_layers[layer].data_filtered){
-                    var _featuresKept = datagobbler.data.data_layers[layer].data_filtered[p].features_kept;
-                    _filteredData = _filteredData.concat(_featuresKept);
-                    //console.log(_filteredData,_featuresKept);
-                }
-                return _filteredData;
-                //datagobbler.data.functions.by_layer_name.topojson.getAllFilteredData()
-            },
+            /*
             getAllFilteredDataByMonth: function(month){
                 //var _arr = this.getAllFilteredData();
                 var _is_temporal = this.getAllFilteredData()[0].is_temporal;
+                
+                TODO: 15May2017: need to filter-out  features that are NOT temporal
                 
                 if(_is_temporal){
                     var _arrFiltered = this.getAllFilteredData().filter(function(value){
@@ -1307,6 +1303,11 @@
                 'Usage':("datagobbler.data.functions.all_layers.getAllFilteredData()"),
                 'Returns':"Returns an array of all filtered items from all layers."
             }
+            
+            datagobbler.data.api_help.all_layers.getAllFilteredDataByMonth = {
+                'Usage':("datagobbler.data.api_help.all_layers.getAllFilteredDataByMonth(5)"),
+                'Returns':"Returns an array of all filtered items from all layers in the month number provided (1-12)."
+            };
             
         },
         
