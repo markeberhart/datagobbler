@@ -1063,7 +1063,16 @@
                 });
                 return _arrFiltered;
                 //datagobbler.data.functions.all_layers.getAllFilteredDataByMonth(4)
-            }
+            },
+            getAllFilteredDataByDayOfMonth: function(day){
+                var _arrFiltered = this.getAllFilteredData().filter(function(value){
+                    if(value.is_temporal){
+                       return value.properties.itime.day == day;
+                    }
+                });
+                return _arrFiltered;
+                //datagobbler.data.functions.all_layers.getAllFilteredDataByDayOfMonth(9)
+            },
             
             /*
             getAllFilteredDataByMonth: function(month){
@@ -1305,8 +1314,13 @@
             }
             
             datagobbler.data.api_help.all_layers.getAllFilteredDataByMonth = {
-                'Usage':("datagobbler.data.api_help.all_layers.getAllFilteredDataByMonth(5)"),
+                'Usage':("datagobbler.data.functions.all_layers.getAllFilteredDataByMonth(5)"),
                 'Returns':"Returns an array of all filtered items from all layers in the month number provided (1-12)."
+            };
+            
+            datagobbler.data.api_help.all_layers.getAllFilteredDataByDayOfMonth = {
+                'Usage':("datagobbler.data.functions.all_layers.getAllFilteredDataByDayOfMonth(15)"),
+                'Returns':"Returns an array of all filtered items from all layers that occurred on the day of the month provided (1-31)."
             };
             
         },
@@ -1318,6 +1332,9 @@
                     'Returns':"Returns an array of all filtered items from the " + layer + " layer."
                 },
                 getFilteredDataByGroup:{}
+            }
+            if(!datagobbler.data_layers[layer].api_info.has_temporal_data){
+                datagobbler.data.api_help.by_layer_name[layer]["(No temporal data is available in the "+layer+" layer)"]={};
             }
             if(datagobbler.data_layers[layer].api_info.has_temporal_data){
 
