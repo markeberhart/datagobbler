@@ -1214,6 +1214,24 @@
                 }
                 //datagobbler.data.functions.by_layer_name.atom.getAllFilteredDataByDaysOfMonth([0,3,5])
             },
+            getAllFilteredDataByMonthsOfYear: function(months){ 
+                var _is_temporal = this.getAllFilteredData()[0].is_temporal;
+                if(_is_temporal){
+                    var _arrFiltered = this.getAllFilteredData().filter(function(value){
+                        var _isInMonths = false;
+                        for(month in months){
+                            if(value.properties.itime.month == months[month]){
+                                _isInMonths = true;
+                            }
+                        }
+                        return _isInMonths;
+                    });
+                    return _arrFiltered;
+                }else{
+                    return [];
+                }
+                //datagobbler.data.functions.by_layer_name.atom.getAllFilteredDataByMonthsOfYear([2,5,11])
+            },
             getAllFilteredDataByYear: function(year){ 
                 var _is_temporal = this.getAllFilteredData()[0].is_temporal;
                 if(_is_temporal){
@@ -1355,12 +1373,17 @@
 
                 datagobbler.data.api_help.by_layer_name[layer].getAllFilteredDataByDaysOfMonth = {
                     'Usage':("datagobbler.data.functions.by_layer_name."+layer+".getAllFilteredDataByDaysOfMonth([1,2,3,4,5])"),
-                    'Returns':"Returns an array of all filtered items from the " + layer + " layer that occurred on the days of the month provided (1-31) in the array-based argument. Argument passed must be in the form of an array of numbers 1-31, eg. [1,2,3,4,5...]."
+                    'Returns':"Returns an array of all filtered items across all months and years from the " + layer + " layer that occurred on the days provided (1-31) in the array-based argument. Argument passed must be in the form of an array of numbers 1-31, eg. [1,2,3,4,5...31]."
                 };
 
                 datagobbler.data.api_help.by_layer_name[layer].getAllFilteredDataByMonth = {
                     'Usage':("datagobbler.data.functions.by_layer_name."+layer+".getAllFilteredDataByMonth(5)"),
                     'Returns':"Returns an array of all filtered items from the " + layer + " layer in the month number provided (1-12)."
+                };
+                
+                datagobbler.data.api_help.by_layer_name[layer].getAllFilteredDataByMonthsOfYear = {
+                    'Usage':("datagobbler.data.functions.by_layer_name."+layer+".getAllFilteredDataByMonthsOfYear([3,5,10])"),
+                    'Returns':"Returns an array of all filtered items from all years in the " + layer + " layer that occurred in the months provided (1-12) in the array-based argument. Argument passed must be in the form of an array of numbers 1-12, eg. [1,2,3,4,5...12]."
                 };
 
                 datagobbler.data.api_help.by_layer_name[layer].getAllFilteredDataByYear = {
