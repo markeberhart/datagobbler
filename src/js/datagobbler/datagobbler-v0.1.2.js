@@ -1456,6 +1456,7 @@
                 _features[f].id = datagobbler.numRecords;
                 _features[f].is_temporal = _is_temporal;
                 _features[f].is_geospatial = datagobbler.data_layers[layer].api_info.has_geospatial_data;
+                _features[f].data_layer = layer;
                 
                 if(_is_temporal){
                     
