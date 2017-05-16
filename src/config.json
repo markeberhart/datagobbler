@@ -20,6 +20,26 @@
                 }
             }
         },
+        "georss":{
+            "title":"GEORSS",
+            "api_info": {
+                "url":"./src/data/georss.rss",
+                "file_type":"georss",
+                "filter_out":[],
+                "proxy_url":null,
+                "date_info": {
+                    "date_field":"updated",
+                    "date_format":"x",
+                    "offset_type":"days",
+                    "date_start_offset":0,
+                    "date_end_offset":0
+                },
+                "if_not_geospatial_file_type":{
+                    "field_to_use_for_latitude":null,
+                    "field_to_use_for_longitude":null
+                }
+            }
+        },
         "topojson":{
             "title":"TOPOJSON",
             "api_info": {
