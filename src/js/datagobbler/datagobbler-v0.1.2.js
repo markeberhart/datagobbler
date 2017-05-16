@@ -973,6 +973,7 @@
     datagobbler.filterAllLayers = function(){
         var _tempObj = {};
         //console.log("datagobbler.filterAllLayers",datagobbler.data_layers);
+        datagobbler.addGlobalFunctions();
         for(dl in datagobbler.data_layers){
             if(datagobbler.data_layers[dl].layerOkToFilter){
                 
@@ -1012,37 +1013,53 @@
         }
     }*/
     
+    datagobbler.addGlobalFunctions = function(){
+        
+        datagobbler.data.functions.global = {
+            getAllFilteredData:         function(){
+                
+            },
+            getAllFilteredDataByGroup:  function(args){ //args = {layers:this.layersArray,group:group}
+                var _retObj = {};
+                for(layer in args.layers){
+                    var _layer = args.layers[layer];
+                    for(p in datagobbler.data.data_layers[_layer].data_filtered){
+                        var _featuresKept = datagobbler.data.data_layers[_layer].data_filtered[p].features_kept;
+                        if(_featuresKept[0].properties[args.group]){ //if the layer has the property
+                            for(f in _featuresKept){
+                                var _prop = _featuresKept[f].properties[args.group];
+                                if(_prop){ //double-check that the property exists
+                                    if(!_retObj[_prop]){
+                                        _retObj[_prop] = [];
+                                    }
+                                    _retObj[_prop].push(_featuresKept[f]);
+                                }
+                            }
+                        }
+                    }
+                }
+                return _retObj;
+            }
+        }
+        
+    }
+    
     datagobbler.addAllLayersFunctions = function(){
         
-        datagobbler.data.api_help.all_layers.getFilteredDataByGroup = {};
+        datagobbler.data.api_help.all_layers.getAllFilteredDataByGroup = {};
         datagobbler.addApiHelp.allLayers();
         
         datagobbler.data.functions.all_layers = {
             
-            getFilteredDataByGroup: function(group){
-                var _allObj = {};
+            layersArray: function(){
+                var _arr = [];
                 for(layer in datagobbler.data.data_layers){
-                    var _groupObj = {};
-                    for(p in datagobbler.data.data_layers[layer].data_filtered){
-                        var _featuresKept = datagobbler.data.data_layers[layer].data_filtered[p].features_kept;
-                        if(_featuresKept[0].properties[group]){ //if the layer has the property
-                            for(f in _featuresKept){
-                                var _prop = _featuresKept[f].properties[group];
-                                if(_prop){ //double-check that the property exists
-                                    //console.log(_featuresKept[f].properties[group]);
-                                    if(!_groupObj[_prop]){
-                                        _groupObj[_prop] = [_featuresKept[f]];
-                                    }else{
-                                        _groupObj[_prop].push(_featuresKept[f]);
-                                    }
-                                }
-                            } 
-                        }
-                    }
-                    _allObj[layer] = _groupObj;
+                    _arr.push(layer);
                 }
-                return _allObj;
-                //datagobbler.data.functions.all_layers.getFilteredDataByGroup('mag')
+                return _arr;
+            }(),
+            getAllFilteredDataByGroup: function(group){
+                return datagobbler.data.functions.global.getAllFilteredDataByGroup({layers:this.layersArray,group:group});
             },
             getAllFilteredData: function(){ //datagobbler.data.by_layer_name.atom.functions.getAllFilteredData()
                 var _filteredData = [];
@@ -1099,35 +1116,18 @@
     
     datagobbler.addByLayerNameFunctions = function(layer){
         
-        
-        //datagobbler.data.data_layers[layer].data_filtered = datagobbler.data_layers[layer].api_info.data_filtered;
-
         datagobbler.data.data_layers[layer].data_filtered = datagobbler.data_layers[layer].api_info.data_filtered;
-        //}
-        //datagobbler.data.data_layers[layer].data_filtered = "datagobbler.data_layers[layer].api_info.data_filtered";
         datagobbler.addApiHelp.byLayerName(layer);
                             
         datagobbler.data.functions.by_layer_name[layer] = {
-            getFilteredDataByGroup: function(group){
-                var _groupObj = {};
-                for(p in datagobbler.data.data_layers[layer].data_filtered){
-                    var _featuresKept = datagobbler.data.data_layers[layer].data_filtered[p].features_kept;
-                    if(_featuresKept[0].properties[group]){ //if the layer has the property
-                        for(f in _featuresKept){
-                            var _prop = _featuresKept[f].properties[group];
-                            if(_prop){ //double-check that the property exists
-                                //console.log(_featuresKept[f].properties[group]);
-                                if(!_groupObj[_prop]){
-                                    _groupObj[_prop] = [_featuresKept[f]];
-                                }else{
-                                    _groupObj[_prop].push(_featuresKept[f]);
-                                }
-                            }
-                        } 
-                    }
-                }
-                return _groupObj;
-                //datagobbler.data.functions.by_layer_name.csvgeo.getFilteredDataByGroup("mag")
+            
+            layersArray: function(){
+                var _arr = [layer];
+                return _arr;
+            }(), 
+            getAllFilteredDataByGroup: function(group){
+                //console.log(this.layersArray);
+                return datagobbler.data.functions.global.getAllFilteredDataByGroup({layers:this.layersArray,group:group});
             },
             getAllFilteredData: function(){ //datagobbler.data.by_layer_name.atom.functions.getAllFilteredData()
                 var _filteredData = [];
@@ -1301,11 +1301,11 @@
         for example, if an Earthquake layer has a property called "mag" for magnitude, you would list "mag" inside
         the "group_by":["mag"] portion of the data service definition. To access an object with lists/arrays of features/records
         listed by magnitude would be as follows:
-        datagobbler.data.by_layer_name.csvgeo.functions.getFilteredDataByGroup("status")
+        datagobbler.data.by_layer_name.csvgeo.functions.getAllFilteredDataByGroup("status")
         */
         //datagobbler.data.by_layer_name[layer].functions.
-        //datagobbler.data.by_layer_name[layer].HELP.getFilteredDataByGroup[_group]={
-            //'Usage':("datagobbler.data.functions.by_layer_name."+layer+".getFilteredDataByGroup."+_group+"()"),
+        //datagobbler.data.by_layer_name[layer].HELP.getAllFilteredDataByGroup[_group]={
+            //'Usage':("datagobbler.data.functions.by_layer_name."+layer+".getAllFilteredDataByGroup."+_group+"()"),
             //'Returns':("Returns an array of all filtered items in the " + layer + " layer as a series of objects that group all the records/features by individual categories found //within the " + _group + " property/group. Only properties/groups provided in the config.json file in the 'group_by:[]' listing will be pre-created for use.")
         //}
         
@@ -1318,8 +1318,8 @@
                 for(p in datagobbler.data.data_layers[layer].data_filtered){
                     var _featuresKept = datagobbler.data.data_layers[layer].data_filtered[p].features_kept;
                     for(group in _featuresKept[0].properties){
-                        datagobbler.data.api_help.all_layers.getFilteredDataByGroup[group] = {
-                            'Usage':("datagobbler.data.functions.all_layers.getFilteredDataByGroup('"+group+"')"),
+                        datagobbler.data.api_help.all_layers.getAllFilteredDataByGroup[group] = {
+                            'Usage':("datagobbler.data.functions.all_layers.getAllFilteredDataByGroup('"+group+"')"),
                             'Returns':"Returns all filtered items from the all layers grouped/categorized by the "+group+" property."
                         }
                     }
@@ -1349,7 +1349,7 @@
                     'Usage':("datagobbler.data.functions.by_layer_name."+layer+".getAllFilteredData()"),
                     'Returns':"Returns an array of all filtered items from the " + layer + " layer."
                 },
-                getFilteredDataByGroup:{}
+                getAllFilteredDataByGroup:{}
             }
             if(!datagobbler.data_layers[layer].api_info.has_temporal_data){
                 datagobbler.data.api_help.by_layer_name[layer]["(No temporal data is available in the "+layer+" layer)"]={};
@@ -1411,8 +1411,8 @@
             for(p in datagobbler.data.data_layers[layer].data_filtered){
                 var _featuresKept = datagobbler.data.data_layers[layer].data_filtered[p].features_kept;
                 for(group in _featuresKept[0].properties){
-                    datagobbler.data.api_help.by_layer_name[layer].getFilteredDataByGroup[group] = {
-                        'Usage':("datagobbler.data.functions.by_layer_name."+layer+".getFilteredDataByGroup('"+group+"')"),
+                    datagobbler.data.api_help.by_layer_name[layer].getAllFilteredDataByGroup[group] = {
+                        'Usage':("datagobbler.data.functions.by_layer_name."+layer+".getAllFilteredDataByGroup('"+group+"')"),
                         'Returns':"Returns all filtered items from the "+layer+" layer grouped/categorized by the "+group+" property."
                     }
                 }
