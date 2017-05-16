@@ -1016,8 +1016,16 @@
     datagobbler.addGlobalFunctions = function(){
         
         datagobbler.data.functions.global = {
-            getAllFilteredData:         function(){
-                
+            getAllFilteredData:         function(args){
+                var _retArr = [];
+                for(layer in args.layers){
+                    var _layer = args.layers[layer];
+                    for(p in datagobbler.data.data_layers[_layer].data_filtered){
+                        var _featuresKept = datagobbler.data.data_layers[_layer].data_filtered[p].features_kept;
+                        _retArr = _retArr.concat(_featuresKept);
+                    }
+                }
+                return _retArr;
             },
             getAllFilteredDataByGroup:  function(args){ //args = {layers:this.layersArray,group:group}
                 var _retObj = {};
@@ -1061,22 +1069,13 @@
             getAllFilteredDataByGroup: function(group){
                 return datagobbler.data.functions.global.getAllFilteredDataByGroup({layers:this.layersArray,group:group});
             },
-            
-            
-            
-            
-            
-            getAllFilteredData: function(){ //datagobbler.data.by_layer_name.atom.functions.getAllFilteredData()
-                var _filteredData = [];
-                for(layer in datagobbler.data.data_layers){
-                    for(p in datagobbler.data.data_layers[layer].data_filtered){
-                        var _featuresKept = datagobbler.data.data_layers[layer].data_filtered[p].features_kept;
-                        _filteredData = _filteredData.concat(_featuresKept);
-                    }
-                }
-                return _filteredData;
-                //datagobbler.data.functions.all_layers.getAllFilteredData()
+            getAllFilteredData: function(){
+                return datagobbler.data.functions.global.getAllFilteredData({layers:this.layersArray});
             },
+            
+            
+            
+            
             getAllFilteredDataByMonth: function(month){
                 var _arrFiltered = this.getAllFilteredData().filter(function(value){
                     if(value.is_temporal){
@@ -1114,25 +1113,16 @@
             getAllFilteredDataByGroup: function(group){
                 return datagobbler.data.functions.global.getAllFilteredDataByGroup({layers:this.layersArray,group:group});
             },
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            getAllFilteredData: function(){ //datagobbler.data.by_layer_name.atom.functions.getAllFilteredData()
-                var _filteredData = [];
-                for(p in datagobbler.data.data_layers[layer].data_filtered){
-                    var _featuresKept = datagobbler.data.data_layers[layer].data_filtered[p].features_kept;
-                    _filteredData = _filteredData.concat(_featuresKept);
-                    //console.log(_filteredData,_featuresKept);
-                }
-                return _filteredData;
-                //datagobbler.data.functions.by_layer_name.topojson.getAllFilteredData()
+            getAllFilteredData: function(){
+                return datagobbler.data.functions.global.getAllFilteredData({layers:this.layersArray});
             },
+            
+            
+            
+            
+            
+            
+            
             getAllFilteredDataByMonth: function(month){
                 //var _arr = this.getAllFilteredData();
                 var _is_temporal = this.getAllFilteredData()[0].is_temporal;
