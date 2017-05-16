@@ -1061,6 +1061,11 @@
             getAllFilteredDataByGroup: function(group){
                 return datagobbler.data.functions.global.getAllFilteredDataByGroup({layers:this.layersArray,group:group});
             },
+            
+            
+            
+            
+            
             getAllFilteredData: function(){ //datagobbler.data.by_layer_name.atom.functions.getAllFilteredData()
                 var _filteredData = [];
                 for(layer in datagobbler.data.data_layers){
@@ -1089,26 +1094,7 @@
                 });
                 return _arrFiltered;
                 //datagobbler.data.functions.all_layers.getAllFilteredDataByDayOfMonth(9)
-            },
-            
-            /*
-            getAllFilteredDataByMonth: function(month){
-                //var _arr = this.getAllFilteredData();
-                var _is_temporal = this.getAllFilteredData()[0].is_temporal;
-                
-                TODO: 15May2017: need to filter-out  features that are NOT temporal
-                
-                if(_is_temporal){
-                    var _arrFiltered = this.getAllFilteredData().filter(function(value){
-                        return value.properties.itime.month == month;
-                        //console.log(value);
-                    });
-                    return _arrFiltered;
-                }else{
-                    return [];
-                }
-                //datagobbler.data.functions.by_layer_name.atom.getAllFilteredDataByMonth(4)
-            }*/
+            }
         }
         
         
@@ -1126,9 +1112,17 @@
                 return _arr;
             }(), 
             getAllFilteredDataByGroup: function(group){
-                //console.log(this.layersArray);
                 return datagobbler.data.functions.global.getAllFilteredDataByGroup({layers:this.layersArray,group:group});
             },
+            
+            
+            
+            
+            
+            
+            
+            
+            
             getAllFilteredData: function(){ //datagobbler.data.by_layer_name.atom.functions.getAllFilteredData()
                 var _filteredData = [];
                 for(p in datagobbler.data.data_layers[layer].data_filtered){
