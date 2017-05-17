@@ -1101,6 +1101,20 @@
                 });
                 return _retArr;
             },
+            getAllFilteredDataByYears: function(args){ 
+                var _retArr = this.getAllFilteredData(args).filter(function(value){
+                    if(value.is_temporal){
+                        var _isInYears = false;
+                        for(year in args.years){
+                            if(value.properties.itime.year == args.years[year]){
+                                _isInYears = true;
+                            }
+                        }
+                        return _isInYears;
+                    }
+                });
+                return _retArr;
+            },
             getAllFilteredDataByYearMonth: function(args){ //args: {layers:layers,year:2012,month:3}
                 var _retArr = this.getAllFilteredData(args).filter(function(value){
                     if(value.is_temporal){
@@ -1173,6 +1187,9 @@
             getAllFilteredDataByYear: function(year){ //args = {layers:this.layersArray,year:year}
                 return datagobbler.data.functions.global.getAllFilteredDataByYear({layers:this.layersArray,year:year});
             },
+            getAllFilteredDataByYears: function(years){ //args = year
+                return datagobbler.data.functions.global.getAllFilteredDataByYears({layers:this.layersArray,years:years});
+            },
             getAllFilteredDataByYearMonth: function(args){ //args = {year:2012,month:3}
                 return datagobbler.data.functions.global.getAllFilteredDataByYearMonth({layers:this.layersArray,month:args.month,year:args.year});
             },
@@ -1226,6 +1243,9 @@
             getAllFilteredDataByYear: function(year){ //args = year
                 return datagobbler.data.functions.global.getAllFilteredDataByYear({layers:this.layersArray,year:year});
             },
+            getAllFilteredDataByYears: function(years){ //args = year
+                return datagobbler.data.functions.global.getAllFilteredDataByYears({layers:this.layersArray,years:years});
+            },
             getAllFilteredDataByYearMonth: function(args){ //args = {year:2012,month:3}
                 return datagobbler.data.functions.global.getAllFilteredDataByYearMonth({layers:this.layersArray,month:args.month,year:args.year});
             },
@@ -1237,21 +1257,6 @@
             }
       
         }
-        
-        /*
-        Create functions that provide access to features/records by property categories listed under "group_by"
-        in config.json file
-        
-        for example, if an Earthquake layer has a property called "mag" for magnitude, you would list "mag" inside
-        the "group_by":["mag"] portion of the data service definition. To access an object with lists/arrays of features/records
-        listed by magnitude would be as follows:
-        datagobbler.data.by_layer_name.csvgeo.functions.getAllFilteredDataByGroup("status")
-        */
-        //datagobbler.data.by_layer_name[layer].functions.
-        //datagobbler.data.by_layer_name[layer].HELP.getAllFilteredDataByGroup[_group]={
-            //'Usage':("datagobbler.data.functions.by_layer_name."+layer+".getAllFilteredDataByGroup."+_group+"()"),
-            //'Returns':("Returns an array of all filtered items in the " + layer + " layer as a series of objects that group all the records/features by individual categories found //within the " + _group + " property/group. Only properties/groups provided in the config.json file in the 'group_by:[]' listing will be pre-created for use.")
-        //}
         
     }
     
@@ -1312,6 +1317,11 @@
                 'Returns':"Returns an array of all filtered items from all layers during the 4-digit year provided (YYYY format, ex. 2010, 1985, etc.)."
             };
             
+            datagobbler.data.api_help.all_layers.getAllFilteredDataByYears = {
+                'Usage':("datagobbler.data.functions.all_layers.getAllFilteredDataByYears([2010,2013,2017])"),
+                'Returns':"Returns an array of all filtered items from all layers that occurred in the years provided (YYYY format, ex. 2010, 1985, etc.) in the array-based argument. Argument passed must be in the form of an array of 4-digit numbers eg. [2010,2013,2017]."
+            };
+            
             datagobbler.data.api_help.all_layers.getAllFilteredDataByYearMonth = {
                 'Usage':("datagobbler.data.functions.all_layers.getAllFilteredDataByYearMonth({year:2012,month:3})"),
                 'Returns':"Returns an array of all filtered items from all layers during the 4-digit year and month provided (YYYY format, ex. 2010, 1985, etc. and month in numerical form: 1-12). The year and month must be provided as an object: {year:2012,month:3}"
@@ -1370,6 +1380,11 @@
                 datagobbler.data.api_help.by_layer_name[layer].getAllFilteredDataByMonthsOfYear = {
                     'Usage':("datagobbler.data.functions.by_layer_name."+layer+".getAllFilteredDataByMonthsOfYear([3,5,10])"),
                     'Returns':"Returns an array of all filtered items from all years in the " + layer + " layer that occurred in the months provided (1-12) in the array-based argument. Argument passed must be in the form of an array of numbers 1-12, eg. [1,2,3,4,5...12]."
+                };
+                
+                datagobbler.data.api_help.by_layer_name[layer].getAllFilteredDataByYears = {
+                    'Usage':("datagobbler.data.functions.by_layer_name."+layer+".getAllFilteredDataByYears([2010,2013,2017])"),
+                    'Returns':"Returns an array of all filtered items from all years in the " + layer + " layer that occurred in the years provided (YYYY format, ex. 2010, 1985, etc.) in the array-based argument. Argument passed must be in the form of an array of 4-digit numbers eg. [2010,2013,2017]."
                 };
 
                 datagobbler.data.api_help.by_layer_name[layer].getAllFilteredDataByYear = {
