@@ -105,7 +105,7 @@
             "api_info": {
                 "url":"./src/data/time-doc.kml",
                 "file_type":"kml",
-                "filter_out":[{"property":"description","operator":"LIKE","value":"87"},{"property":"name","operator":">","value":"1986"}],
+                "filter_out":[{"property":"description","operator":"LIKE","value":"87"},{"property":"name","operator":">","value":"1999"}],
                 "proxy_url":null,
                 "date_info": {
                     "date_field":"timestamp",
@@ -120,13 +120,20 @@
                 }
             }
         }
+        
+    },
+    
+    "virtual_layers":{
+        "virtual_layer_1":{
+            "data_layers":["csvgeo","georss","timedockml"]
+        }
     },
 
     "data_options": {
         "default_proxy_url":"./resources/data/data.aspx?url=",
         "default_dates": {
             "date_format":"MM/DD/YYYY",
-            "date_start":"01/01/1984",
+            "date_start":"01/01/1989",
             "date_end":"12/31/2017"
         },
         "dataBounds": {
