@@ -1,5 +1,5 @@
 // ARC Service JSON
-//Caution-sampleserver3.arcgisonline.com/ArcGIS/rest/services/Earthquakes/EarthquakesFromLastSevenDays/FeatureServer/0/query?objectIds=&where=magnitude+%3E+4.5&time=&geometry=&geometryType=esriGeometryEnvelope&inSR=&spatialRel=esriSpatialRelIntersects&relationParam=&outFields=*&returnGeometry=true&outSR=&returnCountOnly=false&returnIdsOnly=false&f=pjson
+//http://sampleserver3.arcgisonline.com/ArcGIS/rest/services/Earthquakes/EarthquakesFromLastSevenDays/FeatureServer/0/query?objectIds=&where=magnitude+%3E+4.5&time=&geometry=&geometryType=esriGeometryEnvelope&inSR=&spatialRel=esriSpatialRelIntersects&relationParam=&outFields=*&returnGeometry=true&outSR=&returnCountOnly=false&returnIdsOnly=false&f=pjson
 
 //XML Fomrats
 //https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/4.5_month.quakeml
@@ -1141,6 +1141,47 @@
                     }
                 });
                 return _retArr;
+            },
+            filters: {
+                getAllFilteredDataByGroup: function(group){
+                    return datagobbler.data.functions.global.getAllFilteredDataByGroup({layers:this.layersArray,group:group});
+                },
+                getAllFilteredData: function(){
+                    return datagobbler.data.functions.global.getAllFilteredData({layers:this.layersArray});
+                },
+                getAllFilteredDataByMonth: function(month){ //args = {layers:this.layersArray,month:month}
+                    return datagobbler.data.functions.global.getAllFilteredDataByMonth({layers:this.layersArray,month:month});
+                },
+                getAllFilteredDataByDayOfMonth: function(day){ //args = {layers:this.layersArray,day:day}
+                    return datagobbler.data.functions.global.getAllFilteredDataByDayOfMonth({layers:this.layersArray,day:day});
+                },
+                getAllFilteredDataByDayOfWeek: function(day){ //args = {layers:this.layersArray,day:day}
+                    return datagobbler.data.functions.global.getAllFilteredDataByDayOfWeek({layers:this.layersArray,day:day});
+                },
+                getAllFilteredDataByDaysOfWeek: function(days){ //args = {layers:this.layersArray,days:days}
+                    return datagobbler.data.functions.global.getAllFilteredDataByDaysOfWeek({layers:this.layersArray,days:days});
+                },
+                getAllFilteredDataByDaysOfMonth: function(days){ //args = {layers:this.layersArray,days:days}
+                    return datagobbler.data.functions.global.getAllFilteredDataByDaysOfMonth({layers:this.layersArray,days:days});
+                },
+                getAllFilteredDataByMonthsOfYear: function(months){ //args = {layers:this.layersArray,months:months}
+                    return datagobbler.data.functions.global.getAllFilteredDataByMonthsOfYear({layers:this.layersArray,months:months});
+                },
+                getAllFilteredDataByYear: function(year){ //args = {layers:this.layersArray,year:year}
+                    return datagobbler.data.functions.global.getAllFilteredDataByYear({layers:this.layersArray,year:year});
+                },
+                getAllFilteredDataByYears: function(years){ //args = year
+                    return datagobbler.data.functions.global.getAllFilteredDataByYears({layers:this.layersArray,years:years});
+                },
+                getAllFilteredDataByYearMonth: function(args){ //args = {year:2012,month:3}
+                    return datagobbler.data.functions.global.getAllFilteredDataByYearMonth({layers:this.layersArray,month:args.month,year:args.year});
+                },
+                getAllFilteredDataByYearMonthDay: function(args){ //args = {year:2012,month:3}
+                    return datagobbler.data.functions.global.getAllFilteredDataByYearMonthDay({layers:this.layersArray,day:args.day,month:args.month,year:args.year});
+                },
+                getAllFilteredDataByYearMonthDayRange: function(args){ //args = {date_start:{year:2012,month:3,day:22},date_end:{year:2012,month:6,day:14}}
+                    return datagobbler.data.functions.global.getAllFilteredDataByYearMonthDayRange({layers:this.layersArray,date_start:args.date_start,date_end:args.date_end});
+                }
             }
         }
         
@@ -1159,49 +1200,12 @@
                     _arr.push(layer);
                 }
                 return _arr;
-            }(),
-            getAllFilteredDataByGroup: function(group){
-                return datagobbler.data.functions.global.getAllFilteredDataByGroup({layers:this.layersArray,group:group});
-            },
-            getAllFilteredData: function(){
-                return datagobbler.data.functions.global.getAllFilteredData({layers:this.layersArray});
-            },
-            getAllFilteredDataByMonth: function(month){ //args = {layers:this.layersArray,month:month}
-                return datagobbler.data.functions.global.getAllFilteredDataByMonth({layers:this.layersArray,month:month});
-            },
-            getAllFilteredDataByDayOfMonth: function(day){ //args = {layers:this.layersArray,day:day}
-                return datagobbler.data.functions.global.getAllFilteredDataByDayOfMonth({layers:this.layersArray,day:day});
-            },
-            getAllFilteredDataByDayOfWeek: function(day){ //args = {layers:this.layersArray,day:day}
-                return datagobbler.data.functions.global.getAllFilteredDataByDayOfWeek({layers:this.layersArray,day:day});
-            },
-            getAllFilteredDataByDaysOfWeek: function(days){ //args = {layers:this.layersArray,days:days}
-                return datagobbler.data.functions.global.getAllFilteredDataByDaysOfWeek({layers:this.layersArray,days:days});
-            },
-            getAllFilteredDataByDaysOfMonth: function(days){ //args = {layers:this.layersArray,days:days}
-                return datagobbler.data.functions.global.getAllFilteredDataByDaysOfMonth({layers:this.layersArray,days:days});
-            },
-            getAllFilteredDataByMonthsOfYear: function(months){ //args = {layers:this.layersArray,months:months}
-                return datagobbler.data.functions.global.getAllFilteredDataByMonthsOfYear({layers:this.layersArray,months:months});
-            },
-            getAllFilteredDataByYear: function(year){ //args = {layers:this.layersArray,year:year}
-                return datagobbler.data.functions.global.getAllFilteredDataByYear({layers:this.layersArray,year:year});
-            },
-            getAllFilteredDataByYears: function(years){ //args = year
-                return datagobbler.data.functions.global.getAllFilteredDataByYears({layers:this.layersArray,years:years});
-            },
-            getAllFilteredDataByYearMonth: function(args){ //args = {year:2012,month:3}
-                return datagobbler.data.functions.global.getAllFilteredDataByYearMonth({layers:this.layersArray,month:args.month,year:args.year});
-            },
-            getAllFilteredDataByYearMonthDay: function(args){ //args = {year:2012,month:3}
-                return datagobbler.data.functions.global.getAllFilteredDataByYearMonthDay({layers:this.layersArray,day:args.day,month:args.month,year:args.year});
-            },
-            getAllFilteredDataByYearMonthDayRange: function(args){ //args = {date_start:{year:2012,month:3,day:22},date_end:{year:2012,month:6,day:14}}
-                return datagobbler.data.functions.global.getAllFilteredDataByYearMonthDayRange({layers:this.layersArray,date_start:args.date_start,date_end:args.date_end});
-            }
-              
+            }() 
         }
         
+        for (f in datagobbler.data.functions.global.filters){
+            datagobbler.data.functions.all_layers[f] = datagobbler.data.functions.global.filters[f];
+        }
         
     }
     
@@ -1215,47 +1219,11 @@
             layersArray: function(){
                 var _arr = [layer];
                 return _arr;
-            }(), 
-            getAllFilteredDataByGroup: function(group){
-                return datagobbler.data.functions.global.getAllFilteredDataByGroup({layers:this.layersArray,group:group});
-            },
-            getAllFilteredData: function(){
-                return datagobbler.data.functions.global.getAllFilteredData({layers:this.layersArray});
-            },
-            getAllFilteredDataByMonth: function(month){ //args = {layers:this.layersArray,month:month}
-                return datagobbler.data.functions.global.getAllFilteredDataByMonth({layers:this.layersArray,month:month});
-            },
-            getAllFilteredDataByDayOfMonth: function(day){ //args = {layers:this.layersArray,day:day}
-                return datagobbler.data.functions.global.getAllFilteredDataByDayOfMonth({layers:this.layersArray,day:day});
-            },
-            getAllFilteredDataByDayOfWeek: function(day){ //args = {layers:this.layersArray,day:day}
-                return datagobbler.data.functions.global.getAllFilteredDataByDayOfWeek({layers:this.layersArray,day:day});
-            },                                                                     
-            getAllFilteredDataByDaysOfWeek: function(days){ //args = {layers:this.layersArray,days:days}
-                return datagobbler.data.functions.global.getAllFilteredDataByDaysOfWeek({layers:this.layersArray,days:days});
-            },                                                                      
-            getAllFilteredDataByDaysOfMonth: function(days){ //args = {layers:this.layersArray,days:days}
-                return datagobbler.data.functions.global.getAllFilteredDataByDaysOfMonth({layers:this.layersArray,days:days});
-            },
-            getAllFilteredDataByMonthsOfYear: function(months){ //args = {layers:this.layersArray,month:month}
-                return datagobbler.data.functions.global.getAllFilteredDataByMonthsOfYear({layers:this.layersArray,months:months});
-            },
-            getAllFilteredDataByYear: function(year){ //args = year
-                return datagobbler.data.functions.global.getAllFilteredDataByYear({layers:this.layersArray,year:year});
-            },
-            getAllFilteredDataByYears: function(years){ //args = year
-                return datagobbler.data.functions.global.getAllFilteredDataByYears({layers:this.layersArray,years:years});
-            },
-            getAllFilteredDataByYearMonth: function(args){ //args = {year:2012,month:3}
-                return datagobbler.data.functions.global.getAllFilteredDataByYearMonth({layers:this.layersArray,month:args.month,year:args.year});
-            },
-            getAllFilteredDataByYearMonthDay: function(args){ //args = {year:2012,month:3,day:22}
-                return datagobbler.data.functions.global.getAllFilteredDataByYearMonthDay({layers:this.layersArray,day:args.day,month:args.month,year:args.year});
-            },
-            getAllFilteredDataByYearMonthDayRange: function(args){ //args = {date_start:{year:2012,month:3,day:22},date_end:{year:2012,month:6,day:14}}
-                return datagobbler.data.functions.global.getAllFilteredDataByYearMonthDayRange({layers:this.layersArray,date_start:args.date_start,date_end:args.date_end});
-            }
-      
+            }()
+        }
+        
+        for (f in datagobbler.data.functions.global.filters){
+            datagobbler.data.functions.by_layer_name[layer][f] = datagobbler.data.functions.global.filters[f];
         }
         
     }
@@ -1558,78 +1526,8 @@
         return _objects;
     }
     
-    datagobbler.createInsideRanges = function(args){
-        
-        //console.log("datagobbler.addFeatureToInsideRanges", args);
-        
-        var _yyyy = args.itime.year;
-        var _mm = args.itime.month;
-        var _dd = args.itime.day;
-        var _numbertime = args.itime.numbertime;
-        
-        if(!datagobbler.data.by_date.inside_range[_yyyy]){
-            datagobbler.data.by_date.inside_range[_yyyy] = {};
-        }
-        if(!datagobbler.data.by_date.inside_range[_yyyy][_mm]){
-            datagobbler.data.by_date.inside_range[_yyyy][_mm] = {};
-        }
-        if(!datagobbler.data.by_date.inside_range[_yyyy][_mm][_dd]){
-            datagobbler.data.by_date.inside_range[_yyyy][_mm][_dd] = [];
-            //datagobbler.data.all_dates.byArray.inside_range[_numbertime] = args.itime;
-            //datagobbler.data.all_dates.byObject.inside_range[_numbertime] = args.itime;
-        }
-        
-        if(!datagobbler.data.by_layer_name[args.layer].by_date.inside_range[_yyyy]){
-            datagobbler.data.by_layer_name[args.layer].by_date.inside_range[_yyyy] = {};
-        }
-        if(!datagobbler.data.by_layer_name[args.layer].by_date.inside_range[_yyyy][_mm]){
-            datagobbler.data.by_layer_name[args.layer].by_date.inside_range[_yyyy][_mm] = {};
-        }
-        if(!datagobbler.data.by_layer_name[args.layer].by_date.inside_range[_yyyy][_mm][_dd]){
-            datagobbler.data.by_layer_name[args.layer].by_date.inside_range[_yyyy][_mm][_dd] = [];
-            //datagobbler.data.by_layer_name[args.layer].all_dates.byArray.inside_range[_numbertime] = args.itime;
-            //datagobbler.data.by_layer_name[args.layer].all_dates.byObject.inside_range[_numbertime] = args.itime;
-        }
-        
-    }
     
-    datagobbler.createOutsideRanges = function(args){
-        
-        var _yyyy = args.itime.year;
-        var _mm = args.itime.month;
-        var _dd = args.itime.day;
-        var _numbertime = args.itime.numbertime;
-        
-        //console.log(_numbertime);
-        
-        if(!datagobbler.data.by_date.outside_range[_yyyy]){
-            //datagobbler.data.by_date.outside_range[_yyyy] = {};
-        }
-        if(!datagobbler.data.by_date.outside_range[_yyyy][_mm]){
-            //datagobbler.data.by_date.outside_range[_yyyy][_mm] = {};
-        }
-        if(!datagobbler.data.by_date.outside_range[_yyyy][_mm][_dd]){
-            //datagobbler.data.by_date.outside_range[_yyyy][_mm][_dd] = [];
-            //datagobbler.data.all_dates.byArray.outside_range[_numbertime] = args.itime;
-            //datagobbler.data.all_dates.byObject.outside_range[_numbertime] = args.itime;
-        }
-        
-        if(!datagobbler.data.by_layer_name[args.layer].by_date.outside_range[_yyyy]){
-            datagobbler.data.by_layer_name[args.layer].by_date.outside_range[_yyyy] = {};
-        }
-        if(!datagobbler.data.by_layer_name[args.layer].by_date.outside_range[_yyyy][_mm]){
-            datagobbler.data.by_layer_name[args.layer].by_date.outside_range[_yyyy][_mm] = {};
-        }
-        if(!datagobbler.data.by_layer_name[args.layer].by_date.outside_range[_yyyy][_mm][_dd]){
-            datagobbler.data.by_layer_name[args.layer].by_date.outside_range[_yyyy][_mm][_dd] = [];
-            //datagobbler.data.by_layer_name[args.layer].all_dates.byArray.outside_range[_numbertime] = args.itime;
-            //datagobbler.data.by_layer_name[args.layer].all_dates.byObject.outside_range[_numbertime] = args.itime;
-        }
-        /**/
-        //['all_dates'] = { byArray:{inside_range:[],outside_range:[]}, byObject:{inside_range:{},outside_range:{}} };
-        
-    }
-
+    
     datagobbler.getCommonTime = function(args) {
         
         // Create MomentJS time object
