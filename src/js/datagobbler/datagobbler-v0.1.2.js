@@ -24,13 +24,15 @@
     datagobbler.data = {
         functions:{
             all_layers:{},
-            by_layer_name:{}
+            by_layer_name:{},
+            by_virtual_layer_name:{}
         },
         data_layers:{},
         by_layer_name:{},
         api_help:{
             all_layers:{},
-            by_layer_name:{}
+            by_layer_name:{},
+            by_virtual_layer_name:{}
         }
     };
     
@@ -46,14 +48,10 @@
             }else{
                 datagobbler.ondataLoaded = _cb;
                 datagobbler.ondataLoading = _lcb;
-                //console.log(data);
-                //_cb(data);
                 datagobbler.data_layers = data.data_layers;
                 datagobbler.data_options = data.data_options;
+                datagobbler.virtual_layers = data.virtual_layers;
                 datagobbler.setInitialStartEndDates(data);
-                
-                //datagobbler.data_options.dates = datagobbler.setDefaultDates(data.data_options.default_dates);
-                //datagobbler.setDataOptions();
             }
         });
     }
@@ -985,6 +983,7 @@
             }
             _tempObj[dl]=datagobbler.data_layers[dl].api_info.data_filtered;
         }
+        datagobbler.addVirtualLayersFunctions();
         datagobbler.addAllLayersFunctions();
         //datagobbler.addByDateFunctions();
         //DataGobbler is finished!
@@ -1010,6 +1009,8 @@
                 var _retObj = {};
                 for(layer in args.layers){
                     var _layer = args.layers[layer];
+                    console.log(_layer);
+                    /*
                     for(p in datagobbler.data.data_layers[_layer].data_filtered){
                         var _featuresKept = datagobbler.data.data_layers[_layer].data_filtered[p].features_kept;
                         if(_featuresKept[0].properties[args.group]){ //if the layer has the property
@@ -1024,8 +1025,9 @@
                             }
                         }
                     }
+                    */
                 }
-                return _retObj;
+                //return _retObj;
             },
             getAllFilteredDataByMonth:  function(args){ //args = {layers:this.layersArray,month:month}
                 var _retArr = this.getAllFilteredData(args).filter(function(value){
@@ -1188,12 +1190,8 @@
     }
     
     datagobbler.addAllLayersFunctions = function(){
-        
-        datagobbler.data.api_help.all_layers.getAllFilteredDataByGroup = {};
         datagobbler.addApiHelp.allLayers();
-        
         datagobbler.data.functions.all_layers = {
-            
             layersArray: function(){
                 var _arr = [];
                 for(layer in datagobbler.data.data_layers){
@@ -1202,35 +1200,58 @@
                 return _arr;
             }() 
         }
-        
         for (f in datagobbler.data.functions.global.filters){
             datagobbler.data.functions.all_layers[f] = datagobbler.data.functions.global.filters[f];
         }
-        
     }
     
     datagobbler.addByLayerNameFunctions = function(layer){
-        
         datagobbler.data.data_layers[layer].data_filtered = datagobbler.data_layers[layer].api_info.data_filtered;
-        datagobbler.addApiHelp.byLayerName(layer);
-                            
+        datagobbler.addApiHelp.byLayerName(layer);               
         datagobbler.data.functions.by_layer_name[layer] = {
-            
             layersArray: function(){
                 var _arr = [layer];
                 return _arr;
             }()
         }
-        
         for (f in datagobbler.data.functions.global.filters){
             datagobbler.data.functions.by_layer_name[layer][f] = datagobbler.data.functions.global.filters[f];
         }
+    }
+    
+    datagobbler.addVirtualLayersFunctions = function(){
         
+        var _vlKeys = Object.keys(datagobbler.virtual_layers);
+        //console.log("VIRTUAL LAYERS CALLED.",_vlKeys,datagobbler.virtual_layers);
+        for(vl in _vlKeys){
+            var _vl = _vlKeys[vl];
+            //datagobbler.data.functions.by_virtual_layer_name[_vl] = {};
+            var _vlObj = datagobbler.virtual_layers[_vl];
+            var _vlArr = _vlObj["data_layers"];
+            datagobbler.addApiHelp.byVirtualLayerName(_vl);
+            //console.log(_vl,_vlArr,_vlObj);
+            datagobbler.data.functions.by_virtual_layer_name[_vl] = {
+                layersArray: function(){
+                    var _arr = _vlArr;
+                    return _arr;
+                }()
+            }
+            
+            for (f in datagobbler.data.functions.global.filters){
+                var _test = datagobbler.data.functions.by_virtual_layer_name[_vl].layersArray;
+                datagobbler.data.functions.by_virtual_layer_name[_vl][f] = {};
+                //console.log(_vl,f,_test,datagobbler.data.functions.by_virtual_layer_name[_vl]);
+                //console.log("---------------------------------------------");
+                datagobbler.data.functions.by_virtual_layer_name[_vl][f] = datagobbler.data.functions.global.filters[f];
+            }
+        }
+        //console.log(datagobbler.data.functions);
     }
     
     datagobbler.addApiHelp = {
         
         allLayers: function(){
+            datagobbler.data.api_help.all_layers.getAllFilteredDataByGroup = {};
             for(layer in datagobbler.data.data_layers){
                 
                 for(p in datagobbler.data.data_layers[layer].data_filtered){
@@ -1388,6 +1409,91 @@
                 }
                 
             }
+        },
+        
+        byVirtualLayerName: function(vlayer){
+            
+            console.log("byVirtualLayerName called: ", vlayer);
+            
+            datagobbler.data.api_help.by_virtual_layer_name[vlayer] = {};
+            datagobbler.data.api_help.by_virtual_layer_name[vlayer].getAllFilteredDataByGroup = {};
+            var _vlArr = datagobbler.virtual_layers[vlayer].data_layers;
+            for(vl in _vlArr){
+                //console.log(layer,_vlArr[vl]);
+                var dl = _vlArr[vl];
+                for(p in datagobbler.data.data_layers[dl].data_filtered){
+                    var _featuresKept = datagobbler.data.data_layers[dl].data_filtered[p].features_kept;
+                    for(group in _featuresKept[0].properties){
+                        datagobbler.data.api_help.by_virtual_layer_name[vlayer].getAllFilteredDataByGroup[group] = {
+                            'Usage':("datagobbler.data.functions.by_virtual_layer_name[layer].getAllFilteredDataByGroup('"+group+"')"),
+                            'Returns':"Returns all filtered items from the all layers grouped/categorized by the "+group+" property."
+                        }
+                    }
+                }
+            }
+
+            //console.log("byVirtualLayerName",layer,datagobbler.data.api_help);
+            
+            datagobbler.data.api_help.by_virtual_layer_name[vlayer].getAllFilteredData = {
+                    'Usage':("datagobbler.data.functions.by_virtual_layer_name."+vlayer+".getAllFilteredData()"),
+                    'Returns':"Returns an array of all filtered items from the " + vlayer + " virtual layer."
+            };
+            
+            datagobbler.data.api_help.by_virtual_layer_name[vlayer].getAllFilteredDataByDayOfWeek = {
+                'Usage':("datagobbler.data.functions.by_virtual_layer_name."+vlayer+".getAllFilteredDataByDayOfWeek(3)"),
+                'Returns':"Returns an array of all filtered items from the " + vlayer + " virtual layer that occurred on the day of the week provided (0-6). Sunday is 0 and Saturday is 6"
+            };
+
+            datagobbler.data.api_help.by_virtual_layer_name[vlayer].getAllFilteredDataByDaysOfWeek = {
+                'Usage':("datagobbler.data.functions.by_virtual_layer_name."+vlayer+".getAllFilteredDataByDaysOfWeek([0,3,5])"),
+                'Returns':"Returns an array of all filtered items from the " + vlayer + " virtual layer that occurred on the days of the week provided (0-6) in the array-based argument. Sunday is 0 and Saturday is 6. Argument passed must be in the form of an array of numbers 0-6, eg. [0,1,2,3,4,5,6] would result in records for every day of the week being returned."
+            };
+
+            datagobbler.data.api_help.by_virtual_layer_name[vlayer].getAllFilteredDataByDayOfMonth = {
+                'Usage':("datagobbler.data.functions.by_virtual_layer_name."+vlayer+".getAllFilteredDataByDayOfMonth(15)"),
+                'Returns':"Returns an array of all filtered items from the " + vlayer + " virtual layer that occurred on the day of the month provided (1-31)."
+            };
+
+            datagobbler.data.api_help.by_virtual_layer_name[vlayer].getAllFilteredDataByDaysOfMonth = {
+                'Usage':("datagobbler.data.functions.by_virtual_layer_name."+vlayer+".getAllFilteredDataByDaysOfMonth([1,2,3,4,5])"),
+                'Returns':"Returns an array of all filtered items across all months and years from the " + vlayer + " virtual layer that occurred on the days provided (1-31) in the array-based argument. Argument passed must be in the form of an array of numbers 1-31, eg. [1,2,3,4,5...31]."
+            };
+
+            datagobbler.data.api_help.by_virtual_layer_name[vlayer].getAllFilteredDataByMonth = {
+                'Usage':("datagobbler.data.functions.by_virtual_layer_name."+vlayer+".getAllFilteredDataByMonth(5)"),
+                'Returns':"Returns an array of all filtered items from the " + vlayer + " virtual layer in the month number provided (1-12)."
+            };
+                
+            datagobbler.data.api_help.by_virtual_layer_name[vlayer].getAllFilteredDataByMonthsOfYear = {
+                'Usage':("datagobbler.data.functions.by_virtual_layer_name."+vlayer+".getAllFilteredDataByMonthsOfYear([3,5,10])"),
+                'Returns':"Returns an array of all filtered items from all years in the " + vlayer + " virtual layer that occurred in the months provided (1-12) in the array-based argument. Argument passed must be in the form of an array of numbers 1-12, eg. [1,2,3,4,5...12]."
+            };
+                
+            datagobbler.data.api_help.by_virtual_layer_name[vlayer].getAllFilteredDataByYears = {
+                'Usage':("datagobbler.data.functions.by_virtual_layer_name."+vlayer+".getAllFilteredDataByYears([2010,2013,2017])"),
+                'Returns':"Returns an array of all filtered items from all years in the " + vlayer + " virtual layer that occurred in the years provided (YYYY format, ex. 2010, 1985, etc.) in the array-based argument. Argument passed must be in the form of an array of 4-digit numbers eg. [2010,2013,2017]."
+            };
+
+            datagobbler.data.api_help.by_virtual_layer_name[vlayer].getAllFilteredDataByYear = {
+                'Usage':("datagobbler.data.functions.by_virtual_layer_name."+vlayer+".getAllFilteredDataByYear(2011)"),
+                'Returns':"Returns an array of all filtered items in the " + vlayer + " virtual layer during the 4-digit year provided (YYYY format, ex. 2010, 1985, etc.)."
+            };
+
+            datagobbler.data.api_help.by_virtual_layer_name[vlayer].getAllFilteredDataByYearMonth = {
+                'Usage':("datagobbler.data.functions.by_virtual_layer_name."+vlayer+".getAllFilteredDataByYearMonth({year:2012,month:3})"),
+                'Returns':"Returns an array of all filtered items in the " + vlayer + " virtual layer during the 4-digit year and month provided (YYYY format, ex. 2010, 1985, etc. and month in numerical form: 1-12). The year and month must be provided as an object: {year:2012,month:3}"
+            };
+
+            datagobbler.data.api_help.by_virtual_layer_name[vlayer].getAllFilteredDataByYearMonthDay = {
+                'Usage':("datagobbler.data.functions.by_virtual_layer_name."+vlayer+".getAllFilteredDataByYearMonthDay({year:2012,month:3,day:22})"),
+                'Returns':"Returns an array of all filtered items in the " + vlayer + " virtual layer during the 4-digit year and month provided (YYYY format, ex. 2010, 1985, etc.; month in numerical form: 1-12, and day in numerical form: 1-31). The year, month, and day must be provided as an object: {year:2012,month:3,day:22}"
+            };
+
+            datagobbler.data.api_help.by_virtual_layer_name[vlayer].getAllFilteredDataByYearMonthDayRange = {
+                'Usage':("datagobbler.data.functions.by_virtual_layer_name."+vlayer+".getAllFilteredDataByYearMonthDayRange({date_start:{year:2011,month:3,day:22},date_end:{year:2013,month:6,day:14}})"),
+                'Returns':"Returns an array of all filtered items in the " + vlayer + " virtual layer between two year/month/day dates:  (YYYY format, ex. 2010, 1985, etc.; month in numerical form: 1-12, and day in numerical form: 1-31). The year, month, and day must be provided as both 'start' and 'end' date objects: {date_start:{year:2012,month:3,day:22},date_end:{year:2012,month:6,day:14}}"
+            };
+
         }
     }
                 
@@ -1544,8 +1650,7 @@
             _time = moment(args.time).utc();
             args.format = _time._f;  
         }
-        
-        //console.log(this);
+
         this.getCommonTime.dateInGlobalDateRange = function(date) {
             var _isInRange = false;
             if(datagobbler.data_options.default_dates.idate_start && datagobbler.data_options.default_dates.idate_end){
@@ -1556,11 +1661,7 @@
                     _isInRange = true;
                 }
             }
-            //console.log("dateInGlobalDateRange: ",_isInRange);
-            //console.log("===============");
             return _isInRange;
-            //console.log(datagobbler.data_options.default_dates);
-            //console.log("dateInGlobalDateRange: ",date);
             
         }
         
