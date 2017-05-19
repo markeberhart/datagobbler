@@ -122,13 +122,20 @@
         }
         
     },
-    
     "virtual_layers":{
-        "virtual_layer_1":{
+        "virtual_layer1":{
+            "title":"VIRTUAL LAYER 1",
             "data_layers":["csvgeo","georss","timedockml"]
+        },
+        "virtual_layer2":{
+            "title":"VIRTUAL LAYER 2",
+            "data_layers":["csvgeo","shpzip","topojson"]
+        },
+        "virtual_layer3":{
+            "title":"VIRTUAL LAYER 3",
+            "data_layers":["atom"]
         }
     },
-
     "data_options": {
         "default_proxy_url":"./resources/data/data.aspx?url=",
         "default_dates": {
@@ -142,9 +149,5 @@
             "east":180,
             "west":-180
         }
-    },
-
-    "uiOptions": {
-
     }
 }
