@@ -1009,8 +1009,6 @@
                 var _retObj = {};
                 for(layer in args.layers){
                     var _layer = args.layers[layer];
-                    console.log(_layer);
-                    /*
                     for(p in datagobbler.data.data_layers[_layer].data_filtered){
                         var _featuresKept = datagobbler.data.data_layers[_layer].data_filtered[p].features_kept;
                         if(_featuresKept[0].properties[args.group]){ //if the layer has the property
@@ -1025,9 +1023,8 @@
                             }
                         }
                     }
-                    */
                 }
-                //return _retObj;
+                return _retObj;
             },
             getAllFilteredDataByMonth:  function(args){ //args = {layers:this.layersArray,month:month}
                 var _retArr = this.getAllFilteredData(args).filter(function(value){
@@ -1425,7 +1422,7 @@
                     var _featuresKept = datagobbler.data.data_layers[dl].data_filtered[p].features_kept;
                     for(group in _featuresKept[0].properties){
                         datagobbler.data.api_help.by_virtual_layer_name[vlayer].getAllFilteredDataByGroup[group] = {
-                            'Usage':("datagobbler.data.functions.by_virtual_layer_name[layer].getAllFilteredDataByGroup('"+group+"')"),
+                            'Usage':("datagobbler.data.functions.by_virtual_layer_name."+vlayer+".getAllFilteredDataByGroup('"+group+"')"),
                             'Returns':"Returns all filtered items from the all layers grouped/categorized by the "+group+" property."
                         }
                     }
