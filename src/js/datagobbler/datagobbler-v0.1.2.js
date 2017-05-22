@@ -33,6 +33,11 @@
             all_layers:{},
             by_layer_name:{},
             by_virtual_layer_name:{}
+        },
+        api_help2:{
+            all_layers:{},
+            by_layer_name:{},
+            by_virtual_layer_name:{}
         }
     };
     
@@ -1142,11 +1147,11 @@
                 return _retArr;
             },
             filters: {
-                getAllFilteredDataByGroup: function(group){
-                    return datagobbler.data.functions.global.getAllFilteredDataByGroup({layers:this.layersArray,group:group});
-                },
                 getAllFilteredData: function(){
                     return datagobbler.data.functions.global.getAllFilteredData({layers:this.layersArray});
+                },
+                getAllFilteredDataByGroup: function(group){
+                    return datagobbler.data.functions.global.getAllFilteredDataByGroup({layers:this.layersArray,group:group});
                 },
                 getAllFilteredDataByMonth: function(month){ //args = {layers:this.layersArray,month:month}
                     return datagobbler.data.functions.global.getAllFilteredDataByMonth({layers:this.layersArray,month:month});
@@ -1204,7 +1209,9 @@
     
     datagobbler.addByLayerNameFunctions = function(layer){
         datagobbler.data.data_layers[layer].data_filtered = datagobbler.data_layers[layer].api_info.data_filtered;
-        datagobbler.addApiHelp.byLayerName(layer);               
+        datagobbler.addApiHelp.byLayerName(layer);
+        var _help = datagobbler.createApiHelpDocs({obj:"getAllFilteredData",scope:"by_layer_name",layer:layer});
+        console.log("HELP!",_help);
         datagobbler.data.functions.by_layer_name[layer] = {
             layersArray: function(){
                 var _arr = [layer];
@@ -1492,6 +1499,78 @@
             };
 
         }
+    }
+    
+    datagobbler.createApiHelpDocs = function(args){ //{obj:"getAllFilteredData",scope:"by_layer_name",layer:"my_data_layer"}
+        
+        filterDocs = {
+            getAllFilteredData:{
+                "all_layers":{
+                    'Usage':("datagobbler.data.functions.all_layers.getAllFilteredData()"),
+                    'Returns':"Returns an array of all filtered items from all layers."
+                },
+                "by_layer_name":{
+                    'Usage':("datagobbler.data.functions.by_layer_name."+args.layer+".getAllFilteredData()"),
+                    'Returns':"Returns an array of all filtered items from the "+args.layer+" layer."
+                },
+                "by_virtual_layer_name":{
+                    'Usage':("datagobbler.data.functions.by_virtual_layer_name."+args.layer+".getAllFilteredData()"),
+                    'Returns':"Returns an array of all filtered items from the "+args.layer+" virtual layer." 
+                }
+            }
+        }
+        
+        return(filterDocs[args.obj][args.scope]);
+        /*
+        
+        if(!datagobbler.data_layers[layer].api_info.has_temporal_data){
+                datagobbler.data.api_help.by_layer_name[layer]["(No temporal data is available in the "+layer+" layer)"]={};
+            }
+            if(datagobbler.data_layers[layer].api_info.has_temporal_data){
+            
+            
+        filters: {
+                getAllFilteredData: function(){
+                    return datagobbler.data.functions.global.getAllFilteredData({layers:this.layersArray});
+                },
+                getAllFilteredDataByGroup: function(group){
+                    return datagobbler.data.functions.global.getAllFilteredDataByGroup({layers:this.layersArray,group:group});
+                },
+                getAllFilteredDataByMonth: function(month){ //args = {layers:this.layersArray,month:month}
+                    return datagobbler.data.functions.global.getAllFilteredDataByMonth({layers:this.layersArray,month:month});
+                },
+                getAllFilteredDataByDayOfMonth: function(day){ //args = {layers:this.layersArray,day:day}
+                    return datagobbler.data.functions.global.getAllFilteredDataByDayOfMonth({layers:this.layersArray,day:day});
+                },
+                getAllFilteredDataByDayOfWeek: function(day){ //args = {layers:this.layersArray,day:day}
+                    return datagobbler.data.functions.global.getAllFilteredDataByDayOfWeek({layers:this.layersArray,day:day});
+                },
+                getAllFilteredDataByDaysOfWeek: function(days){ //args = {layers:this.layersArray,days:days}
+                    return datagobbler.data.functions.global.getAllFilteredDataByDaysOfWeek({layers:this.layersArray,days:days});
+                },
+                getAllFilteredDataByDaysOfMonth: function(days){ //args = {layers:this.layersArray,days:days}
+                    return datagobbler.data.functions.global.getAllFilteredDataByDaysOfMonth({layers:this.layersArray,days:days});
+                },
+                getAllFilteredDataByMonthsOfYear: function(months){ //args = {layers:this.layersArray,months:months}
+                    return datagobbler.data.functions.global.getAllFilteredDataByMonthsOfYear({layers:this.layersArray,months:months});
+                },
+                getAllFilteredDataByYear: function(year){ //args = {layers:this.layersArray,year:year}
+                    return datagobbler.data.functions.global.getAllFilteredDataByYear({layers:this.layersArray,year:year});
+                },
+                getAllFilteredDataByYears: function(years){ //args = year
+                    return datagobbler.data.functions.global.getAllFilteredDataByYears({layers:this.layersArray,years:years});
+                },
+                getAllFilteredDataByYearMonth: function(args){ //args = {year:2012,month:3}
+                    return datagobbler.data.functions.global.getAllFilteredDataByYearMonth({layers:this.layersArray,month:args.month,year:args.year});
+                },
+                getAllFilteredDataByYearMonthDay: function(args){ //args = {year:2012,month:3}
+                    return datagobbler.data.functions.global.getAllFilteredDataByYearMonthDay({layers:this.layersArray,day:args.day,month:args.month,year:args.year});
+                },
+                getAllFilteredDataByYearMonthDayRange: function(args){ //args = {date_start:{year:2012,month:3,day:22},date_end:{year:2012,month:6,day:14}}
+                    return datagobbler.data.functions.global.getAllFilteredDataByYearMonthDayRange({layers:this.layersArray,date_start:args.date_start,date_end:args.date_end});
+                }
+            }
+            */
     }
                 
     
