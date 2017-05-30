@@ -1210,8 +1210,7 @@
     datagobbler.addByLayerNameFunctions = function(layer){
         datagobbler.data.data_layers[layer].data_filtered = datagobbler.data_layers[layer].api_info.data_filtered;
         datagobbler.addApiHelp.byLayerName(layer);
-        var _help = datagobbler.createApiHelpDocs({obj:"getAllFilteredData",scope:"by_layer_name",layer:layer});
-        console.log("HELP!",_help);
+        datagobbler.createApiHelpDocs({obj:"getAllFilteredData",scope:"by_layer_name",layer:layer});
         datagobbler.data.functions.by_layer_name[layer] = {
             layersArray: function(){
                 var _arr = [layer];
@@ -1520,8 +1519,86 @@
             }
         }
         
-        return(filterDocs[args.obj][args.scope]);
+        if(!datagobbler.data.api_help["test"]){
+            datagobbler.data.api_help["test"] = {};
+        }
+        if(!datagobbler.data.api_help["test"][args.scope]){
+            datagobbler.data.api_help["test"][args.scope] = {};
+        }
+        if(!datagobbler.data.api_help["test"][args.scope][args.layer]){
+            datagobbler.data.api_help["test"][args.scope][args.layer] = {};
+        }
+        
+        
+        
+        datagobbler.data.api_help["test"][args.scope][args.layer][args.obj] = filterDocs[args.obj][args.scope];
+
+        //return(filterDocs[args.obj][args.scope]);
         /*
+        var _help = datagobbler.createApiHelpDocs({obj:"getAllFilteredData",scope:"by_layer_name",layer:layer});
+        
+        getAllFilteredDataByGroup:{
+                "all_layers":{
+                    'Usage':("datagobbler.data.functions.all_layers.getAllFilteredData()"),
+                    'Returns':"Returns an array of all filtered items from all layers."
+                },
+                "by_layer_name":{
+                    'Usage':("datagobbler.data.functions.by_layer_name."+args.layer+".getAllFilteredData()"),
+                    'Returns':"Returns an array of all filtered items from the "+args.layer+" layer."
+                },
+                "by_virtual_layer_name":{
+                    'Usage':("datagobbler.data.functions.by_virtual_layer_name."+args.layer+".getAllFilteredData()"),
+                    'Returns':"Returns an array of all filtered items from the "+args.layer+" virtual layer." 
+                }
+            }
+        
+        {obj:"getAllFilteredDataByGroup",scope:"by_layer_name",layer:"my_data_layer"}
+        
+        datagobbler.data.api_help.by_virtual_layer_name[vlayer].getAllFilteredDataByGroup = {};
+            var _vlArr = datagobbler.virtual_layers[vlayer].data_layers;
+            for(vl in _vlArr){
+                //console.log(layer,_vlArr[vl]);
+                var dl = _vlArr[vl];
+                for(p in datagobbler.data.data_layers[dl].data_filtered){
+                    var _featuresKept = datagobbler.data.data_layers[dl].data_filtered[p].features_kept;
+                    for(group in _featuresKept[0].properties){
+                        datagobbler.data.api_help.by_virtual_layer_name[vlayer].getAllFilteredDataByGroup[group] = {
+                            'Usage':("datagobbler.data.functions.by_virtual_layer_name."+vlayer+".getAllFilteredDataByGroup('"+group+"')"),
+                            'Returns':"Returns all filtered items from the all layers grouped/categorized by the "+group+" property."
+                        }
+                    }
+                }
+            }
+            
+        
+        for(p in datagobbler.data.data_layers[layer].data_filtered){
+                
+                var _featuresKept = datagobbler.data.data_layers[layer].data_filtered[p].features_kept;
+                for(group in _featuresKept[0].properties){
+                    datagobbler.data.api_help.by_layer_name[layer].getAllFilteredDataByGroup[group] = {
+                        'Usage':("datagobbler.data.functions.by_layer_name."+layer+".getAllFilteredDataByGroup('"+group+"')"),
+                        'Returns':"Returns all filtered items from the "+layer+" layer grouped/categorized by the "+group+" property."
+                    }
+                }
+                
+            }
+            
+         
+         datagobbler.data.api_help.all_layers.getAllFilteredDataByGroup = {};
+            for(layer in datagobbler.data.data_layers){
+                
+                for(p in datagobbler.data.data_layers[layer].data_filtered){
+                    var _featuresKept = datagobbler.data.data_layers[layer].data_filtered[p].features_kept;
+                    for(group in _featuresKept[0].properties){
+                        datagobbler.data.api_help.all_layers.getAllFilteredDataByGroup[group] = {
+                            'Usage':("datagobbler.data.functions.all_layers.getAllFilteredDataByGroup('"+group+"')"),
+                            'Returns':"Returns all filtered items from the all layers grouped/categorized by the "+group+" property."
+                        }
+                    }
+                }
+                
+            };
+         
         
         if(!datagobbler.data_layers[layer].api_info.has_temporal_data){
                 datagobbler.data.api_help.by_layer_name[layer]["(No temporal data is available in the "+layer+" layer)"]={};
