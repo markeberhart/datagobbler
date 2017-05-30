@@ -1510,7 +1510,13 @@
                 },
                 "by_layer_name":{
                     'Usage':("datagobbler.data.functions.by_layer_name."+args.layer+".getAllFilteredData()"),
-                    'Returns':"Returns an array of all filtered items from the "+args.layer+" layer."
+                    'Returns':"Returns an array of all filtered items from the "+args.layer+" layer.",
+                    'testfunc':(function(){
+                        var _ob = {
+                            "layer":args.layer
+                        }
+                        return _ob;
+                    })()
                 },
                 "by_virtual_layer_name":{
                     'Usage':("datagobbler.data.functions.by_virtual_layer_name."+args.layer+".getAllFilteredData()"),
