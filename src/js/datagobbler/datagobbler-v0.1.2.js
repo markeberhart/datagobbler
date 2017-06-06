@@ -1504,6 +1504,7 @@
     
     datagobbler.createApiHelpDocs = function(args){ //{obj:"getAllFilteredData",scope:"by_layer_name",layer:"my_data_layer"}
         
+        console.log("datagobbler.createApiHelpDocs",args);
         // TODO 30May2017
         // Build this object up-front or in a manner that allows access by scope only
         // Otherwise it tries to build things that don't exist - eg. virtual layers from named layers or vice versa
