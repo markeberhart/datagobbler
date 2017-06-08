@@ -1,15 +1,16 @@
 {
     "data_layers":{
-        "atom":{
-            "title":"ATOM",
+
+        "regrss":{
+            "title":"REGRSS",
             "api_info": {
-                "url":"./src/data/atom.atom",
-                "file_type":"atom",
-                "filter_out":[{"property":"id","operator":"LIKE","value":"underwater"}],
+                "url":"./src/data/regRSS.rss",
+                "file_type":"rss",
+                "filter_out":[],
                 "proxy_url":null,
                 "date_info": {
-                    "date_field":"updated",
-                    "date_format":"utm",
+                    "date_field":"pubDate",
+                    "date_format":"ntm",
                     "offset_type":"days",
                     "date_start_offset":0,
                     "date_end_offset":0
@@ -23,93 +24,13 @@
         "georss":{
             "title":"GEORSS",
             "api_info": {
-                "url":"./src/data/georss.rss",
-                "file_type":"georss",
+                "url":"./src/data/geoRSS.rss",
+                "file_type":"rss",
                 "filter_out":[],
                 "proxy_url":null,
                 "date_info": {
-                    "date_field":"updated",
-                    "date_format":"x",
-                    "offset_type":"days",
-                    "date_start_offset":0,
-                    "date_end_offset":0
-                },
-                "if_not_geospatial_file_type":{
-                    "field_to_use_for_latitude":null,
-                    "field_to_use_for_longitude":null
-                }
-            }
-        },
-        "topojson":{
-            "title":"TOPOJSON",
-            "api_info": {
-                "url":"src/data/topojson.topojson",
-                "file_type":"topojson",
-                "filter_out":[],
-                "proxy_url":null,
-                "date_info": {
-                    "date_field":null,
-                    "date_format":null,
-                    "offset_type":"days",
-                    "date_start_offset":0,
-                    "date_end_offset":0
-                },
-                "if_not_geospatial_file_type":{
-                    "field_to_use_for_latitude":null,
-                    "field_to_use_for_longitude":null
-                }
-            }
-        },
-        "csvgeo":{
-            "title":"CSVGEO",
-            "api_info": {
-                "url":"./src/data/csv-geo.csv",
-                "file_type":"csv",
-                "filter_out":[],
-                "proxy_url":null,
-                "date_info": {
-                    "date_field":"time",
-                    "date_format":"x",
-                    "offset_type":"days",
-                    "date_start_offset":0,
-                    "date_end_offset":0
-                },
-                "if_not_geospatial_file_type":{
-                    "field_to_use_for_latitude":"latitude",
-                    "field_to_use_for_longitude":"longitude"
-                }
-            }
-        },
-        "shpzip":{
-            "title":"SHPZIP",
-            "api_info": {
-                "url":"src/data/counties.zip",
-                "file_type":"shp.zip",
-                "filter_out":[],
-                "proxy_url":null,
-                "date_info": {
-                    "date_field":"time",
-                    "date_format":"x",
-                    "offset_type":"days",
-                    "date_start_offset":0,
-                    "date_end_offset":0
-                },
-                "if_not_geospatial_file_type":{
-                    "field_to_use_for_latitude":null,
-                    "field_to_use_for_longitude":null
-                }
-            }
-        },
-        "timedockml":{
-            "title":"TIME-DOC-KML",
-            "api_info": {
-                "url":"./src/data/time-doc.kml",
-                "file_type":"kml",
-                "filter_out":[{"property":"description","operator":"LIKE","value":"87"},{"property":"name","operator":">","value":"1999"}],
-                "proxy_url":null,
-                "date_info": {
-                    "date_field":"timestamp",
-                    "date_format":"YYYY",
+                    "date_field":"pubDate",
+                    "date_format":"ntm",
                     "offset_type":"days",
                     "date_start_offset":0,
                     "date_end_offset":0
@@ -125,15 +46,7 @@
     "virtual_layers":{
         "virtual_layer1":{
             "title":"VIRTUAL LAYER 1",
-            "data_layers":["csvgeo","georss","timedockml"]
-        },
-        "virtual_layer2":{
-            "title":"VIRTUAL LAYER 2",
-            "data_layers":["csvgeo","shpzip","topojson"]
-        },
-        "virtual_layer3":{
-            "title":"VIRTUAL LAYER 3",
-            "data_layers":["atom"]
+            "data_layers":["georss"]
         }
     },
     "data_options": {
@@ -141,7 +54,7 @@
         "default_dates": {
             "date_format":"MM/DD/YYYY",
             "date_start":"01/01/1989",
-            "date_end":"12/31/2017"
+            "date_end":"5/31/2017"
         },
         "dataBounds": {
             "north":90,
