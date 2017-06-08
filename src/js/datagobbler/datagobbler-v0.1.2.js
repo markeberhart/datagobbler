@@ -306,9 +306,9 @@
                         datagobbler.layerHasGeospatialData(dl);
                         datagobbler.downloadDataATOM(dl);
                         break;
-                    case "georss":
+                    case "rss":
                         datagobbler.layerHasGeospatialData(dl,true);
-                        datagobbler.downloadDataGEORSS(dl);
+                        datagobbler.downloadDataRSS(dl);
                         break;
                     case "csv":
                         datagobbler.checkIfGeospatial(dl);
@@ -562,18 +562,20 @@
         var _data = datagobbler.data_layers[layer].api_info.data;
         var _arr = [];
         var _filetype = datagobbler.data_layers[dl].api_info.file_type;
-        //_arr[] = _data;
-        //for (i = 0; i < _data.length; i++) {
         
-        var _type = datagobbler.getDataType(_data.features[0].geometry.type);
-        _data[_type.name] = _type.type;
-        _data.has_geospatial_data = datagobbler.data_layers[layer].api_info.has_geospatial_data;
         _data.name = layer;
+        if(_data.features[0].geometry){
+            var _type = datagobbler.getDataType(_data.features[0].geometry.type);
+            _data[_type.name] = _type.type;
+        }else{
+            _data["type"]=_filetype;
+        }
+        _data.has_geospatial_data = datagobbler.data_layers[layer].api_info.has_geospatial_data;
         _arr.push(_data);
         datagobbler.data_layers[layer].api_info['objects'] = _arr;
         //console.log("decodeDataGEOJSON-objects: ",_data,datagobbler.data_layers[layer].api_info.objects);
+        //console.log(datagobbler.data_layers,"datagobbler.decodeDataGEOJSON",_arr);
         datagobbler.checkGlobalDownloadStatus();
-        //console.log(datagobbler.data_layers,"datagobbler.decodeDataJSON",_arr);
     }
 
      datagobbler.downloadDataARCJSON = function(layer){
@@ -835,7 +837,7 @@
         });
     }
      
-    datagobbler.downloadDataGEORSS = function(layer){
+    datagobbler.downloadDataRSS = function(layer){
         var _url = datagobbler.data_layers[layer].api_info.url;
         var _loadingStatus = datagobbler.data_layers[layer].loadingStatus;
         _loadingStatus.pendingDownload = true;
@@ -846,15 +848,26 @@
                 _loadingStatus.downloadError = true;
                 datagobbler.data_layers[layer].api_info['data'] = null;
                 datagobbler.DownloadError(layer,error);
-                console.log("downloadDataGEORSS BAD");
+                console.log("downloadDataRSS BAD");
             }else{
                 var _geojson = GeoRSSToGeoJSON(data,{layer:layer,datagobbler:datagobbler});
+                console.log(_geojson);
+                var _hasGeo = _geojson.features[0].geometry;
+                if(_hasGeo){
+                    //console.log(true);
+                    datagobbler.layerHasGeospatialData(layer,true);
+                    //return true;
+                }else{
+                    datagobbler.layerHasGeospatialData(layer,false);
+                    //console.log(false);
+                    //return false;
+                }
                 _loadingStatus.downloadCompleted = true;
                 _loadingStatus.pendingDownload = false;
                 datagobbler.data_layers[layer].api_info['data'] = _geojson;
                 datagobbler.DownloadSuccess(layer);
                 datagobbler.decodeDataGEOJSON(layer);
-                console.log("downloadDataGEORSS OK");
+                console.log("downloadDataRSS OK");
             }
         });
     }
@@ -980,10 +993,8 @@
         datagobbler.addGlobalFunctions();
         for(dl in datagobbler.data_layers){
             if(datagobbler.data_layers[dl].layerOkToFilter){
-                
-                //datagobbler.data_layers[dl].api_info.objects = datagobbler.filterDataLayer3(dl);
+                console.log("filter layer ",dl);
                 datagobbler.data_layers[dl].api_info["data_filtered"] = datagobbler.filterDataLayer(dl);
-                
                 datagobbler.addByLayerNameFunctions(dl);
             }
             _tempObj[dl]=datagobbler.data_layers[dl].api_info.data_filtered;
@@ -1232,7 +1243,7 @@
             var _vlObj = datagobbler.virtual_layers[_vl];
             var _vlArr = _vlObj["data_layers"];
             datagobbler.addApiHelp.byVirtualLayerName(_vl);
-            console.log("call to datagobbler.createApiHelpDocs",_vl);
+            //console.log("call to datagobbler.createApiHelpDocs",_vl);
             datagobbler.createApiHelpDocs({obj:"getAllFilteredDataByGroup",scope:"by_virtual_layer_name",layer:_vl});
             //console.log(_vl,_vlArr,_vlObj);
             datagobbler.data.functions.by_virtual_layer_name[_vl] = {
@@ -1406,13 +1417,15 @@
             for(p in datagobbler.data.data_layers[layer].data_filtered){
                 
                 var _featuresKept = datagobbler.data.data_layers[layer].data_filtered[p].features_kept;
-                for(group in _featuresKept[0].properties){
-                    datagobbler.data.api_help.by_layer_name[layer].getAllFilteredDataByGroup[group] = {
-                        'Usage':("datagobbler.data.functions.by_layer_name."+layer+".getAllFilteredDataByGroup('"+group+"')"),
-                        'Returns':"Returns all filtered items from the "+layer+" layer grouped/categorized by the "+group+" property."
+                if(_featuresKept[0].properties){
+                    for(group in _featuresKept[0].properties){
+                        datagobbler.data.api_help.by_layer_name[layer].getAllFilteredDataByGroup[group] = {
+                            'Usage':("datagobbler.data.functions.by_layer_name."+layer+".getAllFilteredDataByGroup('"+group+"')"),
+                            'Returns':"Returns all filtered items from the "+layer+" layer grouped/categorized by the "+group+" property."
+                        }
                     }
                 }
-                
+                    
             }
         },
         
@@ -1504,7 +1517,7 @@
     
     datagobbler.createApiHelpDocs = function(args){ //{obj:"getAllFilteredData",scope:"by_layer_name",layer:"my_data_layer"}
         
-        console.log("datagobbler.createApiHelpDocs",args);
+        //console.log("datagobbler.createApiHelpDocs",args);
         // TODO 30May2017
         // Build this object up-front or in a manner that allows access by scope only
         // Otherwise it tries to build things that don't exist - eg. virtual layers from named layers or vice versa
@@ -1555,7 +1568,7 @@
                         //    "layer":args.layer
                         //}
                         //return _ob;
-                        console.log(args.obj,args.scope,"by_virtual_layer_name",datagobbler.virtual_layers,args.layer);
+                        //console.log(args.obj,args.scope,"by_virtual_layer_name",datagobbler.virtual_layers,args.layer);
                        /*
                         var _vlArr = datagobbler.virtual_layers[args.layer].data_layers;
                         for(vl in _vlArr){
@@ -1766,8 +1779,6 @@
             _objects[k].features_filtered_out = [];
             
             var _features = _objects[k].features;
-            
-            
             var _temp_features = [];
             var _is_temporal;
             var _is_geospatial;
@@ -1777,16 +1788,14 @@
             }else{
                 _is_temporal = false;
             }
-            datagobbler.layerHasTemporalData(layer,_is_temporal);
             
+            datagobbler.layerHasTemporalData(layer,_is_temporal);
             _objects[k].is_temporal = _is_temporal;
             _objects[k].is_geospatial = datagobbler.data_layers[layer].api_info.has_geospatial_data;
             _is_geospatial = datagobbler.data_layers[layer].api_info.has_geospatial_data;
-            
             datagobbler.data_layers[layer].api_info.objects[k].is_temporal = _is_temporal;
             
             for(f in _features){
-                
                 var _keepFeature = true;
                 var _removeFeature = {doRemove:false};
                 var _outsideTimeRange = false;
@@ -1800,10 +1809,7 @@
                 _features[f].is_geospatial = datagobbler.data_layers[layer].api_info.has_geospatial_data;
                 _features[f].data_layer = layer;
                 
-                //console.log(_features[f]);
-                
                 if((_is_temporal && _is_geospatial) || (_is_temporal && !_is_geospatial)){
-                    //console.log("raw",_features[f]);
                     var _time;
                     // verify whether the time/date field is meant to be
                     // text or a number
@@ -1812,7 +1818,7 @@
                     }else{
                         _time = Number(_features[f].properties[_dateField]); //treat as a number (eg. UNIX)
                     }
-                    //console.log(_features[f].properties.Victim);
+                    
                     _features[f].properties["idate"] = _time;
                     _features[f].properties["itime"] = datagobbler.getCommonTime({time:_time,format:_dateFormat,props:_features});
                     _features[f].properties["prettytime"] = datagobbler.getCommonTime({time:_time,format:_dateFormat}).prettytime;
@@ -1825,14 +1831,32 @@
                         _outsideTimeRange = true;
                         _objects[k].features_outside_date_range.push(_features[f]);
                     }
-                }else if((!_is_temporal && datagobbler.data_layers[layer].api_info.has_temporal_data)){
-                    _keepFeature = false;
-                    _removeFeature = {doRemove:true};
-                }else{ //if it's not temporal but has geospatial data
-                    _keepFeature = true;
-                    _removeFeature = {doRemove:false};
                 }
                 
+                //TODO TO DO , 7JUNE2017
+                // Need to determine why/if features that fall outside the date/time window
+                // Are not being given a doRemove of "false"
+                // 
+                console.log(_features[f],_is_temporal,"_keepFeature",_keepFeature,"_outsideTimeRange",_outsideTimeRange);
+                
+                if((!_is_temporal && datagobbler.data_layers[layer].api_info.has_temporal_data)){
+                    _keepFeature = false;
+                    _removeFeature = {doRemove:true};
+                    console.log("removing!");
+                }
+                if((!_is_temporal && datagobbler.data_layers[layer].api_info.has_geospatial_data)){ //if it's not temporal but has geospatial data
+                    _keepFeature = true;
+                    _removeFeature = {doRemove:false};
+                    console.log("keeping!");
+                }
+                
+                if(!_keepFeature && _outsideTimeRange){
+                    _keepFeature = false;
+                    _removeFeature = {doRemove:true};
+                    console.log("removing!");
+                }
+                
+                console.log("---------------------------");
                 
                 if(_keepFeature && _filterOutArr.length>0){
                     for(fo in _filterOutArr){
@@ -1848,6 +1872,8 @@
                        }
                     }
                 }
+                
+                //console.log(_features[f],_removeFeature,_keepFeature,_is_temporal,datagobbler.data_layers[layer].api_info.has_temporal_data);
                 
                 if(_removeFeature.doRemove && !_keepFeature){
                     _objects[k].features_filtered_out.push(_features[f]);
@@ -1869,17 +1895,20 @@
                     is_temporal:_is_temporal
                 };  
                 datagobbler.numRecords++;
-            
+                
             }
+            
             delete _objects[k].features;
             
+            //console.log(_objects[k]); 
         }
-        
+
         delete datagobbler.data_layers[layer].api_info.objects;
         console.log(datagobbler.data_layers[layer]);
         datagobbler.filterSuccess(layer);
         datagobbler.numOfDataFilesFiltered++;
         return _objects;
+        
     }
     
     
